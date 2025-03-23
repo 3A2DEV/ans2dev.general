@@ -15,7 +15,8 @@
 - Bugfix Pull Request
 - Docs Pull Request
 - Feature Pull Request
-- New Module/Plugin Pull Request
+- New Module Pull Request
+- New Plugin Pull Request
 - Refactoring Pull Request
 - Test Pull Request
 
