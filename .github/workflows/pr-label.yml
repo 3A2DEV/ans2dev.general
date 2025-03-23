@@ -1,0 +1,75 @@
+---
+name: Auto-label PR
+
+on:
+  pull_request:
+    types: [opened]
+
+jobs:
+  label-pull_request:
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
+    steps:
+      - name: Add label for Bugfix
+        if: contains(github.event.pull_request.body, '- Bugfix Pull Request')
+        run: gh pr edit "$NUMBER" --add-label "$LABELS"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_REPO: ${{ github.repository }}
+          NUMBER: ${{ github.event.pull_request.number }}
+          LABELS: needs_triage,bug
+
+      - name: Add label for Feature
+        if: contains(github.event.pull_request.body, '- Feature Pull Request')
+        run: gh pr edit "$NUMBER" --add-label "$LABELS"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_REPO: ${{ github.repository }}
+          NUMBER: ${{ github.event.pull_request.number }}
+          LABELS: needs_triage,feature
+
+      - name: Add label for Docs
+        if: contains(github.event.pull_request.body, '- Docs Pull Request')
+        run: gh pr edit "$NUMBER" --add-label "$LABELS"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_REPO: ${{ github.repository }}
+          NUMBER: ${{ github.event.pull_request.number }}
+          LABELS: needs_triage,documentation
+
+      - name: Add label for New Module
+        if: contains(github.event.pull_request.body, '- New Module Pull Request')
+        run: gh pr edit "$NUMBER" --add-label "$LABELS"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_REPO: ${{ github.repository }}
+          NUMBER: ${{ github.event.pull_request.number }}
+          LABELS: needs_triage,new_module
+
+      - name: Add label for New Plugin
+        if: contains(github.event.pull_request.body, '- New Plugin Pull Request')
+        run: gh pr edit "$NUMBER" --add-label "$LABELS"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_REPO: ${{ github.repository }}
+          NUMBER: ${{ github.event.pull_request.number }}
+          LABELS: needs_triage,new_plugin
+
+      - name: Add label for Refactoring
+        if: contains(github.event.pull_request.body, '- Refactoring Pull Request')
+        run: gh pr edit "$NUMBER" --add-label "$LABELS"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_REPO: ${{ github.repository }}
+          NUMBER: ${{ github.event.pull_request.number }}
+          LABELS: needs_triage,refactor
+
+      - name: Add label for Test
+        if: contains(github.event.pull_request.body, '- Test Pull Request')
+        run: gh pr edit "$NUMBER" --add-label "$LABELS"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_REPO: ${{ github.repository }}
+          NUMBER: ${{ github.event.pull_request.number }}
+          LABELS: needs_triage,testing
