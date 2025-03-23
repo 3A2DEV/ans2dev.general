@@ -1,6 +1,12 @@
 # 3A2DEV General Collection for Ansible
 <!-- Add CI and code coverage badges here. Samples included below. -->
-[![CI](https://github.com/3A2DEV/a2dev.general/workflows/CI/badge.svg?event=push)](https://github.com/3A2DEV/a2dev.general/actions) [![Codecov](https://img.shields.io/codecov/c/github/3A2DEV/a2dev.general)](https://codecov.io/gh/3A2DEV/a2dev.general)
+![collection](https://img.shields.io/badge/ansible-collection-blue?logo=ansible&logoColor=white)
+![automation](https://img.shields.io/badge/ansible-automation-blue?logo=ansible&logoColor=white)
+![galaxy](https://img.shields.io/badge/ansible-galaxy-blue?logo=ansible&logoColor=white)
+![module](https://img.shields.io/badge/ansible-module-blue?logo=ansible&logoColor=white)
+![roles](https://img.shields.io/badge/ansible-roles-blue?logo=ansible&logoColor=white)
+
+[![collection-release](https://img.shields.io/github/v/release/3A2DEV/a2dev.general?display_name=release&logo=ansible&logoColor=white)](https://galaxy.ansible.com/ui/repo/published/3A2DEV/a2dev.general/) [![CI](https://github.com/3A2DEV/a2dev.general/workflows/CI/badge.svg?event=push)](https://github.com/3A2DEV/a2dev.general/actions) [![Codecov](https://img.shields.io/codecov/c/github/3A2DEV/a2dev.general)](https://codecov.io/gh/3A2DEV/a2dev.general)
 
 <!-- Describe the collection and why a user would want to use it. What does the collection do? -->
 
