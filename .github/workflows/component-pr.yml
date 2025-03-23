@@ -1,0 +1,90 @@
+name: Identify Component and Label PR
+
+on:
+  pull_request:
+    types: [opened, edited, synchronize]
+
+jobs:
+  process-pr:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Extract component and locate file
+        id: search_component
+        shell: bash
+        run: |
+          echo "PR Description:"
+          echo "${{ github.event.pull_request.body }}"
+          
+          # Extract the component name (the line after "### Component Name")
+          COMPONENT=$(echo "${{ github.event.pull_request.body }}" | awk '/^### Component Name/{getline; print}' | xargs)
+          echo "Component Name: $COMPONENT"
+          
+          # Search for a Python file matching the component name in the specified directories
+          FILE_PATH=$(find plugins/modules plugins/module_utils -type f -name "${COMPONENT}.py" | head -n 1)
+          
+          if [ -z "$FILE_PATH" ]; then
+            echo "No file found for component $COMPONENT"
+            FILE_PATH="No file found for component $COMPONENT"
+          else
+            echo "Found file: $FILE_PATH"
+          fi
+          
+          # Set the found file path as an output variable
+          echo "::set-output name=file_path::$FILE_PATH"
+
+      - name: Determine label based on file path
+        id: determine_label
+        shell: bash
+        run: |
+          FILE_PATH="${{ steps.search_component.outputs.file_path }}"
+          LABEL=""
+          if [[ "$FILE_PATH" == *"plugins/modules"* ]]; then
+            LABEL="module"
+          elif [[ "$FILE_PATH" == *"plugins/module_utils"* ]]; then
+            LABEL="module_utils"
+          else
+            LABEL="unknown"
+          fi
+          echo "Determined label: $LABEL"
+          echo "::set-output name=label::$LABEL"
+
+      - name: Create a link to the file if found
+        id: file_link
+        shell: bash
+        run: |
+          FILE_PATH="${{ steps.search_component.outputs.file_path }}"
+          if [[ "$FILE_PATH" == No\ file\ found* ]]; then
+            LINK="No file found for component"
+          else
+            # Build a Markdown link using the repository, default branch (main), and the file path
+            REPO="${{ github.repository }}"
+            BRANCH="main"  # change this if your default branch is different
+            LINK="[${FILE_PATH}](https://github.com/${REPO}/blob/${BRANCH}/${FILE_PATH})"
+          fi
+          echo "File link: $LINK"
+          echo "::set-output name=link::$LINK"
+
+      - name: Post a comment with identified file link
+        uses: peter-evans/create-or-update-comment@v2
+        with:
+          issue-number: ${{ github.event.pull_request.number }}
+          body: |
+            **Files identified in the description:**
+
+            - ${{ steps.file_link.outputs.link }}
+
+      - name: Add label to PR based on file path
+        if: steps.determine_label.outputs.label != 'unknown'
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const label = "${{ steps.determine_label.outputs.label }}";
+            github.issues.addLabels({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              labels: [label]
+            });
