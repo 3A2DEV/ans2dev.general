@@ -1,0 +1,58 @@
+---
+# Copyright (c) Ansible Project
+# GNU General Public License v3.0+ (see LICENSES/GPL-3.0-or-later.txt or https://www.gnu.org/licenses/gpl-3.0.txt)
+# SPDX-License-Identifier: GPL-3.0-or-later
+
+notifications: true
+automerge: true
+files:
+  plugins/:
+    supershipit: NomakCooper
+  changelogs/: {}
+  changelogs/fragments/:
+    support: 3a2dev
+  $actions:
+    labels: action
+  $becomes/:
+    labels: become
+  $caches/:
+    labels: cache
+  $callbacks/:
+    labels: callbacks
+  $connections/:
+    labels: connections
+  $doc_fragments/:
+    labels: docs_fragments
+  $inventories/:
+    labels: inventories
+  $lookups/:
+    labels: lookups
+  $module_utils/:
+    labels: module_utils
+#########################
+#########################
+  tests/:
+    labels: tests
+  tests/integration:
+    labels: integration
+    support: 3a2dev
+  tests/unit/:
+    labels: unit
+    support: 3a2dev
+  tests/utils/:
+    labels: unit
+    maintainers: NomakCooper
+macros:
+  actions: plugins/action
+  becomes: plugins/become
+  caches: plugins/cache
+  callbacks: plugins/callback
+  connections: plugins/connection
+  doc_fragments: plugins/doc_fragments
+  filters: plugins/filter
+  inventories: plugins/inventory
+  lookups: plugins/lookup
+  module_utils: plugins/module_utils
+  modules: plugins/modules
+  plugin_utils: plugins/plugin_utils
+  tests: plugins/test
