@@ -20,7 +20,7 @@ jobs:
           echo "${{ github.event.issue.body }}"
           
           # Extract the component name (line after "### Component Name")
-          COMPONENT=$(echo "${{ github.event.issue.body }}" | awk '/^### Component Name/{getline; print}' | xargs)
+          COMPONENT=$(echo "${{ github.event.issue.body }}" | awk 'tolower($0) ~ /#+[ ]*component name/ {getline; print}' | xargs)
           echo "Component Name: $COMPONENT"
           
           # Search for a Python file matching the component name in the specified directories
