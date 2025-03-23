@@ -8,8 +8,7 @@ on:
 jobs:
   label-issue:
     runs-on: ubuntu-latest
-    permissions:
-      issues: write
+    permissions: write-all
     steps:
       - name: Add label for Bug Report
         if: contains(github.event.issue.body, 'Bug Report')
