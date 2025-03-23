@@ -18,7 +18,7 @@ jobs:
           GH_TOKEN: ${{ secrets.BOT_TOKEN }}
           GH_REPO: ${{ github.repository }}
           NUMBER: ${{ github.event.issue.number }}
-          LABELS: needs_triage, bug
+          LABELS: needs_triage,bug
 
       - name: Add label for Feature Idea
         if: contains(github.event.issue.body, 'Feature Idea')
@@ -27,7 +27,7 @@ jobs:
           GH_TOKEN: ${{ secrets.BOT_TOKEN }}
           GH_REPO: ${{ github.repository }}
           NUMBER: ${{ github.event.issue.number }}
-          LABELS: needs_triage, feature
+          LABELS: needs_triage,feature
 
       - name: Add label for Documentation Report
         if: contains(github.event.issue.body, 'Documentation Report')
@@ -36,4 +36,4 @@ jobs:
           GH_TOKEN: ${{ secrets.BOT_TOKEN }}
           GH_REPO: ${{ github.repository }}
           NUMBER: ${{ github.event.issue.number }}
-          LABELS: needs_triage, documentation
+          LABELS: needs_triage,documentation
