@@ -1,0 +1,59 @@
+name: Release and Publish Ansible Collection
+
+on:
+  workflow_dispatch:
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout stable-10 Branch
+        uses: actions/checkout@v3
+        with:
+          ref: stable-10
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      - name: Install Dependencies
+        run: |
+          pip install ansible antsibull-changelog
+
+      - name: Extract Collection Version
+        id: extract_version
+        run: |
+          # Extract the version from galaxy.yml (assumes the line "version: <value>" exists)
+          version=$(grep "^version:" galaxy.yml | awk '{print $2}')
+          echo "Collection version: $version"
+          echo "version=$version" >> $GITHUB_OUTPUT
+
+      - name: Generate CHANGELOG with antsibull-changelog
+        run: |
+          # This generates CHANGELOG.rst using the version from galaxy.yml
+          antsibull-changelog release --version ${{ steps.extract_version.outputs.version }}
+
+      - name: Create GitHub Release
+        id: create_release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: ${{ steps.extract_version.outputs.version }}
+          name: ${{ steps.extract_version.outputs.version }}
+          body_path: CHANGELOG.rst
+          draft: false
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build Ansible Collection
+        run: ansible-galaxy collection build --force
+
+      - name: Publish to Ansible Galaxy
+        run: |
+          # The tarball name follows the <namespace>-<collection>-<version>.tar.gz convention.
+          tarball=$(find . -maxdepth 1 -name '*.tar.gz' | head -n 1)
+          echo "Publishing collection tarball: $tarball"
+          ansible-galaxy collection publish "$tarball"
+        env:
+          ANSIBLE_GALAXY_API_KEY: ${{ secrets.ANSIBLE_GALAXY_API_KEY }}
