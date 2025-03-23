@@ -8,8 +8,7 @@ on:
 jobs:
   label-pull_request:
     runs-on: ubuntu-latest
-    permissions:
-      pull-requests: write
+    permissions: write-all
     steps:
       - name: Add label for Bugfix
         if: contains(github.event.pull_request.body, '- Bugfix Pull Request')
