@@ -48,12 +48,6 @@ jobs:
           coverage: ${{ github.event_name == 'schedule' && 'always' || 'never' }}
           pull-request-change-detection: true
 
-      - name: Post Codecov results for sanity
-        if: ${{ !cancelled() && github.event_name == 'pull_request'}}
-        uses: codecov/test-results-action@v1
-        with:
-          files: ${{ steps.sanity_tests.outputs.test-result-files }}
-
 ###
 # Unit tests (OPTIONAL)
 #
@@ -90,12 +84,6 @@ jobs:
             ansible.netcommon
             ansible.utils
           pull-request-change-detection: true
-
-      - name: Post Codecov results for units
-        if: ${{ !cancelled() && github.event_name == 'pull_request'}}
-        uses: codecov/test-results-action@v1
-        with:
-          files: ${{ steps.units_tests.outputs.test-result-files }}
 
 ###
 # Integration tests (RECOMMENDED)
@@ -175,12 +163,6 @@ jobs:
           # which should improve CI performance. See limitations on
           # https://github.com/ansible-community/ansible-test-gh-action#pull-request-change-detection
           pull-request-change-detection: true
-
-      - name: Post Codecov results for integration
-        if: ${{ !cancelled() && github.event_name == 'pull_request'}}
-        uses: codecov/test-results-action@v1
-        with:
-          files: ${{ steps.integration_tests.outputs.test-result-files }}
 
 
   check:  # This job does nothing and is only used for the branch protection
