@@ -39,6 +39,7 @@ jobs:
 
     steps:
       - name: Perform sanity testing
+        id: sanity_tests
         uses: ansible-community/ansible-test-gh-action@release/v1
         with:
           ansible-core-version: ${{ matrix.ansible }}
@@ -46,6 +47,13 @@ jobs:
           codecov-token: ${{ secrets.CODECOV_TOKEN }}
           coverage: ${{ github.event_name == 'schedule' && 'always' || 'never' }}
           pull-request-change-detection: true
+
+      - name: Post Codecov results for sanity
+        if: ${{ !cancelled() && github.event_name == 'pull_request'}}
+        uses: codecov/test-results-action@v1
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          files: ${{ steps.sanity_tests.outputs.test-result-files }}
 
 ###
 # Unit tests (OPTIONAL)
@@ -72,6 +80,7 @@ jobs:
           Ansible version ${{ matrix.ansible }}
         # See the documentation for the following GitHub action on
         # https://github.com/ansible-community/ansible-test-gh-action/blob/main/README.md
+        id: units_tests
         uses: ansible-community/ansible-test-gh-action@release/v1
         with:
           ansible-core-version: ${{ matrix.ansible }}
@@ -82,6 +91,13 @@ jobs:
             ansible.netcommon
             ansible.utils
           pull-request-change-detection: true
+
+      - name: Post Codecov results for units
+        if: ${{ !cancelled() && github.event_name == 'pull_request'}}
+        uses: codecov/test-results-action@v1
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          files: ${{ steps.units_tests.outputs.test-result-files }}
 
 ###
 # Integration tests (RECOMMENDED)
@@ -144,6 +160,7 @@ jobs:
           under Python ${{ matrix.python }}
         # See the documentation for the following GitHub action on
         # https://github.com/ansible-community/ansible-test-gh-action/blob/main/README.md
+        id: integration_tests
         uses: ansible-community/ansible-test-gh-action@release/v1
         with:
           ansible-core-version: ${{ matrix.ansible }}
@@ -160,6 +177,13 @@ jobs:
           # which should improve CI performance. See limitations on
           # https://github.com/ansible-community/ansible-test-gh-action#pull-request-change-detection
           pull-request-change-detection: true
+
+      - name: Post Codecov results for integration
+        if: ${{ !cancelled() && github.event_name == 'pull_request'}}
+        uses: codecov/test-results-action@v1
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          files: ${{ steps.integration_tests.outputs.test-result-files }}
 
 
   check:  # This job does nothing and is only used for the branch protection
