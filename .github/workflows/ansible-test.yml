@@ -39,6 +39,7 @@ jobs:
 
     steps:
       - name: Perform sanity testing
+        id: sanity_tests
         uses: ansible-community/ansible-test-gh-action@release/v1
         with:
           ansible-core-version: ${{ matrix.ansible }}
@@ -72,6 +73,7 @@ jobs:
           Ansible version ${{ matrix.ansible }}
         # See the documentation for the following GitHub action on
         # https://github.com/ansible-community/ansible-test-gh-action/blob/main/README.md
+        id: units_tests
         uses: ansible-community/ansible-test-gh-action@release/v1
         with:
           ansible-core-version: ${{ matrix.ansible }}
@@ -144,6 +146,7 @@ jobs:
           under Python ${{ matrix.python }}
         # See the documentation for the following GitHub action on
         # https://github.com/ansible-community/ansible-test-gh-action/blob/main/README.md
+        id: integration_tests
         uses: ansible-community/ansible-test-gh-action@release/v1
         with:
           ansible-core-version: ${{ matrix.ansible }}
