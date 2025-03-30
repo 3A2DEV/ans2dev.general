@@ -29,11 +29,6 @@ jobs:
           echo "Collection version: $version"
           echo "version=$version" >> $GITHUB_OUTPUT
 
-      - name: Generate CHANGELOG with antsibull-changelog
-        run: |
-          # This generates CHANGELOG.rst using the version from galaxy.yml
-          antsibull-changelog release --version ${{ steps.extract_version.outputs.version }}
-
       - name: Create GitHub Release
         id: create_release
         uses: softprops/action-gh-release@v2
