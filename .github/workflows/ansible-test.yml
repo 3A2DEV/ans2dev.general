@@ -53,8 +53,6 @@ jobs:
         uses: codecov/test-results-action@v1
         with:
           files: ${{ steps.sanity_tests.outputs.test-result-files }}
-        env:
-          CODECOV_TOKEN: ${{ secrets.CODECOV_POST_TOKEN }}
 
 ###
 # Unit tests (OPTIONAL)
@@ -98,8 +96,6 @@ jobs:
         uses: codecov/test-results-action@v1
         with:
           files: ${{ steps.units_tests.outputs.test-result-files }}
-        env:
-          CODECOV_TOKEN: ${{ secrets.CODECOV_POST_TOKEN }}
 
 ###
 # Integration tests (RECOMMENDED)
@@ -185,8 +181,6 @@ jobs:
         uses: codecov/test-results-action@v1
         with:
           files: ${{ steps.integration_tests.outputs.test-result-files }}
-        env:
-          CODECOV_TOKEN: ${{ secrets.CODECOV_POST_TOKEN }}
 
 
   check:  # This job does nothing and is only used for the branch protection
