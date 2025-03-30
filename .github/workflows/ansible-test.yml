@@ -52,7 +52,7 @@ jobs:
         if: ${{ !cancelled() && github.event_name == 'pull_request'}}
         uses: codecov/test-results-action@v1
         with:
-          token: ${{ secrets.CODECOV_TOKEN }}
+          token: ${{ secrets.CODECOV_POST_TOKEN }}
           files: ${{ steps.sanity_tests.outputs.test-result-files }}
 
 ###
@@ -96,7 +96,7 @@ jobs:
         if: ${{ !cancelled() && github.event_name == 'pull_request'}}
         uses: codecov/test-results-action@v1
         with:
-          token: ${{ secrets.CODECOV_TOKEN }}
+          token: ${{ secrets.CODECOV_POST_TOKEN }}
           files: ${{ steps.units_tests.outputs.test-result-files }}
 
 ###
@@ -182,7 +182,7 @@ jobs:
         if: ${{ !cancelled() && github.event_name == 'pull_request'}}
         uses: codecov/test-results-action@v1
         with:
-          token: ${{ secrets.CODECOV_TOKEN }}
+          token: ${{ secrets.CODECOV_POST_TOKEN }}
           files: ${{ steps.integration_tests.outputs.test-result-files }}
 
 
