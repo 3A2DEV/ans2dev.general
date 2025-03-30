@@ -48,12 +48,6 @@ jobs:
           coverage: ${{ github.event_name == 'schedule' && 'always' || 'never' }}
           pull-request-change-detection: true
 
-      - name: Test Results Sanity
-        uses: codecov/basic-test-results@v1
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          directory: 'ansible_collections/a2dev/general/tests/output/junit'
-
 ###
 # Unit tests (OPTIONAL)
 #
@@ -90,12 +84,6 @@ jobs:
             ansible.netcommon
             ansible.utils
           pull-request-change-detection: true
-
-      - name: Test Results Units
-        uses: codecov/basic-test-results@v1
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          directory: 'ansible_collections/a2dev/general/tests/output/junit'
 
 ###
 # Integration tests (RECOMMENDED)
@@ -175,12 +163,6 @@ jobs:
           # which should improve CI performance. See limitations on
           # https://github.com/ansible-community/ansible-test-gh-action#pull-request-change-detection
           pull-request-change-detection: true
-
-      - name: Test Results Integration
-        uses: codecov/basic-test-results@v1
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          directory: 'ansible_collections/a2dev/general/tests/output/junit'
 
 
   check:  # This job does nothing and is only used for the branch protection
