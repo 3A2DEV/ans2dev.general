@@ -182,3 +182,33 @@ jobs:
         uses: re-actors/alls-green@release/v1
         with:
           jobs: ${{ toJSON(needs) }}
+
+      - name: Label PR based on overall test status
+        if: ${{ github.event_name == 'pull_request' }}
+        uses: actions/github-script@v6
+        with:
+          script: |
+            // Retrieve the conclusion from each dependent job
+            const sanity = '${{ needs.sanity.conclusion }}';
+            const units = '${{ needs.units.conclusion }}';
+            const integration = '${{ needs.integration.conclusion }}';
+            
+            // Determine overall status:
+            // If all tests passed, then apply "success"
+            // Otherwise, apply "needs_ci" and "needs_revision"
+            const allSuccess = (sanity === 'success') && (units === 'success') && (integration === 'success');
+            let labels = [];
+            if (allSuccess) {
+              labels.push('success');
+            } else {
+              labels.push('needs_ci', 'needs_revision');
+            }
+            
+            console.log(`Labeling PR with: ${labels.join(', ')}`);
+            
+            await github.rest.issues.addLabels({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              labels: labels
+            });
