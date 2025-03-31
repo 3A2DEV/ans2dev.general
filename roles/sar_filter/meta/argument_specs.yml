@@ -1,0 +1,49 @@
+entry-point-name: main
+short_description: "Process sar_facts data"
+description:
+  - This role processes C(sar_facts) data from ansible_facts.
+  - It either generates a C(timestamp) list (date+T+time) or extracts data values,
+    based on the provided filtering parameters.
+options:
+  source:
+    description:
+      - The key in C(ansible_facts) from which the SAR data will be extracted.
+      - Example values are C(sar_net), C(sar_disk) and more."
+    type: str
+    required: true
+
+  filter_by:
+    description:
+      - Determines the processing type.
+      - Set to C(timestamp) to create a timestamp list or C(datavalue) to extract data values."
+    type: str
+    choices: [ "timestamp", "datavalue" ]
+    required: true
+
+  result_fact:
+    description:
+      - The base name for the resulting fact.
+      - The role will generate facts like C(<result_fact>_timestamp) or C(<result_fact>_values).
+    type: str
+    required: true
+
+  iface_filter:
+    description:
+      - Filter value for the network interface when processing network data C(sar_net).
+      - This option is used when C(filter_by) is C(timestamp) or C(datavalue) for network data.
+    type: str
+    required: false
+
+  datavalue_key:
+    description:
+      - The key to extract the data value from each SAR record.
+      - This option is used when C(filter_by) is C(datavalue).
+    type: str
+    required: false
+
+  dev_filter:
+    description:
+      - Filter value for the device when processing disk data C(sar_disk).
+      - This option is used when C(filter_by) is C(timestamp) or C(datavalue) for disk data."
+    type: str
+    required: false

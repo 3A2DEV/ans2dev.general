@@ -1,0 +1,4 @@
+requests
+kaleido
+plotly
+openpyxl
