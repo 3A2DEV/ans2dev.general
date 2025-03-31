@@ -1,0 +1,20 @@
+---
+- name: Get role requirements
+  ansible.builtin.slurp:
+    src: "{{ role_path }}/files/requirements.txt"
+  register: prereq_file
+  delegate_to: localhost
+  run_once: true
+
+- name: Extract python module dep
+  ansible.builtin.set_fact:
+    prereq_packages: "{{ prereq_file['content'] | b64decode | split('\n') | reject('equalto', '') | list }}"
+  delegate_to: localhost
+  run_once: true
+
+- name: Install Py module on CN
+  ansible.builtin.pip:
+    name: "{{ prereq_packages }}"
+    state: present
+  delegate_to: localhost
+  run_once: true
