@@ -24,7 +24,7 @@ automations:
 # Configure labels
 labels:
     wip: "WIP"
-    readyForReview: "ready_triage"
+    readyForReview: "needs_triage"
     approved: "approved"
     changesRequested: "needs_revision"
     needsMoreInfo: "needs_info"
