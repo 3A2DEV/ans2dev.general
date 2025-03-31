@@ -1,5 +1,5 @@
 # Minimum length required for issue/PR descriptions
-minBodyLength: 10
+minBodyLength: 20
 
 # Enable/disable commands
 commands:
@@ -23,11 +23,11 @@ automations:
 
 # Configure labels
 labels:
-    wip: "work in progress"
-    readyForReview: "ready for review"
+    wip: "WIP"
+    readyForReview: "ready_triage"
     approved: "approved"
-    needs_revision: "changes requested"
-    needs_info: "needs more info"
+    changesRequested: "needs_revision"
+    needsMoreInfo: "needs_info"
     merged: "merged"
     bug: "bug"
     feature: "feature"
