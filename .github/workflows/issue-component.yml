@@ -1,0 +1,41 @@
+name: "Issue Component Name"
+
+on:
+  issues:
+    types: [opened, edited]
+
+jobs:
+  comment_component:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Comment on issue with component file
+        uses: actions/github-script@v6
+        with:
+          script: |
+            // Retrieve the issue body from the payload
+            const issueBody = context.payload.issue.body || "";
+            
+            // Use a regex to extract the component name from the section "### Component Name"
+            const regex = /### Component Name\s*\n\s*([\w-]+)/i;
+            const match = issueBody.match(regex);
+            if (!match) {
+              console.log("No component name found in the issue body.");
+              return;
+            }
+            const componentName = match[1].trim();
+            console.log("Found component:", componentName);
+            
+            // Construct the file path and URL based on the component name
+            const filePath = `plugins/modules/${componentName}.py`;
+            const branch = 'main';
+            const fileUrl = `https://github.com/${context.repo.owner}/${context.repo.repo}/blob/${branch}/${filePath}`;
+            const commentBody = `Files identified in the description:\n\n- [**\`${filePath}\`**](${fileUrl})`;
+            console.log("Posting comment:\n", commentBody);
+            
+            // Post a comment on the issue
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.payload.issue.number,
+              body: commentBody
+            });
