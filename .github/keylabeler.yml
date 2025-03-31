@@ -9,11 +9,11 @@ caseSensitive: true
 
 # Explicit keyword mappings to labels. Form of match:label. Required.
 labelMappings:
-  "- Bug Report": bug
+  "Bug Report": bug
   "- Bugfix Pull Request": bug
-  "- Feature Idea": feature
+  "Feature Idea": feature
   "- Feature Pull Request": feature
-  "- Documentation Report": documentation
+  "Documentation Report": documentation
   "- Docs Pull Request": documentation
   "- New Module Pull Request": new_module
   "- New Plugin Pull Request": new_plugin
