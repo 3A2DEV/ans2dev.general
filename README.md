@@ -14,15 +14,13 @@ This repository contains the `a2dev.general` Ansible Collection and includes som
 
 ## Code of Conduct
 
+Although this collection is not part of the Ansible community, we adhere to their Code of Conduct for a better experience for everyone.
+
 We follow the [Ansible Code of Conduct](https://docs.ansible.com/ansible/devel/community/code_of_conduct.html) in all our interactions within this project.
 
 If you encounter abusive behavior, please refer to the [policy violations](https://docs.ansible.com/ansible/devel/community/code_of_conduct.html#policy-violations) section of the Code for information on how to raise a complaint.
 
 ## Contributing to this collection
-
-The content of this collection is made by people like you, a community of individuals collaborating on making the world better through developing automation software.
-
-We are actively accepting new contributors and all types of contributions are very welcome.
 
 Don't know how to start? Refer to the [Ansible community guide](https://docs.ansible.com/ansible/devel/community/index.html)!
 
