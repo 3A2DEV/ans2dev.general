@@ -1,0 +1,33 @@
+# Copyright (c) 2025, Marco Noce <nce.marco@gmail.com>
+# GNU General Public License v3.0+ (see LICENSES/GPL-3.0-or-later.txt or https://www.gnu.org/licenses/gpl-3.0.txt)
+# SPDX-License-Identifier: GPL-3.0-or-later
+
+- name: Check if SAR binary exists on the system
+  ansible.builtin.command: "which sar"
+  register: sar_bin
+  ignore_errors: yes
+  failed_when: false
+
+- name: Skip SAR facts test if SAR binary is not available
+  meta: end_play
+  when: sar_bin.rc != 0
+
+- name: Get current date dynamically
+  ansible.builtin.set_fact:
+    sar_date: "{{ lookup('pipe', 'date +%Y-%m-%d') }}"
+
+- name: Debug the selected SAR date
+  ansible.builtin.debug:
+    msg: "Using SAR data from: {{ sar_date }}"
+
+- name: Run sar_facts to gather CPU performance metrics for the dynamic date
+  a2dev.general.sar_facts:
+    date_start: "{{ sar_date }}"
+    type: "cpu"
+  register: sar_result
+
+- name: Assert that SAR facts were gathered for CPU data
+  ansible.builtin.assert:
+    that:
+      - sar_result.ansible_facts.sar_cpu is defined
+      - sar_result.ansible_facts.sar_cpu | length > 0
