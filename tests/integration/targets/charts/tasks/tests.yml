@@ -1,0 +1,112 @@
+# Copyright (c) 2025, Marco Noce <nce.marco@gmail.com>
+# GNU General Public License v3.0+ (see LICENSES/GPL-3.0-or-later.txt or https://www.gnu.org/licenses/gpl-3.0.txt)
+# SPDX-License-Identifier: GPL-3.0-or-later
+
+- name: Install dep
+  ansible.builtin.pip:
+    name:
+      - requests
+      - kaleido
+      - plotly
+
+- name: Generate a line chart
+  a2dev.general.charts:
+    type: "line"
+    titlechart: "Integration Test Line Chart"
+    xaxis: ['00:00', '01:00', '02:00']
+    xaxisname: "Time"
+    yaxis: [[10, 20, 30]]
+    yaxisname: ["Metric"]
+    yaxiscolor: ["blue"]
+    shape_line: "spline"
+    imgwidth: 800
+    imgheight: 600
+    path: "/tmp/charts"
+    filename: "test_line_chart"
+    format: "png"
+  register: line_chart_result
+
+- name: Generate a bar chart
+  a2dev.general.charts:
+    type: "bar"
+    titlechart: "Integration Test Bar Chart"
+    xaxis: ['A', 'B', 'C']
+    xaxisname: "Categories"
+    yaxis: [[15, 25, 35]]
+    yaxisname: ["Values"]
+    yaxiscolor: ["green"]
+    imgwidth: 800
+    imgheight: 600
+    path: "/tmp/charts"
+    filename: "test_bar_chart"
+    format: "jpeg"
+  register: bar_chart_result
+
+- name: Generate a pie chart
+  a2dev.general.charts:
+    type: "pie"
+    titlechart: "Integration Test Pie Chart"
+    slicedata: [10, 20, 30, 40]
+    slicelabel: ["Segment A", "Segment B", "Segment C", "Segment D"]
+    slicecolor: ["#ff0000", "#00ff00", "#0000ff", "#ffff00"]
+    imgwidth: 800
+    imgheight: 600
+    path: "/tmp/charts"
+    filename: "test_pie_chart"
+    format: "webp"
+  register: pie_chart_result
+
+- name: Generate a donut chart
+  a2dev.general.charts:
+    type: "donut"
+    titlechart: "Integration Test Donut Chart"
+    slicedata: [25, 25, 25, 25]
+    slicelabel: ["Q1", "Q2", "Q3", "Q4"]
+    slicecolor: ["#123456", "#654321", "#abcdef", "#fedcba"]
+    sizehole: 0.6
+    imgwidth: 800
+    imgheight: 600
+    path: "/tmp/charts"
+    filename: "test_donut_chart"
+    format: "pdf"
+  register: donut_chart_result
+
+- name: Assert that all charts reported changed=true
+  ansible.builtin.assert:
+    that:
+      - line_chart_result.changed == true
+      - bar_chart_result.changed == true
+      - pie_chart_result.changed == true
+      - donut_chart_result.changed == true
+
+- name: Verify that the line chart image file exists
+  ansible.builtin.stat:
+    path: "/tmp/charts/test_line_chart.png"
+  register: line_chart_file
+
+- name: Verify that the bar chart image file exists
+  ansible.builtin.stat:
+    path: "/tmp/charts/test_bar_chart.jpeg"
+  register: bar_chart_file
+
+- name: Verify that the pie chart image file exists
+  ansible.builtin.stat:
+    path: "/tmp/charts/test_pie_chart.webp"
+  register: pie_chart_file
+
+- name: Verify that the donut chart image file exists
+  ansible.builtin.stat:
+    path: "/tmp/charts/test_donut_chart.pdf"
+  register: donut_chart_file
+
+- name: Assert that all chart image files exist and are non-empty
+  ansible.builtin.assert:
+    that:
+      - line_chart_file.stat.exists
+      - line_chart_file.stat.size > 0
+      - bar_chart_file.stat.exists
+      - bar_chart_file.stat.size > 0
+      - pie_chart_file.stat.exists
+      - pie_chart_file.stat.size > 0
+      - donut_chart_file.stat.exists
+      - donut_chart_file.stat.size > 0
