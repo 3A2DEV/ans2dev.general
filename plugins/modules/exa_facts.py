@@ -30,7 +30,7 @@ notes:
 
 EXAMPLES = r'''
 - name: Gather exa info
-  exa_facts:
+  a2dev.general.exa_facts:
 '''
 
 RETURN = r'''
