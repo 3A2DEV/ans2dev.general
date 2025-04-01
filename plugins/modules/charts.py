@@ -13,7 +13,7 @@ DOCUMENTATION = r'''
 module: charts
 short_description: Generate high-quality charts using Plotly and save them as images.
 description:
-  - This module generates various types of charts (line, bar, pie, donut) and saves them as images.
+  - This module generates various types of charts like C(line), C(bar), C(pie) and C(donut) and saves them as images.
   - It provides customization options for titles, axis labels, colors, sizes, fonts, and legends.
   - Uses Plotly and Kaleido for image generation.
 version_added: "0.1.0"
