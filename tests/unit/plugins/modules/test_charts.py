@@ -50,7 +50,7 @@ class TestChartsModule(unittest.TestCase):
         }
 
         # Patch AnsibleModule on the charts module.
-        from ansible_collections.a2dev.general.plugins.modules import charts
+        from ansible_collections.a2dev.general.plugins.modules import charts  # type: ignore
         with patch.object(charts, 'AnsibleModule') as mock_AnsibleModule:
             fake_module = MagicMock()
             fake_module.params = test_params

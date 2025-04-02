@@ -10,7 +10,7 @@ from unittest.mock import patch, MagicMock
 import subprocess
 
 # Import the sar_facts module from the collection.
-from ansible_collections.a2dev.general.plugins.modules import sar_facts
+from ansible_collections.a2dev.general.plugins.modules import sar_facts  # type: ignore
 
 
 def exit_json(*args, **kwargs):
