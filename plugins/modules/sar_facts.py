@@ -55,7 +55,7 @@ author:
 EXAMPLES = r'''
 # Gather CPU performance metrics for a specific date and time range.
 - name: Gather CPU SAR facts between 08:00 and 10:00
-  a2dev.general.sar_facts:
+  ans2dev.general.sar_facts:
     date_start: "2025-05-01"
     date_end: "2025-05-01"
     time_start: "08:00:00"
@@ -64,20 +64,20 @@ EXAMPLES = r'''
 
 # Gather memory usage SAR data for a single day.
 - name: Retrieve memory usage data for a day
-  a2dev.general.sar_facts:
+  ans2dev.general.sar_facts:
     date_start: "2025-05-01"
     type: memory
 
 # Retrieve disk statistics with partition details.
 - name: Gather disk usage statistics with partition information
-  a2dev.general.sar_facts:
+  ans2dev.general.sar_facts:
     date_start: "2025-05-01"
     type: disk
     partition: true
 
 # Retrieve average load statistics.
 - name: Gather average load statistics
-  a2dev.general.sar_facts:
+  ans2dev.general.sar_facts:
     date_start: "2025-05-01"
     type: load
     average: true

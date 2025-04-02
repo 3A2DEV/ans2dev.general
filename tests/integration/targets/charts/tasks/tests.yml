@@ -10,7 +10,7 @@
       - plotly
 
 - name: Generate a line chart
-  a2dev.general.charts:
+  ans2dev.general.charts:
     type: "line"
     titlechart: "Integration Test Line Chart"
     xaxis: ['00:00', '01:00', '02:00']
@@ -27,7 +27,7 @@
   register: line_chart_result
 
 - name: Generate a bar chart
-  a2dev.general.charts:
+  ans2dev.general.charts:
     type: "bar"
     titlechart: "Integration Test Bar Chart"
     xaxis: ['A', 'B', 'C']
@@ -43,7 +43,7 @@
   register: bar_chart_result
 
 - name: Generate a pie chart
-  a2dev.general.charts:
+  ans2dev.general.charts:
     type: "pie"
     titlechart: "Integration Test Pie Chart"
     slicedata: [10, 20, 30, 40]
@@ -57,7 +57,7 @@
   register: pie_chart_result
 
 - name: Generate a donut chart
-  a2dev.general.charts:
+  ans2dev.general.charts:
     type: "donut"
     titlechart: "Integration Test Donut Chart"
     slicedata: [25, 25, 25, 25]
