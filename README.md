@@ -87,6 +87,30 @@ ansible-galaxy collection install a2dev.general:==0.1.0
 
 See [using Ansible collections](https://docs.ansible.com/ansible/devel/user_guide/collections_using.html) for more details.
 
+You can olso install all python dependencies via role:
+
+```yaml
+  - name: Install Dependencies on CN
+    hosts: all
+    gather_facts: no
+    roles:
+      - role: a2dev.general.install_dep
+```
+```yaml
+  # install in pre_tasks with become: false
+  - name: Install Dependencies on CN
+    hosts: all
+    gather_facts: no
+
+    pre_tasks:
+
+      - name: install dependencies
+        block:
+          - include_role:
+              name: a2dev.general.install_dep
+        become: false
+```
+
 ## Release notes
 
 See the [changelog](https://github.com/3A2DEV/a2dev.general/tree/main/CHANGELOG.rst).
