@@ -65,18 +65,18 @@ class TestOpenXLModule(unittest.TestCase):
 
     @patch("ansible_collections.a2dev.general.plugins.modules.open_xl.openpyxl.load_workbook")
     def test_write_excel(self, mock_load_workbook):
-        # Create a dummy workbook with one sheet ("Sheet1").
+
         wb = Workbook()
         ws = wb.active
         ws.title = "Sheet1"
-        # Prepopulate a header and a row.
+
         ws.cell(row=1, column=1, value="Header")
         ws.cell(row=2, column=1, value="Old Value")
-        # Patch the workbook's save method.
+
         wb.save = MagicMock()
         mock_load_workbook.return_value = wb
 
-        # Patch AnsibleModule in open_xl.
+
         with patch.object(open_xl, 'AnsibleModule') as mock_AnsibleModule:
             fake_module = MagicMock()
             fake_module.params = {
