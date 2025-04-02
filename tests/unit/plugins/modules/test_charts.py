@@ -22,7 +22,7 @@ def fail_json(*args, **kwargs):
 
 
 class TestChartsModule(unittest.TestCase):
-    @patch("ansible_collections.a2dev.general.plugins.modules.charts.os.makedirs")
+    @patch("ansible_collections.ans2dev.general.plugins.modules.charts.os.makedirs")
     def test_line_chart(self, mock_makedirs):
         # Define parameters for a line chart operation.
         test_params = {
@@ -50,7 +50,7 @@ class TestChartsModule(unittest.TestCase):
         }
 
         # Patch AnsibleModule on the charts module.
-        from ansible_collections.a2dev.general.plugins.modules import charts  # type: ignore
+        from ansible_collections.ans2dev.general.plugins.modules import charts  # type: ignore
         with patch.object(charts, 'AnsibleModule') as mock_AnsibleModule:
             fake_module = MagicMock()
             fake_module.params = test_params
