@@ -10,7 +10,7 @@ from unittest.mock import patch, MagicMock
 from openpyxl import Workbook
 
 
-from ansible_collections.a2dev.general.plugins.modules import open_xl # type: ignore
+from ansible_collections.a2dev.general.plugins.modules import open_xl  # type: ignore
 
 
 def exit_json(*args, **kwargs):
