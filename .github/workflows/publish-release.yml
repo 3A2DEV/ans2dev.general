@@ -29,13 +29,21 @@ jobs:
           echo "Collection version: $version"
           echo "version=$version" >> $GITHUB_OUTPUT
 
+      - name: Install Pandoc
+        run: |
+          sudo apt-get update && sudo apt-get install -y pandoc
+
+      - name: Convert CHANGELOG.rst to Markdown
+        run: |
+          pandoc CHANGELOG.rst -t markdown -o CHANGELOG.md
+
       - name: Create GitHub Release
         id: create_release
         uses: softprops/action-gh-release@v2
         with:
           tag_name: ${{ steps.extract_version.outputs.version }}
           name: ${{ steps.extract_version.outputs.version }}
-          body_path: CHANGELOG.rst
+          body_path: CHANGELOG.md
           draft: false
           prerelease: false
         env:
@@ -49,6 +57,6 @@ jobs:
           # The tarball name follows the <namespace>-<collection>-<version>.tar.gz convention.
           tarball=$(find . -maxdepth 1 -name '*.tar.gz' | head -n 1)
           echo "Publishing collection tarball: $tarball"
-          ansible-galaxy collection publish "$tarball"
+          ansible-galaxy collection publish "$tarball" --api-key $ANSIBLE_GALAXY_API_KEY
         env:
           ANSIBLE_GALAXY_API_KEY: ${{ secrets.ANSIBLE_GALAXY_API_KEY }}
