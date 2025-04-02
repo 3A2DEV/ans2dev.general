@@ -10,7 +10,7 @@ from unittest.mock import patch, MagicMock
 import xml.etree.ElementTree as ET
 
 # Import the exa_facts module from the collection.
-from ansible_collections.a2dev.general.plugins.modules import exa_facts  # type: ignore
+from ansible_collections.ans2dev.general.plugins.modules import exa_facts  # type: ignore
 
 
 def exit_json(*args, **kwargs):

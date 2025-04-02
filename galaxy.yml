@@ -1,13 +1,13 @@
 ---
 # See https://docs.ansible.com/ansible/latest/dev_guide/collections_galaxy_meta.html
 
-namespace: a2dev
+namespace: ans2dev
 name: general
 version: 0.1.0
 readme: README.md
 authors:
   - NomakCooper (github.com/NomakCooper)
-description: The a2dev.general collection includes some modules and plugins supported by 3A2DEV
+description: The ans2dev.general collection includes some modules and plugins supported by 3A2DEV
 license_file: LICENSE
 tags:
 # tags so people can search for collections https://galaxy.ansible.com/search
@@ -15,10 +15,10 @@ tags:
   - 3A2DEV
   - a2dev
   - general
-repository: https://github.com/3A2DEV/a2dev.general
+repository: https://github.com/3A2DEV/ans2dev.general
 #documentation: https://github.com/ansible-collection-migration/community.REPO_NAME/tree/main/docs
-homepage: https://github.com/3A2DEV/a2dev.general
-issues: https://github.com/3A2DEV/a2dev.general/issues
+homepage: https://github.com/3A2DEV/ans2dev.general
+issues: https://github.com/3A2DEV/ans2dev.general/issues
 build_ignore:
 # https://docs.ansible.com/ansible/devel/dev_guide/developing_collections_distributing.html#ignoring-files-and-folders
   - .gitignore

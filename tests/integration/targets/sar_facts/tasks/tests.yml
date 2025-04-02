@@ -21,7 +21,7 @@
     msg: "Using SAR data from: {{ sar_date }}"
 
 - name: Run sar_facts to gather CPU performance metrics for the dynamic date
-  a2dev.general.sar_facts:
+  ans2dev.general.sar_facts:
     date_start: "{{ sar_date }}"
     type: "cpu"
   register: sar_result

@@ -1,8 +1,8 @@
-a2dev.general.install_dep
+ans2dev.general.install_dep
 =========
 
 Install py module dependences on Control Node from collection requirements file.
-This role is required for using the a2dev.general.charts module.
+This role is required for using the ans2dev.general.charts module.
 
 Requirements
 ------------
@@ -25,7 +25,7 @@ Example Playbook
     hosts: all
     gather_facts: no
     roles:
-      - role: a2dev.general.install_dep
+      - role: ans2dev.general.install_dep
 ```
 ```yaml
   - name: Install Dependencies on CN
@@ -37,7 +37,7 @@ Example Playbook
       - name: install dependencies
         block:
           - include_role:
-              name: a2dev.general.install_dep
+              name: ans2dev.general.install_dep
         become: false
 ```
 

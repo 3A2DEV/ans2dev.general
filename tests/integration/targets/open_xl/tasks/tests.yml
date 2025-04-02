@@ -13,7 +13,7 @@
     dest: /tmp/test_sample.xlsx
 
 - name: Read the initial Excel file using open_xl (read mode)
-  a2dev.general.open_xl:
+  ans2dev.general.open_xl:
     src: "/tmp/test_sample.xlsx"
     op: "r"
     index_by_name: true
@@ -26,7 +26,7 @@
     fail_msg: "Expected two data rows in the initial file."
 
 - name: Overwrite cell value in row 2 (update operation)
-  a2dev.general.open_xl:
+  ans2dev.general.open_xl:
     src: "/tmp/test_sample.xlsx"
     dest: "/tmp/test_sample.xlsx"
     op: "w"
@@ -38,7 +38,7 @@
   register: write_result
 
 - name: Read Excel file after update
-  a2dev.general.open_xl:
+  ans2dev.general.open_xl:
     src: "/tmp/test_sample.xlsx"
     op: "r"
     index_by_name: true
@@ -51,7 +51,7 @@
     fail_msg: "Cell value was not updated as expected."
 
 - name: Append a new row using open_xl (append operation)
-  a2dev.general.open_xl:
+  ans2dev.general.open_xl:
     src: "/tmp/test_sample.xlsx"
     dest: "/tmp/test_sample.xlsx"
     op: "a"
@@ -66,7 +66,7 @@
   register: append_result
 
 - name: Read Excel file after append
-  a2dev.general.open_xl:
+  ans2dev.general.open_xl:
     src: "/tmp/test_sample.xlsx"
     op: "r"
     index_by_name: true
@@ -79,7 +79,7 @@
     fail_msg: "New row was not appended correctly."
 
 - name: Insert a row above row 2 using open_xl (insert operation)
-  a2dev.general.open_xl:
+  ans2dev.general.open_xl:
     src: "/tmp/test_sample.xlsx"
     dest: "/tmp/test_sample.xlsx"
     op: "i"
@@ -94,7 +94,7 @@
   register: insert_result
 
 - name: Read Excel file after insert
-  a2dev.general.open_xl:
+  ans2dev.general.open_xl:
     src: "/tmp/test_sample.xlsx"
     op: "r"
     index_by_name: true
