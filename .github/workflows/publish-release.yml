@@ -1,5 +1,3 @@
-name: Release and Publish Ansible Collection
-
 on:
   workflow_dispatch:
 
@@ -29,21 +27,13 @@ jobs:
           echo "Collection version: $version"
           echo "version=$version" >> $GITHUB_OUTPUT
 
-      - name: Install Pandoc
-        run: |
-          sudo apt-get update && sudo apt-get install -y pandoc
-
-      - name: Convert CHANGELOG.rst to Markdown
-        run: |
-          pandoc CHANGELOG.rst -t markdown -o CHANGELOG.md
-
       - name: Create GitHub Release
         id: create_release
         uses: softprops/action-gh-release@v2
         with:
           tag_name: ${{ steps.extract_version.outputs.version }}
           name: ${{ steps.extract_version.outputs.version }}
-          body_path: CHANGELOG.md
+          body_path: CHANGELOG.rst
           draft: false
           prerelease: false
         env:

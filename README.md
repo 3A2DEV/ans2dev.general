@@ -6,11 +6,11 @@
 ![module](https://img.shields.io/badge/ansible-module-blue?logo=ansible&logoColor=white)
 ![roles](https://img.shields.io/badge/ansible-roles-blue?logo=ansible&logoColor=white)
 
-[![collection-release](https://img.shields.io/github/v/release/3A2DEV/a2dev.general?display_name=release&logo=ansible&logoColor=white)](https://galaxy.ansible.com/ui/repo/published/3A2DEV/a2dev.general/) [![CI](https://github.com/3A2DEV/a2dev.general/actions/workflows/ansible-test.yml/badge.svg?event=push)](https://github.com/3A2DEV/a2dev.general/actions) [![Codecov](https://img.shields.io/codecov/c/github/3A2DEV/a2dev.general?logo=codecov)](https://codecov.io/gh/3A2DEV/a2dev.general)
+[![collection-release](https://img.shields.io/github/v/release/3A2DEV/ans2dev.general?display_name=release&logo=ansible&logoColor=white)](https://galaxy.ansible.com/ui/repo/published/3A2DEV/ans2dev.general/) [![CI](https://github.com/3A2DEV/ans2dev.general/actions/workflows/ansible-test.yml/badge.svg?event=push)](https://github.com/3A2DEV/ans2dev.general/actions) [![Codecov](https://img.shields.io/codecov/c/github/3A2DEV/ans2dev.general?logo=codecov)](https://codecov.io/gh/3A2DEV/ans2dev.general)
 
 <!-- Describe the collection and why a user would want to use it. What does the collection do? -->
 
-This repository contains the `a2dev.general` Ansible Collection and includes some modules and plugins supported by **3A2DEV** which are not part of more specialized collections.
+This repository contains the `ans2dev.general` Ansible Collection and includes some modules and plugins supported by **3A2DEV** which are not part of more specialized collections.
 
 ## Code of Conduct
 
@@ -64,25 +64,25 @@ Please check the included content on the Ansible Galaxy page for this collection
 
 Before using this collection, you need to install it with the Ansible Galaxy command-line tool:
 ```bash
-ansible-galaxy collection install a2dev.general
+ansible-galaxy collection install ans2dev.general
 ```
 
 You can also include it in a `requirements.yml` file and install it with `ansible-galaxy collection install -r requirements.yml`, using the format:
 ```yaml
 ---
 collections:
-  - name: a2dev.general
+  - name: ans2dev.general
 ```
 
 Note that if you install the collection from Ansible Galaxy, it will not be upgraded automatically when you upgrade the `ansible` package. To upgrade the collection to the latest available version, run the following command:
 ```bash
-ansible-galaxy collection install a2dev.general --upgrade
+ansible-galaxy collection install ans2dev.general --upgrade
 ```
 
 You can also install a specific version of the collection, for example, if you need to downgrade when something is broken in the latest version (please report an issue in this repository). Use the following syntax to install version `0.1.0`:
 
 ```bash
-ansible-galaxy collection install a2dev.general:==0.1.0
+ansible-galaxy collection install ans2dev.general:==0.1.0
 ```
 
 See [using Ansible collections](https://docs.ansible.com/ansible/devel/user_guide/collections_using.html) for more details.
@@ -94,7 +94,7 @@ You can olso install all python dependencies via role:
     hosts: all
     gather_facts: no
     roles:
-      - role: a2dev.general.install_dep
+      - role: ans2dev.general.install_dep
 ```
 ```yaml
   # install in pre_tasks with become: false
@@ -107,13 +107,13 @@ You can olso install all python dependencies via role:
       - name: install dependencies
         block:
           - include_role:
-              name: a2dev.general.install_dep
+              name: ans2dev.general.install_dep
         become: false
 ```
 
 ## Release notes
 
-See the [changelog](https://github.com/3A2DEV/a2dev.general/tree/main/CHANGELOG.rst).
+See the [changelog](https://github.com/3A2DEV/ans2dev.general/tree/main/CHANGELOG.rst).
 
 ## Roadmap
 

@@ -10,7 +10,7 @@ from unittest.mock import patch, MagicMock
 from openpyxl import Workbook
 
 
-from ansible_collections.a2dev.general.plugins.modules import open_xl  # type: ignore
+from ansible_collections.ans2dev.general.plugins.modules import open_xl  # type: ignore
 
 
 def exit_json(*args, **kwargs):
@@ -23,7 +23,7 @@ def fail_json(*args, **kwargs):
 
 class TestOpenXLModule(unittest.TestCase):
 
-    @patch("ansible_collections.a2dev.general.plugins.modules.open_xl.openpyxl.load_workbook")
+    @patch("ansible_collections.ans2dev.general.plugins.modules.open_xl.openpyxl.load_workbook")
     def test_read_excel(self, mock_load_workbook):
         # Create a dummy workbook with one sheet ("Sheet1").
         wb = Workbook()
@@ -63,7 +63,7 @@ class TestOpenXLModule(unittest.TestCase):
             self.assertIn("'Age': 30", result_str)
             self.assertIn("'Name': 'Bob'", result_str)
 
-    @patch("ansible_collections.a2dev.general.plugins.modules.open_xl.openpyxl.load_workbook")
+    @patch("ansible_collections.ans2dev.general.plugins.modules.open_xl.openpyxl.load_workbook")
     def test_write_excel(self, mock_load_workbook):
 
         wb = Workbook()
@@ -103,7 +103,7 @@ class TestOpenXLModule(unittest.TestCase):
             self.assertIn("result': {}", result_str)
             wb.save.assert_called_with('/tmp/dummy_updated.xlsx')
 
-    @patch("ansible_collections.a2dev.general.plugins.modules.open_xl.openpyxl.load_workbook")
+    @patch("ansible_collections.ans2dev.general.plugins.modules.open_xl.openpyxl.load_workbook")
     def test_append_excel(self, mock_load_workbook):
         # Create a dummy workbook with one sheet ("Sheet1") and one data row.
         wb = Workbook()
@@ -141,7 +141,7 @@ class TestOpenXLModule(unittest.TestCase):
             self.assertEqual(appended_value, 'Appended')
             wb.save.assert_called_with('/tmp/dummy_updated.xlsx')
 
-    @patch("ansible_collections.a2dev.general.plugins.modules.open_xl.openpyxl.load_workbook")
+    @patch("ansible_collections.ans2dev.general.plugins.modules.open_xl.openpyxl.load_workbook")
     def test_insert_excel(self, mock_load_workbook):
         # Create a dummy workbook with one sheet ("Sheet1") and two rows.
         wb = Workbook()
@@ -178,7 +178,7 @@ class TestOpenXLModule(unittest.TestCase):
             self.assertEqual(inserted_value, 'Inserted')
             wb.save.assert_called_with('/tmp/dummy_updated.xlsx')
 
-    @patch("ansible_collections.a2dev.general.plugins.modules.open_xl.openpyxl.load_workbook")
+    @patch("ansible_collections.ans2dev.general.plugins.modules.open_xl.openpyxl.load_workbook")
     def test_invalid_sheet(self, mock_load_workbook):
         # Create a dummy workbook with a sheet that does not match the provided sheet name.
         wb = Workbook()
@@ -205,7 +205,7 @@ class TestOpenXLModule(unittest.TestCase):
             self.assertIn("fail_json called", result_str)
             self.assertIn("Sheet name 'NonExistentSheet' not found", result_str)
 
-    @patch("ansible_collections.a2dev.general.plugins.modules.open_xl.openpyxl.load_workbook")
+    @patch("ansible_collections.ans2dev.general.plugins.modules.open_xl.openpyxl.load_workbook")
     def test_empty_updates_matrix_for_insert(self, mock_load_workbook):
         # Create a dummy workbook with one sheet.
         wb = Workbook()
@@ -235,7 +235,7 @@ class TestOpenXLModule(unittest.TestCase):
             self.assertIn("fail_json called", result_str)
             self.assertIn("No updates_matrix provided for insert operation", result_str)
 
-    @patch("ansible_collections.a2dev.general.plugins.modules.open_xl.openpyxl.load_workbook")
+    @patch("ansible_collections.ans2dev.general.plugins.modules.open_xl.openpyxl.load_workbook")
     def test_invalid_cell_in_write(self, mock_load_workbook):
         # Create a dummy workbook with one sheet.
         wb = Workbook()
@@ -266,7 +266,7 @@ class TestOpenXLModule(unittest.TestCase):
             self.assertIn("fail_json called", result_str)
             self.assertIn("Invalid cell_row or cell_col", result_str)
 
-    @patch("ansible_collections.a2dev.general.plugins.modules.open_xl.openpyxl.load_workbook")
+    @patch("ansible_collections.ans2dev.general.plugins.modules.open_xl.openpyxl.load_workbook")
     def test_default_dest_naming(self, mock_load_workbook):
         # Create a dummy workbook with one sheet.
         wb = Workbook()
@@ -300,7 +300,7 @@ class TestOpenXLModule(unittest.TestCase):
             # Expect the default destination to be /tmp/dummy_updated.xlsx.
             wb.save.assert_called_with('/tmp/dummy_updated.xlsx')
 
-    @patch("ansible_collections.a2dev.general.plugins.modules.open_xl.openpyxl.load_workbook")
+    @patch("ansible_collections.ans2dev.general.plugins.modules.open_xl.openpyxl.load_workbook")
     def test_workbook_load_error(self, mock_load_workbook):
         # Simulate an exception when loading the workbook.
         mock_load_workbook.side_effect = Exception("Load error")
@@ -324,7 +324,7 @@ class TestOpenXLModule(unittest.TestCase):
             self.assertIn("fail_json called", result_str)
             self.assertIn("Error loading workbook: Load error", result_str)
 
-    @patch("ansible_collections.a2dev.general.plugins.modules.open_xl.openpyxl.load_workbook")
+    @patch("ansible_collections.ans2dev.general.plugins.modules.open_xl.openpyxl.load_workbook")
     def test_cell_style_application(self, mock_load_workbook):
         # Create a dummy workbook with one sheet.
         wb = Workbook()

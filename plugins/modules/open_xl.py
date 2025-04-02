@@ -95,7 +95,7 @@ notes:
 
 EXAMPLES = r'''
 - name: Read Excel workbook
-  a2dev.general.open_xl:
+  ans2dev.general.open_xl:
     src: "/tmp/sample.xlsx"
     op: "r"
     index_by_name: true
@@ -104,7 +104,7 @@ EXAMPLES = r'''
     var: result
 
 - name: Overwrite specific cells
-  a2dev.general.open_xl:
+  ans2dev.general.open_xl:
     src: "/tmp/sample.xlsx"
     dest: "/tmp/sample_updated.xlsx"
     op: "w"
@@ -122,7 +122,7 @@ EXAMPLES = r'''
       bold: true
 
 - name: Append new row
-  a2dev.general.open_xl:
+  ans2dev.general.open_xl:
     src: "/tmp/sample.xlsx"
     dest: "/tmp/sample_updated.xlsx"
     op: "a"
@@ -137,7 +137,7 @@ EXAMPLES = r'''
       bold: true
 
 - name: Insert a new row above row 5
-  a2dev.general.open_xl:
+  ans2dev.general.open_xl:
     src: "/tmp/sample.xlsx"
     dest: "/tmp/sample_updated.xlsx"
     op: "i"
