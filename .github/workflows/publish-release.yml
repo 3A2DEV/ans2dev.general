@@ -33,7 +33,7 @@ jobs:
         with:
           tag_name: ${{ steps.extract_version.outputs.version }}
           name: ${{ steps.extract_version.outputs.version }}
-          body_path: CHANGELOG.rst
+          body_path: CHANGELOG.md
           draft: false
           prerelease: false
         env:
