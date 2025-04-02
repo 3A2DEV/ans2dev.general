@@ -30,6 +30,14 @@ files:
   $module_utils/:
     labels: module_utils
 #########################
+  $modules/charts.py:
+    maintainers: NomakCooper
+  $modules/exa_facts.py:
+    maintainers: NomakCooper
+  $modules/open_xl.py:
+    maintainers: NomakCooper
+  $modules/sar_facts.py:
+    maintainers: NomakCooper
 #########################
   tests/:
     labels: tests
