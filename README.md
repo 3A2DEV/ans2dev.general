@@ -113,7 +113,7 @@ You can olso install all python dependencies via role:
 
 ## Release notes
 
-See the [changelog](https://github.com/3A2DEV/ans2dev.general/tree/main/CHANGELOG.rst).
+See the [changelog](https://github.com/3A2DEV/ans2dev.general/tree/main/CHANGELOG.md).
 
 ## Roadmap
 
