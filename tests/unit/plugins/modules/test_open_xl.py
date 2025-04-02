@@ -9,7 +9,7 @@ import unittest
 from unittest.mock import patch, MagicMock
 from openpyxl import Workbook
 
-# Import the open_xl module from the collection.
+
 from ansible_collections.a2dev.general.plugins.modules import open_xl # type: ignore
 
 
@@ -75,7 +75,6 @@ class TestOpenXLModule(unittest.TestCase):
 
         wb.save = MagicMock()
         mock_load_workbook.return_value = wb
-
 
         with patch.object(open_xl, 'AnsibleModule') as mock_AnsibleModule:
             fake_module = MagicMock()
