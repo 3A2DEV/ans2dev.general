@@ -1,4 +1,3 @@
-#!/usr/bin/python
 # Copyright (c) 2025, Marco Noce <nce.marco@gmail.com>
 # GNU General Public License v3.0+ (see LICENSES/GPL-3.0-or-later.txt or https://www.gnu.org/licenses/gpl-3.0.txt)
 # SPDX-License-Identifier: GPL-3.0-or-later
@@ -366,13 +365,13 @@ class TestOpenXLModule(unittest.TestCase):
             wb.save.assert_called_with('/tmp/dummy_updated.xlsx')
             # Verify that the cell style was applied.
             cell = ws.cell(row=2, column=1)
-            # Check font attributes.
-            self.assertEqual(cell.font.color.rgb, 'FF0000')
+            # Note: openpyxl prepends "00" to color values.
+            self.assertEqual(cell.font.color.rgb, '00FF0000')
             self.assertTrue(cell.font.bold)
             self.assertTrue(cell.font.italic)
             self.assertEqual(cell.font.underline, 'single')
             # Check fill attribute.
-            self.assertEqual(cell.fill.fgColor.rgb, '00FF00')
+            self.assertEqual(cell.fill.fgColor.rgb, '0000FF00')
 
 
 if __name__ == '__main__':
