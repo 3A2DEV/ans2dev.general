@@ -20,15 +20,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
 
+      - name: Checkout
+        uses: actions/checkout@v4
+
       - name: actionlint
         id: actionlint  #optional, id required only when outputs are used in the workflow steps later
         uses: raven-actions/actionlint@v2
         with:
+          flags: -config-file .actionlint.yaml
           matcher: false  # optional
           cache: false  # optional
           fail-on-error: true  # optional
-          files: ".github/workflows/*.yml"
-          flags: "-ignore SC2086"  # optional
 
       - name: actionlint Summary
         if: ${{ steps.actionlint.outputs.exit-code != 0 }}  # example usage, do echo only when actionlint action failed
