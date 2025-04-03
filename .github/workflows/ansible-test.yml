@@ -8,10 +8,10 @@ on:
       - stable-*
   pull_request:
     paths:
-      - '/changelogs/**'
-      - '/roles/**'
-      - '/plugins/**'
-      - '/tests/**'
+      - 'changelogs/**'
+      - 'roles/**'
+      - 'plugins/**'
+      - 'tests/**'
   schedule:
     - cron: '0 6 * * *'
 

@@ -7,7 +7,7 @@ on:
       - stable-*
   pull_request:
     paths:
-      - '/.github/workflows/**'
+      - '.github/workflows/**'
   # Run CI once per day (at 06:00 UTC)
   schedule:
     - cron: '0 6 * * *'
