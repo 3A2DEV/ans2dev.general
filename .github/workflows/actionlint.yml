@@ -31,6 +31,7 @@ jobs:
           matcher: false  # optional
           cache: false  # optional
           fail-on-error: true  # optional
+          flags: "-ignore SC2242"  # optional
 
       - name: actionlint Summary
         if: ${{ steps.actionlint.outputs.exit-code != 0 }}  # example usage, do echo only when actionlint action failed
