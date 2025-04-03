@@ -7,6 +7,11 @@ on:
     branches:
       - stable-*
   pull_request:
+    paths:
+      - '/changelogs/**'
+      - '/roles/**'
+      - '/plugins/**'
+      - '/tests/**'
   schedule:
     - cron: '0 6 * * *'
 
