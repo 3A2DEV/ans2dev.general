@@ -31,7 +31,6 @@ jobs:
           matcher: false
           cache: false
           fail-on-error: true
-          flags: "-ignore SC2242"
 
       - name: actionlint Summary
         if: ${{ steps.actionlint.outputs.exit-code != 0 }}
