@@ -6,7 +6,8 @@
 ![module](https://img.shields.io/badge/ansible-module-blue?logo=ansible&logoColor=white)
 ![roles](https://img.shields.io/badge/ansible-roles-blue?logo=ansible&logoColor=white)
 
-[![collection-release](https://img.shields.io/github/v/release/3A2DEV/ans2dev.general?display_name=release&logo=ansible&logoColor=white)](https://galaxy.ansible.com/ui/repo/published/3A2DEV/ans2dev.general/) [![CI](https://github.com/3A2DEV/ans2dev.general/actions/workflows/ansible-test.yml/badge.svg?event=push)](https://github.com/3A2DEV/ans2dev.general/actions) [![Codecov](https://img.shields.io/codecov/c/github/3A2DEV/ans2dev.general?logo=codecov)](https://codecov.io/gh/3A2DEV/ans2dev.general)
+[![collection-release](https://img.shields.io/github/v/release/3A2DEV/ans2dev.general?display_name=release&logo=ansible&logoColor=white)](https://galaxy.ansible.com/ui/repo/published/3A2DEV/ans2dev.general/) [![CI](https://github.com/3A2DEV/ans2dev.general/actions/workflows/ansible-test.yml/badge.svg?event=push)](https://github.com/3A2DEV/ans2dev.general/actions) [![extra-docs](https://github.com/3A2DEV/ans2dev.general/actions/workflows/extra-docs-linting.yml/badge.svg?event=push)](https://github.com/3A2DEV/ans2dev.general/actions)
+ [![Codecov](https://img.shields.io/codecov/c/github/3A2DEV/ans2dev.general?logo=codecov)](https://codecov.io/gh/3A2DEV/ans2dev.general)
 
 <!-- Describe the collection and why a user would want to use it. What does the collection do? -->
 
