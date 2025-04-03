@@ -28,10 +28,10 @@ jobs:
         uses: raven-actions/actionlint@v2
         with:
           flags: -config-file .github/actionlint.yaml
-          matcher: false  # optional
-          cache: false  # optional
-          fail-on-error: true  # optional
-          flags: "-ignore SC2242"  # optional
+          matcher: false
+          cache: false
+          fail-on-error: true
+          flags: "-ignore SC2242"
 
       - name: actionlint Summary
         if: ${{ steps.actionlint.outputs.exit-code != 0 }}  # example usage, do echo only when actionlint action failed
