@@ -27,6 +27,7 @@ jobs:
           matcher: false  # optional
           cache: false  # optional
           fail-on-error: true  # optional
+          files: ".github/workflows/*.yml"
           flags: "-ignore SC2086"  # optional
 
       - name: actionlint Summary
