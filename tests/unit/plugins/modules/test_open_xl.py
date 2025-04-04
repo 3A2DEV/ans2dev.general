@@ -9,7 +9,6 @@ import unittest
 from unittest.mock import patch, MagicMock
 from openpyxl import Workbook
 
-
 from ansible_collections.ans2dev.general.plugins.modules import open_xl  # type: ignore
 
 
@@ -25,21 +24,20 @@ class TestOpenXLModule(unittest.TestCase):
 
     @patch("ansible_collections.ans2dev.general.plugins.modules.open_xl.openpyxl.load_workbook")
     def test_read_excel(self, mock_load_workbook):
-        # Create a dummy workbook with one sheet ("Sheet1").
+
         wb = Workbook()
         ws = wb.active
         ws.title = "Sheet1"
-        # Header row.
+
         ws.cell(row=1, column=1, value="Name")
         ws.cell(row=1, column=2, value="Age")
-        # Data rows.
+
         ws.cell(row=2, column=1, value="Alice")
         ws.cell(row=2, column=2, value=30)
         ws.cell(row=3, column=1, value="Bob")
         ws.cell(row=3, column=2, value=25)
         mock_load_workbook.return_value = wb
 
-        # Patch AnsibleModule in open_xl.
         with patch.object(open_xl, 'AnsibleModule') as mock_AnsibleModule:
             fake_module = MagicMock()
             fake_module.params = {
@@ -57,7 +55,6 @@ class TestOpenXLModule(unittest.TestCase):
                 open_xl.main()
             result_str = str(context.exception)
 
-            # Check that the result contains the expected sheet data.
             self.assertIn("exit_json called", result_str)
             self.assertIn("'Sheet1': [{'Name': 'Alice'", result_str)
             self.assertIn("'Age': 30", result_str)
@@ -98,14 +95,12 @@ class TestOpenXLModule(unittest.TestCase):
                 open_xl.main()
             result_str = str(context.exception)
 
-            # Check that exit_json was called and that the workbook was saved correctly.
             self.assertIn("exit_json called", result_str)
             self.assertIn("result': {}", result_str)
             wb.save.assert_called_with('/tmp/dummy_updated.xlsx')
 
     @patch("ansible_collections.ans2dev.general.plugins.modules.open_xl.openpyxl.load_workbook")
     def test_append_excel(self, mock_load_workbook):
-        # Create a dummy workbook with one sheet ("Sheet1") and one data row.
         wb = Workbook()
         ws = wb.active
         ws.title = "Sheet1"
@@ -135,7 +130,6 @@ class TestOpenXLModule(unittest.TestCase):
             result_str = str(context.exception)
             self.assertIn("exit_json called", result_str)
 
-            # The new row should be at the end.
             new_row = ws.max_row
             appended_value = ws.cell(row=new_row, column=1).value
             self.assertEqual(appended_value, 'Appended')
@@ -143,7 +137,6 @@ class TestOpenXLModule(unittest.TestCase):
 
     @patch("ansible_collections.ans2dev.general.plugins.modules.open_xl.openpyxl.load_workbook")
     def test_insert_excel(self, mock_load_workbook):
-        # Create a dummy workbook with one sheet ("Sheet1") and two rows.
         wb = Workbook()
         ws = wb.active
         ws.title = "Sheet1"
@@ -173,14 +166,12 @@ class TestOpenXLModule(unittest.TestCase):
                 open_xl.main()
             result_str = str(context.exception)
             self.assertIn("exit_json called", result_str)
-            # After insertion, the new row should be at row 2.
             inserted_value = ws.cell(row=2, column=1).value
             self.assertEqual(inserted_value, 'Inserted')
             wb.save.assert_called_with('/tmp/dummy_updated.xlsx')
 
     @patch("ansible_collections.ans2dev.general.plugins.modules.open_xl.openpyxl.load_workbook")
     def test_invalid_sheet(self, mock_load_workbook):
-        # Create a dummy workbook with a sheet that does not match the provided sheet name.
         wb = Workbook()
         ws = wb.active
         ws.title = "ExistingSheet"
@@ -207,7 +198,6 @@ class TestOpenXLModule(unittest.TestCase):
 
     @patch("ansible_collections.ans2dev.general.plugins.modules.open_xl.openpyxl.load_workbook")
     def test_empty_updates_matrix_for_insert(self, mock_load_workbook):
-        # Create a dummy workbook with one sheet.
         wb = Workbook()
         ws = wb.active
         ws.title = "Sheet1"
@@ -222,7 +212,7 @@ class TestOpenXLModule(unittest.TestCase):
                 'sheet_name': 'Sheet1',
                 'index_by_name': True,
                 'read_range': {},
-                'updates_matrix': [],  # empty updates_matrix
+                'updates_matrix': [],
                 'cell_style': {}
             }
             fake_module.exit_json.side_effect = exit_json
@@ -237,7 +227,6 @@ class TestOpenXLModule(unittest.TestCase):
 
     @patch("ansible_collections.ans2dev.general.plugins.modules.open_xl.openpyxl.load_workbook")
     def test_invalid_cell_in_write(self, mock_load_workbook):
-        # Create a dummy workbook with one sheet.
         wb = Workbook()
         ws = wb.active
         ws.title = "Sheet1"
@@ -245,7 +234,6 @@ class TestOpenXLModule(unittest.TestCase):
 
         with patch.object(open_xl, 'AnsibleModule') as mock_AnsibleModule:
             fake_module = MagicMock()
-            # Provide invalid cell_row (0) for write operation.
             fake_module.params = {
                 'src': '/tmp/dummy.xlsx',
                 'dest': '/tmp/dummy_updated.xlsx',
@@ -268,7 +256,6 @@ class TestOpenXLModule(unittest.TestCase):
 
     @patch("ansible_collections.ans2dev.general.plugins.modules.open_xl.openpyxl.load_workbook")
     def test_default_dest_naming(self, mock_load_workbook):
-        # Create a dummy workbook with one sheet.
         wb = Workbook()
         ws = wb.active
         ws.title = "Sheet1"
@@ -279,7 +266,6 @@ class TestOpenXLModule(unittest.TestCase):
 
         with patch.object(open_xl, 'AnsibleModule') as mock_AnsibleModule:
             fake_module = MagicMock()
-            # Do not provide 'dest' to trigger default naming.
             fake_module.params = {
                 'src': '/tmp/dummy.xlsx',
                 'op': 'w',
@@ -297,12 +283,10 @@ class TestOpenXLModule(unittest.TestCase):
                 open_xl.main()
             result_str = str(context.exception)
             self.assertIn("exit_json called", result_str)
-            # Expect the default destination to be /tmp/dummy_updated.xlsx.
             wb.save.assert_called_with('/tmp/dummy_updated.xlsx')
 
     @patch("ansible_collections.ans2dev.general.plugins.modules.open_xl.openpyxl.load_workbook")
     def test_workbook_load_error(self, mock_load_workbook):
-        # Simulate an exception when loading the workbook.
         mock_load_workbook.side_effect = Exception("Load error")
 
         with patch.object(open_xl, 'AnsibleModule') as mock_AnsibleModule:
@@ -326,7 +310,6 @@ class TestOpenXLModule(unittest.TestCase):
 
     @patch("ansible_collections.ans2dev.general.plugins.modules.open_xl.openpyxl.load_workbook")
     def test_cell_style_application(self, mock_load_workbook):
-        # Create a dummy workbook with one sheet.
         wb = Workbook()
         ws = wb.active
         ws.title = "Sheet1"
@@ -362,15 +345,53 @@ class TestOpenXLModule(unittest.TestCase):
             result_str = str(context.exception)
             self.assertIn("exit_json called", result_str)
             wb.save.assert_called_with('/tmp/dummy_updated.xlsx')
-            # Verify that the cell style was applied.
+
             cell = ws.cell(row=2, column=1)
-            # Note: openpyxl prepends "00" to color values.
+
             self.assertEqual(cell.font.color.rgb, '00FF0000')
             self.assertTrue(cell.font.bold)
             self.assertTrue(cell.font.italic)
             self.assertEqual(cell.font.underline, 'single')
             # Check fill attribute.
             self.assertEqual(cell.fill.fgColor.rgb, '0000FF00')
+
+    @patch("ansible_collections.ans2dev.general.plugins.modules.open_xl.openpyxl.Workbook")
+    def test_new_excel(self, mock_Workbook):
+        fake_wb = MagicMock()
+        fake_ws = MagicMock()
+        fake_wb.active = fake_ws
+
+        fake_wb.__getitem__.return_value = fake_ws
+
+        fake_cell = MagicMock()
+        fake_ws.cell.return_value = fake_cell
+        mock_Workbook.return_value = fake_wb
+
+        with patch.object(open_xl, 'AnsibleModule') as mock_AnsibleModule:
+            fake_module = MagicMock()
+            fake_module.params = {
+                'src': '/tmp/dummy.xlsx',
+                'dest': '/tmp/new_file.xlsx',
+                'op': 'n',
+                'sheet_name': 'Data',
+                'updates_matrix': [{'cell_row': 1, 'cell_col': 1, 'cell_value': 'Header'}],
+                'cell_style': {},
+                'index_by_name': True,
+                'read_range': {}
+            }
+            fake_module.exit_json.side_effect = exit_json
+            fake_module.fail_json.side_effect = fail_json
+            mock_AnsibleModule.return_value = fake_module
+
+            with self.assertRaises(Exception) as context:
+                open_xl.main()
+            result_str = str(context.exception)
+            self.assertIn("exit_json called", result_str)
+
+            fake_wb.save.assert_called_with('/tmp/new_file.xlsx')
+
+            fake_ws.cell.assert_called_with(row=1, column=1)
+            self.assertEqual(fake_cell.value, 'Header')
 
 
 if __name__ == '__main__':
