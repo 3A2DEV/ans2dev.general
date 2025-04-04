@@ -24,8 +24,13 @@ edit_on_github:
 #   3. A link to the collection's repository (if `repository` is specified).
 
 extra_links:
-  - description: Report an issue
-    url: https://github.com/3A2DEV/ans2dev.general/issues/new/choose
+  - description: Submit a bug report
+    url: https://github.com/3A2DEV/ans2dev.general/issues/new?template=bug_report.yml
+  - description: Request a feature
+    url: https://github.com/3A2DEV/ans2dev.general/issues/new?template=feature_request.yml
+  - description: Submit a documentation report
+    url: https://github.com/3A2DEV/ans2dev.general/issues/new?template=documentation_report.yml
+
 
 # Specify communication channels for your collection. We suggest to not specify more
 # than one place for communication per communication tool to avoid confusion.
