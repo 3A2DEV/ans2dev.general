@@ -355,7 +355,7 @@ class TestOpenXLModule(unittest.TestCase):
             # Check fill attribute.
             self.assertEqual(cell.fill.fgColor.rgb, '0000FF00')
 
-    @patch("ansible_collections.ans2dev.general.plugins.modules.open_xl.Workbook")
+    @patch("ansible_collections.ans2dev.general.plugins.modules.open_xl.openpyxl.Workbook")
     def test_new_excel(self, mock_Workbook):
 
         fake_wb = MagicMock()

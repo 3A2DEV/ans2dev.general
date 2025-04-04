@@ -70,23 +70,23 @@ options:
     type: dict
     default: {}
   updates_matrix:
-    description: >
-      A list of dictionaries describing the cells to update. Each dictionary can include:
-      V(cell_row) - The row to update (ignored in append mode).
-      V(cell_col) - The column to update.
-      V(cell_value) - The value to write.
+    description:
+      - A list of dictionaries describing the cells to update.Each dictionary can include
+      - V(cell_row) The row to update (ignored in append mode).
+      - V(cell_col) The column to update.
+      - V(cell_value) The value to write.
     required: false
     type: list
     elements: dict
     default: []
   cell_style:
-    description: >
-      A dictionary specifying optional style attributes for updated cells. Possible keys include:
-      V(fontColor) - Hex RGB code for the font color.
-      V(bgColor) - Hex RGB code for the cell background color.
-      V(bold) - Boolean to set bold font.
-      V(italic) - Boolean to set italic font.
-      V(underline) - Boolean to set underline; if true, uses single underline.
+    description:
+      - A dictionary specifying optional style attributes for updated cells. Possible keys include
+      - V(fontColor) Hex RGB code for the font color.
+      - V(bgColor) Hex RGB code for the cell background color.
+      - V(bold) Boolean to set bold font.
+      - V(italic) Boolean to set italic font.
+      - V(underline) Boolean to set underline; if true, uses single underline.
     required: false
     type: dict
     default: {}
