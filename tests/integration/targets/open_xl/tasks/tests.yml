@@ -110,3 +110,37 @@
 - name: Display final Excel content
   ansible.builtin.debug:
     var: read_after_insert.result
+
+- name: Create a new Excel file using op "n"
+  ans2dev.general.open_xl:
+    dest: "/tmp/new_file.xlsx"
+    op: "n"
+    sheet_name: "Data"
+    updates_matrix:
+      - cell_row: 1
+        cell_col: 1
+        cell_value: "Header"
+  register: create_excel_result
+
+- name: Verify that the new Excel file was created
+  stat:
+    path: "/tmp/new_file.xlsx"
+  register: new_file_stat
+
+- name: Assert that the Excel file exists
+  assert:
+    that:
+      - new_file_stat.stat.exists
+
+- name: Read back the newly created Excel file
+  ans2dev.general.open_xl:
+    src: "/tmp/new_file.xlsx"
+    op: "r"
+    sheet_name: "Data"
+    index_by_name: false
+  register: read_excel_result
+
+- name: Assert that the cell (1,1) contains "Header"
+  assert:
+    that:
+      - read_excel_result.result.Data[0]['col_1'] == "Header"
