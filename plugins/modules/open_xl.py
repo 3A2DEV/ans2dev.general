@@ -11,13 +11,14 @@ __metaclass__ = type
 DOCUMENTATION = r'''
 ---
 module: open_xl
-short_description: Read and update Excel files using openpyxl
+short_description: Read, Create and update Excel files using openpyxl
 author:
   - "Marco Noce (@NomakCooper)"
 requirements:
   - openpyxl
 description:
   - This module reads from or writes to Excel (.xlsx) files using the openpyxl Python library.
+  - Create new Excel file is avaible from ans2dev.general 0.2.0.
   - It supports reading the entire workbook or a single worksheet, optionally limited to a given cell range.
   - For updates, you can overwrite cells, append new rows, or insert rows. You can also apply custom cell styles.
   - The original Excel file is not overwritten unless you set O(dest) to the same path as O(src).
@@ -27,7 +28,7 @@ options:
   src:
     description:
       - Path to the source Excel file.
-    required: true
+    required: false
     type: str
   dest:
     description:
@@ -36,20 +37,21 @@ options:
     required: false
     type: str
   op:
-    description: >
-      The operation to perform on the Excel file. Options:
-      V(r) - Read-only. Returns the content from the specified sheet or all sheets.
-      V(w) - Write. Overwrites specified cells with new values.
-      V(a) - Append. Creates one new row at the end of the sheet, writing each item in O(updates_matrix) to that row.
-      V(i) - Insert. Inserts a new row above the row specified in the first item of O(updates_matrix) and writes the updates.
+    description:
+      - The operation to perform on the Excel file.
+      - V(r) Read-only. Returns the content from the specified sheet or all sheets.
+      - V(w) Write. Overwrites specified cells with new values.
+      - V(a) Append. Creates one new row at the end of the sheet, writing each item in O(updates_matrix) to that row.
+      - V(i) Insert. Inserts a new row above the row specified in the first item of O(updates_matrix) and writes the updates.
+      - V(n) New. Create a new Excel file without O(src) file, avaible from ans2dev.general 0.2.0.
     required: true
     type: str
-    choices: ['r', 'w', 'a', 'i']
+    choices: ['r', 'w', 'a', 'i', 'n']
   sheet_name:
     description:
       - Name of the worksheet to operate on.
       - For O(op=r), if omitted, all sheets are read.
-      - For O(op=w), O(op=a), or O(op=i), this parameter is required.
+      - For O(op=w), O(op=a), O(op=i) and O(op=n), this parameter is required.
     required: false
     type: str
   index_by_name:
@@ -68,23 +70,23 @@ options:
     type: dict
     default: {}
   updates_matrix:
-    description: >
-      A list of dictionaries describing the cells to update. Each dictionary can include:
-      V(cell_row) - The row to update (ignored in append mode).
-      V(cell_col) - The column to update.
-      V(cell_value) - The value to write.
+    description:
+      - A list of dictionaries describing the cells to update.Each dictionary can include
+      - V(cell_row) The row to update (ignored in append mode).
+      - V(cell_col) The column to update.
+      - V(cell_value) The value to write.
     required: false
     type: list
     elements: dict
     default: []
   cell_style:
-    description: >
-      A dictionary specifying optional style attributes for updated cells. Possible keys include:
-      V(fontColor) - Hex RGB code for the font color.
-      V(bgColor) - Hex RGB code for the cell background color.
-      V(bold) - Boolean to set bold font.
-      V(italic) - Boolean to set italic font.
-      V(underline) - Boolean to set underline; if true, uses single underline.
+    description:
+      - A dictionary specifying optional style attributes for updated cells. Possible keys include
+      - V(fontColor) Hex RGB code for the font color.
+      - V(bgColor) Hex RGB code for the cell background color.
+      - V(bold) Boolean to set bold font.
+      - V(italic) Boolean to set italic font.
+      - V(underline) Boolean to set underline; if true, uses single underline.
     required: false
     type: dict
     default: {}
@@ -151,6 +153,17 @@ EXAMPLES = r'''
         cell_value: "Row"
     cell_style:
       italic: true
+
+# Create excel file from ans2dev.general 0.2.0
+- name: Create a new Excel file and write data
+  ans2dev.general.open_xl:
+    dest: "/tmp/new_file.xlsx"
+    op: "n"
+    sheet_name: "Data"
+    updates_matrix:
+      - cell_row: 1
+        cell_col: 1
+        cell_value: "Header"
 '''
 
 RETURN = r'''
@@ -296,7 +309,7 @@ def update_excel(module, src, dest, updates_matrix, cell_style, sheet_name, op):
             cell.value = update.get('cell_value', None)
             apply_cell_style(cell, cell_style)
     else:
-        module.fail_json(msg="Invalid operation: %s" % op)
+        module.fail_json(msg="Invalid operation for update_excel: %s" % op)
 
     if not dest:
         dest = src.rsplit('.', 1)[0] + '_updated.xlsx'
@@ -309,12 +322,39 @@ def update_excel(module, src, dest, updates_matrix, cell_style, sheet_name, op):
     return {}
 
 
+def new_excel(module, dest, updates_matrix, cell_style, sheet_name):
+    wb = openpyxl.Workbook()
+    if sheet_name:
+        wb.active.title = sheet_name
+    else:
+        sheet_name = wb.active.title
+    sheet = wb[sheet_name]
+
+    for update in updates_matrix:
+        row = int(update.get('cell_row', 0))
+        col = int(update.get('cell_col', 0))
+
+        if row < 1 or col < 1:
+            module.fail_json(msg="Invalid cell_row or cell_col in new file operation.")
+
+        cell = sheet.cell(row=row, column=col)
+        cell.value = update.get('cell_value', None)
+        apply_cell_style(cell, cell_style)
+
+    try:
+        wb.save(dest)
+    except Exception as e:
+        module.fail_json(msg="Error saving new workbook: %s" % str(e))
+
+    return {}
+
+
 def main():
     module = AnsibleModule(
         argument_spec=dict(
-            src=dict(required=True, type='str'),
+            src=dict(required=False, type='str'),
             dest=dict(required=False, type='str'),
-            op=dict(required=True, type='str', choices=['r', 'w', 'a', 'i']),
+            op=dict(required=True, type='str', choices=['r', 'w', 'a', 'i', 'n']),
             sheet_name=dict(required=False, type='str'),
             index_by_name=dict(required=False, type='bool', default=True),
             read_range=dict(required=False, type='dict', default={}),
@@ -342,11 +382,21 @@ def main():
     updates_matrix = module.params.get('updates_matrix') or []
     cell_style = module.params.get('cell_style') or {}
 
-    if op == 'r':
+    if op == 'n':
+        if not dest:
+            module.fail_json(msg="Parameter 'dest' is required when creating a new file (op: 'n').")
+        if not sheet_name:
+            module.fail_json(msg="Parameter 'sheet_name' is required when creating a new file (op: 'n').")
+        result = new_excel(module, dest, updates_matrix, cell_style, sheet_name)
+    elif op == 'r':
+        if not src:
+            module.fail_json(msg="Parameter 'src' is required for op 'r'.")
         result = read_excel(module, src, index_by_name, read_range, sheet_name)
     else:
+        if not src:
+            module.fail_json(msg="Parameter 'src' is required for op '%s'." % op)
         if not sheet_name:
-            module.fail_json(msg="Parameter sheet_name is required for write operations ('w', 'a', 'i').")
+            module.fail_json(msg="Parameter 'sheet_name' is required for op '%s'." % op)
         result = update_excel(module, src, dest, updates_matrix, cell_style, sheet_name, op)
 
     module.exit_json(changed=True, result=result)
