@@ -1,7 +1,0 @@
-entry-point-name: main
-short_description: "Install Python modules for the collection"
-description:
-  - This role reads the collection role's C(files/requirements.txt) file, extracts the Python module dependencies,
-    and installs them on the control node.
-  - This role can be used to install Python modules required by C(charts) and C(open_xl) modules.
-options: {}
