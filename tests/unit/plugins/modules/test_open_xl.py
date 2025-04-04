@@ -375,7 +375,9 @@ class TestOpenXLModule(unittest.TestCase):
                 'op': 'n',
                 'sheet_name': 'Data',
                 'updates_matrix': [{'cell_row': 1, 'cell_col': 1, 'cell_value': 'Header'}],
-                'cell_style': {}
+                'cell_style': {},
+                'index_by_name': True,
+                'read_range': {}
             }
             fake_module.exit_json.side_effect = exit_json
             fake_module.fail_json.side_effect = fail_json
@@ -383,7 +385,6 @@ class TestOpenXLModule(unittest.TestCase):
 
             with self.assertRaises(Exception) as context:
                 open_xl.main()
-
             result_str = str(context.exception)
             self.assertIn("exit_json called", result_str)
 
