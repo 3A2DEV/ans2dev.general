@@ -9,9 +9,13 @@
 [![collection-release](https://img.shields.io/github/v/release/3A2DEV/ans2dev.general?display_name=release&logo=ansible&logoColor=white)](https://galaxy.ansible.com/ui/repo/published/3A2DEV/ans2dev.general/) [![CI](https://github.com/3A2DEV/ans2dev.general/actions/workflows/ansible-test.yml/badge.svg?event=push)](https://github.com/3A2DEV/ans2dev.general/actions) [![extra-docs](https://github.com/3A2DEV/ans2dev.general/actions/workflows/extra-docs-linting.yml/badge.svg?event=push)](https://github.com/3A2DEV/ans2dev.general/actions)
  [![Codecov](https://img.shields.io/codecov/c/github/3A2DEV/ans2dev.general?logo=codecov)](https://codecov.io/gh/3A2DEV/ans2dev.general)
 
+![Website](https://img.shields.io/website?url=https%3A%2F%2F3a2dev.github.io%2Fans2dev.general%2Fbranch%2Fmain&up_message=online&up_color=%231dc249&down_message=down&down_color=red&logo=ansible&label=Ansible%20Documentation&link=https%3A%2F%2F3a2dev.github.io%2Fans2dev.general%2Fbranch%2Fmain)
+
 <!-- Describe the collection and why a user would want to use it. What does the collection do? -->
 
 This repository contains the `ans2dev.general` Ansible Collection and includes some modules and plugins supported by **3A2DEV** which are not part of more specialized collections.
+
+All documentation is avaible on [Ansible Galaxy( **latest** )](https://galaxy.ansible.com/ui/repo/published/ans2dev/general/) and [Ansible Documentation( **devel** )](https://3a2dev.github.io/ans2dev.general/branch/main/)
 
 ## Code of Conduct
 
