@@ -357,7 +357,6 @@ class TestOpenXLModule(unittest.TestCase):
 
     @patch("ansible_collections.ans2dev.general.plugins.modules.open_xl.openpyxl.Workbook")
     def test_new_excel(self, mock_Workbook):
-
         fake_wb = MagicMock()
         fake_ws = MagicMock()
         fake_wb.active = fake_ws
@@ -371,6 +370,7 @@ class TestOpenXLModule(unittest.TestCase):
         with patch.object(open_xl, 'AnsibleModule') as mock_AnsibleModule:
             fake_module = MagicMock()
             fake_module.params = {
+                'src': '/tmp/dummy.xlsx',
                 'dest': '/tmp/new_file.xlsx',
                 'op': 'n',
                 'sheet_name': 'Data',
