@@ -119,7 +119,7 @@ ansible_facts:
       description:
         - Dictionary that contains C(network) data from C(sar).
         - It contains V(date), V(time) and all others keys from C(sar) data.
-        - Most common keys are V(IFACE), V(rxpck/s), V(txpck/s), v(%ifutil) and others.
+        - Most common keys are V(IFACE), V(rxpck/s), V(txpck/s), V(%ifutil) and others.
       returned: when O(type) is V(network).
       type: dict
     sar_disk:
