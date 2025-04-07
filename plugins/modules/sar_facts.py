@@ -86,34 +86,56 @@ EXAMPLES = r'''
 RETURN = r'''
 ansible_facts:
   description:
-    - A dictionary containing the SAR data collected. The key is dynamically determined based on the O(type).
-    - The dict name format is c(sar_<type>).
-    - The value is a list of dictionaries where each dictionary represents a single data point with the following keys
+    - A dictionary containing the SAR data collected.
+    - The value is a list of dictionaries where each dictionary represents a single data point.
     - V(date) The date for the measurement.
     - V(time) The time for the measurement in 24-hour format.
     - Additional keys corresponding to the performance metrics output from the C(sar) command.
   returned: always
-  type: dict
-  sample: {
-      "sar_cpu": [
-          {
-              "date": "2025-05-01",
-              "time": "08:00:00",
-              "AM": "AM",
-              "%user": "5.00",
-              "%system": "2.00",
-              "%idle": "93.00"
-          },
-          {
-              "date": "2025-05-01",
-              "time": "08:10:00",
-              "AM": "AM",
-              "%user": "6.00",
-              "%system": "3.00",
-              "%idle": "91.00"
-          }
-      ]
-  }
+  type: complex
+  contains:
+    sar_cpu:
+      description:
+        - Dictionary that contains C(cpu) data from C(sar).
+        - It contains V(date), V(time) and all others keys from C(sar) data.
+        - Most common keys are V(%user), V(%nice), V(%system), V(%idle) and others.
+      returned: when O(type) is V(cpu).
+      type: dict
+    sar_mem:
+      description:
+        - Dictionary that contains C(memory) data from C(sar).
+        - It contains V(date), V(time) and all others keys from C(sar) data.
+        - Most common keys are V(%memused), V(%commit) and others.
+      returned: when O(type) is V(memory).
+      type: dict
+    sar_swap:
+      description:
+        - Dictionary that contains C(swap) data from C(sar).
+        - It contains V(date), V(time) and all others keys from C(sar) data.
+        - Most common keys are V(%swpused), V(%swpcad) and others.
+      returned: when O(type) is V(swap).
+      type: dict
+    sar_net:
+      description:
+        - Dictionary that contains C(network) data from C(sar).
+        - It contains V(date), V(time) and all others keys from C(sar) data.
+        - Most common keys are V(IFACE), V(rxpck/s), V(txpck/s), v(%ifutil) and others.
+      returned: when O(type) is V(network).
+      type: dict
+    sar_disk:
+      description:
+        - Dictionary that contains C(disk) data from C(sar).
+        - It contains V(date), V(time) and all others keys from C(sar) data.
+        - Most common keys are V(DEV), V(%util), V(await), V(rkB/s), V(wkB/s) and others.
+      returned: when O(type) is V(disk).
+      type: dict
+    sar_load:
+      description:
+        - Dictionary that contains C(load) data from C(sar).
+        - It contains V(date), V(time) and all others keys from C(sar) data.
+        - Most common keys are V(ldavg-1), V(ldavg-5), V(ldavg-15) and others.
+      returned: when O(type) is V(load).
+      type: dict
 '''
 
 from ansible.module_utils.basic import AnsibleModule
