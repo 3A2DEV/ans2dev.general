@@ -89,7 +89,7 @@ ansible_facts:
     - A dictionary containing the SAR data collected. The key is dynamically determined based on the O(type).
     - The dict name format is c(sar_<type>).
     - The value is a list of dictionaries where each dictionary represents a single data point with the following keys
-    - V(date) The date for the measurement.
+    - RV(date) The date for the measurement.
     - V(time) The time for the measurement in 24-hour format.
     - Additional keys corresponding to the performance metrics output from the C(sar) command.
   returned: always
