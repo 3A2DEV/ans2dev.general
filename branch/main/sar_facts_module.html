@@ -91,7 +91,8 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="#">ans2dev.general.sar_facts module – Collect system activity report (SAR) data for system performance monitoring.</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#synopsis">Synopsis</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#parameters">Parameters</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#examples">Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#examples">Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#returned-facts">Returned Facts</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#authors">Authors</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#collection-links">Collection links</a></li>
 </ul>
@@ -144,6 +145,7 @@ To check whether it is installed, run <code class="code docutils literal notrans
 <li><p><a class="reference internal" href="#synopsis" id="id1">Synopsis</a></p></li>
 <li><p><a class="reference internal" href="#parameters" id="id2">Parameters</a></p></li>
 <li><p><a class="reference internal" href="#examples" id="id3">Examples</a></p></li>
+<li><p><a class="reference internal" href="#returned-facts" id="id4">Returned Facts</a></p></li>
 </ul>
 </nav>
 <section id="synopsis">
@@ -266,6 +268,79 @@ To check whether it is installed, run <code class="code docutils literal notrans
 <span class="w">    </span><span class="nt">average</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 </pre></div>
 </div>
+</section>
+<section id="returned-facts">
+<h2><a class="toc-backref" href="#id4" role="doc-backlink">Returned Facts</a><a class="headerlink" href="#returned-facts" title="Link to this heading"></a></h2>
+<p>Facts returned by this module are added/updated in the <code class="docutils literal notranslate"><span class="pre">hostvars</span></code> host facts and can be referenced by name just like any other host fact. They do not need to be registered in order to use them.</p>
+<table class="longtable ansible-option-table docutils align-default" style="width: 100%">
+<thead>
+<tr class="row-odd"><th class="head"><p>Key</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="return-ansible_facts/sar_cpu"></div><p class="ansible-option-title" id="ansible-collections-ans2dev-general-sar-facts-module-return-ansible-facts-sar-cpu"><strong>sar_cpu</strong></p>
+<a class="ansibleOptionLink" href="#return-ansible_facts/sar_cpu" title="Permalink to this return value"></a><p class="ansible-option-type-line"><span class="ansible-option-type">dictionary</span></p>
+</div></td>
+<td><div class="ansible-option-cell"><p>Dictionary that contains <code class="docutils literal notranslate"><span class="pre">cpu</span></code> data from <code class="docutils literal notranslate"><span class="pre">sar</span></code>.</p>
+<p>It contains <code class="ansible-value docutils literal notranslate"><span class="pre">date</span></code>, <code class="ansible-value docutils literal notranslate"><span class="pre">time</span></code> and all others keys from <code class="docutils literal notranslate"><span class="pre">sar</span></code> data.</p>
+<p>Most common keys are <code class="ansible-value docutils literal notranslate"><span class="pre">%user</span></code>, <code class="ansible-value docutils literal notranslate"><span class="pre">%nice</span></code>, <code class="ansible-value docutils literal notranslate"><span class="pre">%system</span></code>, <code class="ansible-value docutils literal notranslate"><span class="pre">%idle</span></code> and others.</p>
+<p class="ansible-option-line"><strong class="ansible-option-returned-bold">Returned:</strong> when <code class="ansible-option docutils literal notranslate"><strong><a class="reference internal" href="#ansible-collections-ans2dev-general-sar-facts-module-parameter-type"><span class="std std-ref"><span class="pre">type</span></span></a></strong></code> is <code class="ansible-value docutils literal notranslate"><span class="pre">cpu</span></code>.</p>
+</div></td>
+</tr>
+<tr class="row-odd"><td><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="return-ansible_facts/sar_disk"></div><p class="ansible-option-title" id="ansible-collections-ans2dev-general-sar-facts-module-return-ansible-facts-sar-disk"><strong>sar_disk</strong></p>
+<a class="ansibleOptionLink" href="#return-ansible_facts/sar_disk" title="Permalink to this return value"></a><p class="ansible-option-type-line"><span class="ansible-option-type">dictionary</span></p>
+</div></td>
+<td><div class="ansible-option-cell"><p>Dictionary that contains <code class="docutils literal notranslate"><span class="pre">disk</span></code> data from <code class="docutils literal notranslate"><span class="pre">sar</span></code>.</p>
+<p>It contains <code class="ansible-value docutils literal notranslate"><span class="pre">date</span></code>, <code class="ansible-value docutils literal notranslate"><span class="pre">time</span></code> and all others keys from <code class="docutils literal notranslate"><span class="pre">sar</span></code> data.</p>
+<p>Most common keys are <code class="ansible-value docutils literal notranslate"><span class="pre">DEV</span></code>, <code class="ansible-value docutils literal notranslate"><span class="pre">%util</span></code>, <code class="ansible-value docutils literal notranslate"><span class="pre">await</span></code>, <code class="ansible-value docutils literal notranslate"><span class="pre">rkB/s</span></code>, <code class="ansible-value docutils literal notranslate"><span class="pre">wkB/s</span></code> and others.</p>
+<p class="ansible-option-line"><strong class="ansible-option-returned-bold">Returned:</strong> when <code class="ansible-option docutils literal notranslate"><strong><a class="reference internal" href="#ansible-collections-ans2dev-general-sar-facts-module-parameter-type"><span class="std std-ref"><span class="pre">type</span></span></a></strong></code> is <code class="ansible-value docutils literal notranslate"><span class="pre">disk</span></code>.</p>
+</div></td>
+</tr>
+<tr class="row-even"><td><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="return-ansible_facts/sar_load"></div><p class="ansible-option-title" id="ansible-collections-ans2dev-general-sar-facts-module-return-ansible-facts-sar-load"><strong>sar_load</strong></p>
+<a class="ansibleOptionLink" href="#return-ansible_facts/sar_load" title="Permalink to this return value"></a><p class="ansible-option-type-line"><span class="ansible-option-type">dictionary</span></p>
+</div></td>
+<td><div class="ansible-option-cell"><p>Dictionary that contains <code class="docutils literal notranslate"><span class="pre">load</span></code> data from <code class="docutils literal notranslate"><span class="pre">sar</span></code>.</p>
+<p>It contains <code class="ansible-value docutils literal notranslate"><span class="pre">date</span></code>, <code class="ansible-value docutils literal notranslate"><span class="pre">time</span></code> and all others keys from <code class="docutils literal notranslate"><span class="pre">sar</span></code> data.</p>
+<p>Most common keys are <code class="ansible-value docutils literal notranslate"><span class="pre">ldavg-1</span></code>, <code class="ansible-value docutils literal notranslate"><span class="pre">ldavg-5</span></code>, <code class="ansible-value docutils literal notranslate"><span class="pre">ldavg-15</span></code> and others.</p>
+<p class="ansible-option-line"><strong class="ansible-option-returned-bold">Returned:</strong> when <code class="ansible-option docutils literal notranslate"><strong><a class="reference internal" href="#ansible-collections-ans2dev-general-sar-facts-module-parameter-type"><span class="std std-ref"><span class="pre">type</span></span></a></strong></code> is <code class="ansible-value docutils literal notranslate"><span class="pre">load</span></code>.</p>
+</div></td>
+</tr>
+<tr class="row-odd"><td><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="return-ansible_facts/sar_mem"></div><p class="ansible-option-title" id="ansible-collections-ans2dev-general-sar-facts-module-return-ansible-facts-sar-mem"><strong>sar_mem</strong></p>
+<a class="ansibleOptionLink" href="#return-ansible_facts/sar_mem" title="Permalink to this return value"></a><p class="ansible-option-type-line"><span class="ansible-option-type">dictionary</span></p>
+</div></td>
+<td><div class="ansible-option-cell"><p>Dictionary that contains <code class="docutils literal notranslate"><span class="pre">memory</span></code> data from <code class="docutils literal notranslate"><span class="pre">sar</span></code>.</p>
+<p>It contains <code class="ansible-value docutils literal notranslate"><span class="pre">date</span></code>, <code class="ansible-value docutils literal notranslate"><span class="pre">time</span></code> and all others keys from <code class="docutils literal notranslate"><span class="pre">sar</span></code> data.</p>
+<p>Most common keys are <code class="ansible-value docutils literal notranslate"><span class="pre">%memused</span></code>, <code class="ansible-value docutils literal notranslate"><span class="pre">%commit</span></code> and others.</p>
+<p class="ansible-option-line"><strong class="ansible-option-returned-bold">Returned:</strong> when <code class="ansible-option docutils literal notranslate"><strong><a class="reference internal" href="#ansible-collections-ans2dev-general-sar-facts-module-parameter-type"><span class="std std-ref"><span class="pre">type</span></span></a></strong></code> is <code class="ansible-value docutils literal notranslate"><span class="pre">memory</span></code>.</p>
+</div></td>
+</tr>
+<tr class="row-even"><td><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="return-ansible_facts/sar_net"></div><p class="ansible-option-title" id="ansible-collections-ans2dev-general-sar-facts-module-return-ansible-facts-sar-net"><strong>sar_net</strong></p>
+<a class="ansibleOptionLink" href="#return-ansible_facts/sar_net" title="Permalink to this return value"></a><p class="ansible-option-type-line"><span class="ansible-option-type">dictionary</span></p>
+</div></td>
+<td><div class="ansible-option-cell"><p>Dictionary that contains <code class="docutils literal notranslate"><span class="pre">network</span></code> data from <code class="docutils literal notranslate"><span class="pre">sar</span></code>.</p>
+<p>It contains <code class="ansible-value docutils literal notranslate"><span class="pre">date</span></code>, <code class="ansible-value docutils literal notranslate"><span class="pre">time</span></code> and all others keys from <code class="docutils literal notranslate"><span class="pre">sar</span></code> data.</p>
+<p>Most common keys are <code class="ansible-value docutils literal notranslate"><span class="pre">IFACE</span></code>, <code class="ansible-value docutils literal notranslate"><span class="pre">rxpck/s</span></code>, <code class="ansible-value docutils literal notranslate"><span class="pre">txpck/s</span></code>, v(%ifutil) and others.</p>
+<p class="ansible-option-line"><strong class="ansible-option-returned-bold">Returned:</strong> when <code class="ansible-option docutils literal notranslate"><strong><a class="reference internal" href="#ansible-collections-ans2dev-general-sar-facts-module-parameter-type"><span class="std std-ref"><span class="pre">type</span></span></a></strong></code> is <code class="ansible-value docutils literal notranslate"><span class="pre">network</span></code>.</p>
+</div></td>
+</tr>
+<tr class="row-odd"><td><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="return-ansible_facts/sar_swap"></div><p class="ansible-option-title" id="ansible-collections-ans2dev-general-sar-facts-module-return-ansible-facts-sar-swap"><strong>sar_swap</strong></p>
+<a class="ansibleOptionLink" href="#return-ansible_facts/sar_swap" title="Permalink to this return value"></a><p class="ansible-option-type-line"><span class="ansible-option-type">dictionary</span></p>
+</div></td>
+<td><div class="ansible-option-cell"><p>Dictionary that contains <code class="docutils literal notranslate"><span class="pre">swap</span></code> data from <code class="docutils literal notranslate"><span class="pre">sar</span></code>.</p>
+<p>It contains <code class="ansible-value docutils literal notranslate"><span class="pre">date</span></code>, <code class="ansible-value docutils literal notranslate"><span class="pre">time</span></code> and all others keys from <code class="docutils literal notranslate"><span class="pre">sar</span></code> data.</p>
+<p>Most common keys are <code class="ansible-value docutils literal notranslate"><span class="pre">%swpused</span></code>, <code class="ansible-value docutils literal notranslate"><span class="pre">%swpcad</span></code> and others.</p>
+<p class="ansible-option-line"><strong class="ansible-option-returned-bold">Returned:</strong> when <code class="ansible-option docutils literal notranslate"><strong><a class="reference internal" href="#ansible-collections-ans2dev-general-sar-facts-module-parameter-type"><span class="std std-ref"><span class="pre">type</span></span></a></strong></code> is <code class="ansible-value docutils literal notranslate"><span class="pre">swap</span></code>.</p>
+</div></td>
+</tr>
+</tbody>
+</table>
 <section id="authors">
 <h3>Authors<a class="headerlink" href="#authors" title="Link to this heading"></a></h3>
 <ul class="simple">
