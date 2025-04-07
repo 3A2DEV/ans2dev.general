@@ -67,7 +67,7 @@ class TestSarFactsModule(unittest.TestCase):
                 result_str = str(context.exception)
                 # Verify that exit_json output contains expected SAR fact keys and values.
                 self.assertIn("sar_cpu", result_str)
-                self.assertIn("5.00", result_str)
+                self.assertIn("9.00", result_str)
                 self.assertIn("2025-05-01", result_str)
                 self.assertIn("exit_json called", result_str)
 

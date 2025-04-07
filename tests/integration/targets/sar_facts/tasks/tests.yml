@@ -10,7 +10,7 @@
 
 - name: Skip SAR facts test if SAR binary is not available
   meta: end_play
-  when: sar_bin.rc != 1
+  when: sar_bin.rc != 0
 
 - name: Get current date dynamically
   ansible.builtin.set_fact:
