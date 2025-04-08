@@ -32,37 +32,6 @@ files:
   $module_utils/:
     labels: module_utils
 #########################
-  .github/ISSUE_TEMPLATE/but_report.yml:
-    maintainers: NomakCooper
-  .github/ISSUE_TEMPLATE/config.yml:
-    maintainers: NomakCooper
-  .github/ISSUE_TEMPLATE/documentation_report.yml:
-    maintainers: NomakCooper
-  .github/ISSUE_TEMPLATE/feature_request.yml:
-    maintainers: NomakCooper
-  .github/workflows/actionlint.yml
-    maintainers: NomakCooper
-  .github/workflows/ansible-test.yml
-    maintainers: NomakCooper
-  .github/workflows/docs-pr.yml
-    maintainers: NomakCooper
-  .github/workflows/docs-push.yml
-    maintainers: NomakCooper
-  .github/workflows/extra-docs-linting.yml
-    maintainers: NomakCooper
-  .github/workflows/publish-release.yml
-    maintainers: NomakCooper
-  .github/actionlint.yaml:
-    maintainers: NomakCooper
-  .github/dependabot.yml:
-    maintainers: NomakCooper
-  .github/patchback.yml:
-    maintainers: NomakCooper
-  .github/pull_request_template.md:
-    maintainers: NomakCooper
-  .github/settings.yml:
-    maintainers: NomakCooper
-#########################
   docs/docsite/config.yml:
     maintainers: NomakCooper
   docs/docsite/extra-docs.yml:
