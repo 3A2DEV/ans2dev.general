@@ -28,6 +28,8 @@ jobs:
 
 ###
 # Sanity tests (REQUIRED)
+#
+# https://docs.ansible.com/ansible/latest/dev_guide/testing_sanity.html
 
   sanity:
     name: Sanity (Ⓐ${{ matrix.ansible }})
@@ -53,7 +55,9 @@ jobs:
           pull-request-change-detection: true
 
 ###
-# Units tests (REQUIRED)
+# Unit tests (OPTIONAL)
+#
+# https://docs.ansible.com/ansible/latest/dev_guide/testing_units.html
 
   units:
     runs-on: ubuntu-latest
@@ -85,7 +89,9 @@ jobs:
           pull-request-change-detection: true
 
 ###
-# Integration tests (REQUIRED)
+# Integration tests (RECOMMENDED)
+#
+# https://docs.ansible.com/ansible/latest/dev_guide/testing_integration.html
 
   integration:
     runs-on: ubuntu-latest
@@ -149,7 +155,9 @@ jobs:
           pull-request-change-detection: true
 
 ###
-# Docker Integration tests (REQUIRED)
+# Docker Integration tests (OPTIONAL)
+#
+# https://docs.ansible.com/ansible/latest/dev_guide/testing_integration.html
 
   docker_integration:
         runs-on: ubuntu-latest
