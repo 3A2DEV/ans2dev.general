@@ -6,24 +6,6 @@
 notifications: true
 automerge: true
 files:
-  .github/:
-    supershipit: NomakCooper
-  .gitignore:
-    supershipit: NomakCooper
-  docs/:
-    supershipit: NomakCooper
-  meta/:
-    supershipit: NomakCooper
-  roles/:
-    supershipit: NomakCooper
-  galaxy.yml:
-    supershipit: NomakCooper
-  MAINTAINERS:
-    supershipit: NomakCooper
-  README.md:
-    supershipit: NomakCooper
-  CHANGELOG.md:
-    supershipit: NomakCooper
   plugins/:
     supershipit: NomakCooper
   changelogs/: {}
@@ -49,6 +31,68 @@ files:
     labels: lookups
   $module_utils/:
     labels: module_utils
+#########################
+  .github/ISSUE_TEMPLATE/but_report.yml:
+    maintainers: NomakCooper
+  .github/ISSUE_TEMPLATE/config.yml:
+    maintainers: NomakCooper
+  .github/ISSUE_TEMPLATE/documentation_report.yml:
+    maintainers: NomakCooper
+  .github/ISSUE_TEMPLATE/feature_request.yml:
+    maintainers: NomakCooper
+  .github/workflows/actionlint.yml
+    maintainers: NomakCooper
+  .github/workflows/ansible-test.yml
+    maintainers: NomakCooper
+  .github/workflows/docs-pr.yml
+    maintainers: NomakCooper
+  .github/workflows/docs-push.yml
+    maintainers: NomakCooper
+  .github/workflows/extra-docs-linting.yml
+    maintainers: NomakCooper
+  .github/workflows/publish-release.yml
+    maintainers: NomakCooper
+  .github/actionlint.yaml:
+    maintainers: NomakCooper
+  .github/dependabot.yml:
+    maintainers: NomakCooper
+  .github/patchback.yml:
+    maintainers: NomakCooper
+  .github/pull_request_template.md:
+    maintainers: NomakCooper
+  .github/settings.yml:
+    maintainers: NomakCooper
+#########################
+  docs/docsite/config.yml:
+    maintainers: NomakCooper
+  docs/docsite/extra-docs.yml:
+    maintainers: NomakCooper
+  docs/docsite/links.yml:
+    maintainers: NomakCooper
+  docs/docsite/rst/guide_dependencies.rst:
+    maintainers: NomakCooper
+  docs/docsite/rst/guide_install.rst:
+    maintainers: NomakCooper
+  docs/docsite/rst/guide_roles.rst:
+    maintainers: NomakCooper
+  docs/docsite/rst/role_guide_install_dep.rst:
+    maintainers: NomakCooper
+  docs/dosite/rst/role_guide_sar_filter.rst:
+    maintainers: NomakCooper
+#########################
+  meta/ee-bindep.txt:
+    maintainers: NomakCooper
+  meta/ee-requirements.txt:
+    maintainers: NomakCooper
+  meta/execution-environment.yml:
+    maintainers: NomakCooper
+  meta/runtime.yml:
+    maintainers: NomakCooper
+#########################
+  README.md:
+    maintainers: NomakCooper
+  galaxy.yml:
+    maintainers: NomakCooper
 #########################
   $modules/charts.py:
     maintainers: NomakCooper
