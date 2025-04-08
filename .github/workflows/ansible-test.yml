@@ -7,13 +7,6 @@ on:
     branches:
       - stable-*
   pull_request:
-    paths:
-      - 'changelogs/**'
-      - 'roles/**'
-      - 'plugins/**'
-      - 'tests/**'
-      - '.github/BOTMETA.yml'
-      - 'changelogs/fragments/**'
   schedule:
     - cron: '0 6 * * *'
 
@@ -160,7 +153,7 @@ jobs:
 # https://docs.ansible.com/ansible/latest/dev_guide/testing_integration.html
 
   docker_integration:
-        runs-on: ubuntu-latest
+    runs-on: ubuntu-latest
 
     name: Docker Integration (Ⓐ${{ matrix.ansible }}+py${{ matrix.python }}on${{ matrix.image }})
     strategy:
