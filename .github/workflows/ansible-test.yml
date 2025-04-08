@@ -26,11 +26,6 @@ concurrency:
 
 jobs:
 
-###
-# Sanity tests (REQUIRED)
-#
-# https://docs.ansible.com/ansible/latest/dev_guide/testing_sanity.html
-
   sanity:
     name: Sanity (Ⓐ${{ matrix.ansible }})
     strategy:
@@ -54,17 +49,11 @@ jobs:
           coverage: ${{ github.event_name == 'schedule' && 'always' || 'never' }}
           pull-request-change-detection: true
 
-###
-# Unit tests (OPTIONAL)
-#
-# https://docs.ansible.com/ansible/latest/dev_guide/testing_units.html
-
   units:
     runs-on: ubuntu-latest
 
     name: Units (Ⓐ${{ matrix.ansible }})
     strategy:
-      # As soon as the first unit test fails, cancel the others to free up the CI queue
       fail-fast: true
       matrix:
         ansible:
@@ -77,8 +66,6 @@ jobs:
       - name: >-
           Perform unit testing against
           Ansible version ${{ matrix.ansible }}
-        # See the documentation for the following GitHub action on
-        # https://github.com/ansible-community/ansible-test-gh-action/blob/main/README.md
         id: units_tests
         uses: ansible-community/ansible-test-gh-action@release/v1
         with:
@@ -90,11 +77,6 @@ jobs:
             ansible.netcommon
             ansible.utils
           pull-request-change-detection: true
-
-###
-# Integration tests (RECOMMENDED)
-#
-# https://docs.ansible.com/ansible/latest/dev_guide/testing_integration.html
 
   integration:
     runs-on: ubuntu-latest
@@ -114,10 +96,6 @@ jobs:
           - '3.12'
           - '3.13'
         include:
-          # Add new versions announced in
-          # https://github.com/ansible-collections/news-for-maintainers in a timely manner,
-          # consider dropping testing against EOL versions and versions you don't support.
-          # ansible-core 2.17
           - ansible: stable-2.17
             python: '3.7'
           - ansible: stable-2.17
@@ -150,26 +128,79 @@ jobs:
           Perform integration testing against
           Ansible version ${{ matrix.ansible }}
           under Python ${{ matrix.python }}
-        # See the documentation for the following GitHub action on
-        # https://github.com/ansible-community/ansible-test-gh-action/blob/main/README.md
         id: integration_tests
         uses: ansible-community/ansible-test-gh-action@release/v1
         with:
           ansible-core-version: ${{ matrix.ansible }}
           codecov-token: ${{ secrets.CODECOV_TOKEN }}
           coverage: ${{ github.event_name == 'schedule' && 'always' || 'never' }}
-          # OPTIONAL command to run before invoking `ansible-test integration`
-          # pre-test-cmd:
           target-python-version: ${{ matrix.python }}
           testing-type: integration
-          # OPTIONAL If your integration tests require code
-          # from other collections, install them like this
           test-deps: ansible.netcommon
-          # OPTIONAL If set to true, will test only against changed files,
-          # which should improve CI performance. See limitations on
-          # https://github.com/ansible-community/ansible-test-gh-action#pull-request-change-detection
           pull-request-change-detection: true
 
+  docker_integration:
+        runs-on: ubuntu-latest
+
+    name: Docker Integration (Ⓐ${{ matrix.ansible }}+py${{ matrix.python }}on${{ matrix.image }})
+    strategy:
+      fail-fast: false
+      matrix:
+        image:
+          - 'alpine320'
+          - 'fedora40'
+          - 'ubuntu2204'
+          - 'ubuntu2404'
+        ansible:
+          - devel
+        # - milestone
+        python:
+          - '3.10'
+          - '3.12'
+        include:
+          - ansible: stable-2.17
+            python: '3.10'
+            image: 'ubuntu2204'
+          - ansible: stable-2.17
+            python: '3.12'
+            image: 'alpine320'
+          - ansible: stable-2.17
+            python: '3.12'
+            image: 'fedora40'
+          - ansible: stable-2.17
+            python: '3.12'
+            image: 'ubuntu2404'
+          # ansible-core 2.18
+          - ansible: stable-2.18
+            python: '3.10'
+            image: 'ubuntu2204'
+          - ansible: stable-2.18
+            python: '3.12'
+            image: 'alpine320'
+          - ansible: stable-2.18
+            python: '3.12'
+            image: 'fedora40'
+          - ansible: stable-2.18
+            python: '3.12'
+            image: 'ubuntu2404'
+
+    steps:
+      - name: >-
+          Perform integration testing against
+          Ansible version ${{ matrix.ansible }}
+          under Python ${{ matrix.python }}
+          on Docker Image ${{ matrix.image }}
+        id: docker_integration_tests
+        uses: ansible-community/ansible-test-gh-action@release/v1
+        with:
+          docker-image: ${{ matrix.image }}
+          ansible-core-version: ${{ matrix.ansible }}
+          codecov-token: ${{ secrets.CODECOV_TOKEN }}
+          coverage: ${{ github.event_name == 'schedule' && 'always' || 'never' }}
+          target-python-version: ${{ matrix.python }}
+          testing-type: integration
+          test-deps: ansible.netcommon
+          pull-request-change-detection: true
 
   check:  # This job does nothing and is only used for the branch protection
           # or multi-stage CI jobs, like making sure that all tests pass before
@@ -180,6 +211,7 @@ jobs:
       - sanity
       - units
       - integration
+      - docker_integration
 
     runs-on: ubuntu-latest
 
