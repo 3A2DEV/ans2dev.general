@@ -39,7 +39,7 @@ labels:
 messages:
     welcomeContributor: |
         Thanks for your first pull request, @{user}! 🎉
-        The team will review your changes soon.
+        A maintainer will review your changes soon.
     welcomeIssue: |
         Thanks for opening your first issue, @{user}! 🎉
     requestMoreInfo: |
