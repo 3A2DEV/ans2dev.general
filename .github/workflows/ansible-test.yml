@@ -7,13 +7,6 @@ on:
     branches:
       - stable-*
   pull_request:
-    paths:
-      - 'changelogs/**'
-      - 'roles/**'
-      - 'plugins/**'
-      - 'tests/**'
-      - '.github/BOTMETA.yml'
-      - 'changelogs/fragments/**'
   schedule:
     - cron: '0 6 * * *'
 
@@ -64,7 +57,6 @@ jobs:
 
     name: Units (Ⓐ${{ matrix.ansible }})
     strategy:
-      # As soon as the first unit test fails, cancel the others to free up the CI queue
       fail-fast: true
       matrix:
         ansible:
@@ -77,8 +69,6 @@ jobs:
       - name: >-
           Perform unit testing against
           Ansible version ${{ matrix.ansible }}
-        # See the documentation for the following GitHub action on
-        # https://github.com/ansible-community/ansible-test-gh-action/blob/main/README.md
         id: units_tests
         uses: ansible-community/ansible-test-gh-action@release/v1
         with:
@@ -114,10 +104,6 @@ jobs:
           - '3.12'
           - '3.13'
         include:
-          # Add new versions announced in
-          # https://github.com/ansible-collections/news-for-maintainers in a timely manner,
-          # consider dropping testing against EOL versions and versions you don't support.
-          # ansible-core 2.17
           - ansible: stable-2.17
             python: '3.7'
           - ansible: stable-2.17
@@ -150,26 +136,16 @@ jobs:
           Perform integration testing against
           Ansible version ${{ matrix.ansible }}
           under Python ${{ matrix.python }}
-        # See the documentation for the following GitHub action on
-        # https://github.com/ansible-community/ansible-test-gh-action/blob/main/README.md
         id: integration_tests
         uses: ansible-community/ansible-test-gh-action@release/v1
         with:
           ansible-core-version: ${{ matrix.ansible }}
           codecov-token: ${{ secrets.CODECOV_TOKEN }}
           coverage: ${{ github.event_name == 'schedule' && 'always' || 'never' }}
-          # OPTIONAL command to run before invoking `ansible-test integration`
-          # pre-test-cmd:
           target-python-version: ${{ matrix.python }}
           testing-type: integration
-          # OPTIONAL If your integration tests require code
-          # from other collections, install them like this
           test-deps: ansible.netcommon
-          # OPTIONAL If set to true, will test only against changed files,
-          # which should improve CI performance. See limitations on
-          # https://github.com/ansible-community/ansible-test-gh-action#pull-request-change-detection
           pull-request-change-detection: true
-
 
   check:  # This job does nothing and is only used for the branch protection
           # or multi-stage CI jobs, like making sure that all tests pass before
