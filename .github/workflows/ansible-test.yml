@@ -12,6 +12,7 @@ on:
       - 'roles/**'
       - 'plugins/**'
       - 'tests/**'
+      - '.github/BOTMETA.yml'
   schedule:
     - cron: '0 6 * * *'
 
