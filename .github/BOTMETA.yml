@@ -6,11 +6,31 @@
 notifications: true
 automerge: true
 files:
+  .github/:
+    supershipit: NomakCooper
+  .gitignore:
+    supershipit: NomakCooper
+  docs/:
+    supershipit: NomakCooper
+  meta/:
+    supershipit: NomakCooper
+  roles/:
+    supershipit: NomakCooper
+  galaxy.yml:
+    supershipit: NomakCooper
+  MAINTAINERS:
+    supershipit: NomakCooper
+  README.md:
+    supershipit: NomakCooper
+  CHANGELOG.md:
+    supershipit: NomakCooper
   plugins/:
     supershipit: NomakCooper
   changelogs/: {}
   changelogs/fragments/:
     support: 3a2dev
+  $gitaction:
+    labels: github_action
   $actions:
     labels: action
   $becomes/:
@@ -64,3 +84,4 @@ macros:
   modules: plugins/modules
   plugin_utils: plugins/plugin_utils
   tests: plugins/test
+  gitaction: .github/workflows
