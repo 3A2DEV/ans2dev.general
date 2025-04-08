@@ -26,6 +26,9 @@ concurrency:
 
 jobs:
 
+###
+# Sanity tests (REQUIRED)
+
   sanity:
     name: Sanity (Ⓐ${{ matrix.ansible }})
     strategy:
@@ -48,6 +51,9 @@ jobs:
           codecov-token: ${{ secrets.CODECOV_TOKEN }}
           coverage: ${{ github.event_name == 'schedule' && 'always' || 'never' }}
           pull-request-change-detection: true
+
+###
+# Units tests (REQUIRED)
 
   units:
     runs-on: ubuntu-latest
@@ -77,6 +83,9 @@ jobs:
             ansible.netcommon
             ansible.utils
           pull-request-change-detection: true
+
+###
+# Integration tests (REQUIRED)
 
   integration:
     runs-on: ubuntu-latest
@@ -138,6 +147,9 @@ jobs:
           testing-type: integration
           test-deps: ansible.netcommon
           pull-request-change-detection: true
+
+###
+# Docker Integration tests (REQUIRED)
 
   docker_integration:
         runs-on: ubuntu-latest
