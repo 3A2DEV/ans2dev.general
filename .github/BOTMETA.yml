@@ -8,8 +8,6 @@ automerge: true
 files:
   github/:
     supershipit: $team_admin
-  changelogs/:
-    supershipit: $team_admin
   plugins/:
     supershipit: $team_admin
   docs/:
@@ -18,9 +16,8 @@ files:
     supershipit: $team_admin
   roles/:
     supershipit: $team_admin
-  tests/:
-    supershipit: $team_admin
   changelogs/: {}
+    supershipit: $team_admin
   changelogs/fragments/:
     support: 3a2dev
   $github:
@@ -90,6 +87,7 @@ files:
 #########################
   tests/:
     labels: tests
+    supershipit: $team_admin
   tests/integration:
     labels: integration
     support: 3a2dev
