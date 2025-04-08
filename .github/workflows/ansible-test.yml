@@ -182,7 +182,6 @@ jobs:
       - name: >-
           Perform integration testing against
           Ansible version ${{ matrix.ansible }}
-          under Python ${{ matrix.python }}
           on Docker Image ${{ matrix.image }}
         id: docker_integration_tests
         uses: ansible-community/ansible-test-gh-action@release/v1
