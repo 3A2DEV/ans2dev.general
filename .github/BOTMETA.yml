@@ -16,7 +16,7 @@ files:
     supershipit: $team_admin
   roles/:
     supershipit: $team_admin
-  changelogs/: {}
+  changelogs/:
     supershipit: $team_admin
   changelogs/fragments/:
     support: 3a2dev
