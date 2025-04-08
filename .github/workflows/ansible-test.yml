@@ -155,7 +155,7 @@ jobs:
   docker_integration:
     runs-on: ubuntu-latest
 
-    name: Docker Integration (Ⓐ${{ matrix.ansible }}+py${{ matrix.python }}on${{ matrix.image }})
+    name: Docker Integration (Ⓐ${{ matrix.ansible }} on ${{ matrix.image }})
     strategy:
       fail-fast: false
       matrix:
@@ -167,34 +167,23 @@ jobs:
         ansible:
           - devel
         # - milestone
-        python:
-          - '3.10'
-          - '3.12'
         include:
           - ansible: stable-2.17
-            python: '3.10'
             image: 'ubuntu2204'
           - ansible: stable-2.17
-            python: '3.12'
             image: 'alpine320'
           - ansible: stable-2.17
-            python: '3.12'
             image: 'fedora40'
           - ansible: stable-2.17
-            python: '3.12'
             image: 'ubuntu2404'
           # ansible-core 2.18
           - ansible: stable-2.18
-            python: '3.10'
             image: 'ubuntu2204'
           - ansible: stable-2.18
-            python: '3.12'
             image: 'alpine320'
           - ansible: stable-2.18
-            python: '3.12'
             image: 'fedora40'
           - ansible: stable-2.18
-            python: '3.12'
             image: 'ubuntu2404'
 
     steps:
@@ -210,7 +199,6 @@ jobs:
           ansible-core-version: ${{ matrix.ansible }}
           codecov-token: ${{ secrets.CODECOV_TOKEN }}
           coverage: ${{ github.event_name == 'schedule' && 'always' || 'never' }}
-          target-python-version: ${{ matrix.python }}
           testing-type: integration
           test-deps: ansible.netcommon
           pull-request-change-detection: true
