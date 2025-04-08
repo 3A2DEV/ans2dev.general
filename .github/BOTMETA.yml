@@ -6,11 +6,25 @@
 notifications: true
 automerge: true
 files:
+  github/:
+    supershipit: $team_admin
+  changelogs/:
+    supershipit: $team_admin
   plugins/:
-    supershipit: NomakCooper
+    supershipit: $team_admin
+  docs/:
+    supershipit: $team_admin
+  meta/:
+    supershipit: $team_admin
+  roles/:
+    supershipit: $team_admin
+  tests/:
+    supershipit: $team_admin
   changelogs/: {}
   changelogs/fragments/:
     support: 3a2dev
+  $github:
+    labels: github
   $gitaction:
     labels: github_action
   $actions:
@@ -59,9 +73,11 @@ files:
     maintainers: NomakCooper
 #########################
   README.md:
-    maintainers: NomakCooper
+    maintainers: $team_admin
+    supershipit: $team_admin
   galaxy.yml:
-    maintainers: NomakCooper
+    maintainers: $team_admin
+    supershipit: $team_admin
 #########################
   $modules/charts.py:
     maintainers: NomakCooper
@@ -98,3 +114,6 @@ macros:
   plugin_utils: plugins/plugin_utils
   tests: plugins/test
   gitaction: .github/workflows
+  github: .github
+  team_ansible_core:
+  team_admin: NomakCooper
