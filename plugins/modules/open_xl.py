@@ -193,11 +193,12 @@ result:
 from ansible.module_utils.basic import AnsibleModule
 from ansible.module_utils.basic import missing_required_lib
 import traceback
+from copy import copy
 
 OPENPYXL_IMPORT_ERROR = ""
 try:
     import openpyxl
-    from openpyxl.styles import Font, PatternFill
+    from openpyxl.styles import Font, PatternFill, Border, Side
 except ImportError:
     HAS_OPENPYXL = False
     OPENPYXL_IMPORT_ERROR = traceback.format_exc()
@@ -225,6 +226,15 @@ def apply_cell_style(cell, cell_style):
 
     if 'bgColor' in cell_style and cell_style['bgColor']:
         cell.fill = PatternFill(fill_type="solid", fgColor=cell_style['bgColor'])
+
+    if 'border' in cell_style and cell_style['border']:
+        border_cfg = cell_style['border']
+        color = border_cfg.get('color', None)
+        left = Side(style=border_cfg.get('left', None), color=color) if 'left' in border_cfg else None
+        right = Side(style=border_cfg.get('right', None), color=color) if 'right' in border_cfg else None
+        top = Side(style=border_cfg.get('top', None), color=color) if 'top' in border_cfg else None
+        bottom = Side(style=border_cfg.get('bottom', None), color=color) if 'bottom' in border_cfg else None
+        cell.border = Border(left=left, right=right, top=top, bottom=bottom)
 
 
 def read_excel(module, src, index_by_name, read_range, sheet_name):
@@ -284,9 +294,22 @@ def update_excel(module, src, dest, updates_matrix, cell_style, sheet_name, op):
         new_row = sheet.max_row + 1
         for update in updates_matrix:
             col = int(update.get('cell_col', 0))
+            if col < 1:
+                module.fail_json(msg="Invalid cell_col in append operation.")
             cell = sheet.cell(row=new_row, column=col)
+
+            existing_font = copy(cell.font)
+            existing_fill = copy(cell.fill)
+            existing_border = copy(cell.border)
+
             cell.value = update.get('cell_value', None)
-            apply_cell_style(cell, cell_style)
+            if cell_style:
+                apply_cell_style(cell, cell_style)
+            else:
+                cell.font = existing_font
+                cell.fill = existing_fill
+                cell.border = existing_border
+
     elif op == 'i':
         if not updates_matrix:
             module.fail_json(msg="No updates_matrix provided for insert operation.")
@@ -296,9 +319,22 @@ def update_excel(module, src, dest, updates_matrix, cell_style, sheet_name, op):
         sheet.insert_rows(idx=insert_row, amount=1)
         for update in updates_matrix:
             col = int(update.get('cell_col', 0))
+            if col < 1:
+                module.fail_json(msg="Invalid cell_col in insert operation.")
             cell = sheet.cell(row=insert_row, column=col)
+
+            existing_font = copy(cell.font)
+            existing_fill = copy(cell.fill)
+            existing_border = copy(cell.border)
+
             cell.value = update.get('cell_value', None)
-            apply_cell_style(cell, cell_style)
+            if cell_style:
+                apply_cell_style(cell, cell_style)
+            else:
+                cell.font = existing_font
+                cell.fill = existing_fill
+                cell.border = existing_border
+
     elif op == 'w':
         for update in updates_matrix:
             row = int(update.get('cell_row', 0))
@@ -306,8 +342,18 @@ def update_excel(module, src, dest, updates_matrix, cell_style, sheet_name, op):
             if row < 1 or col < 1:
                 module.fail_json(msg="Invalid cell_row or cell_col in write operation.")
             cell = sheet.cell(row=row, column=col)
+
+            existing_font = copy(cell.font)
+            existing_fill = copy(cell.fill)
+            existing_border = copy(cell.border)
+
             cell.value = update.get('cell_value', None)
-            apply_cell_style(cell, cell_style)
+            if cell_style:
+                apply_cell_style(cell, cell_style)
+            else:
+                cell.font = existing_font
+                cell.fill = existing_fill
+                cell.border = existing_border
     else:
         module.fail_json(msg="Invalid operation for update_excel: %s" % op)
 

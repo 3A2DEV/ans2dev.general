@@ -1,0 +1,2 @@
+minor_changes:
+  - open_xl - fix ``bgColor`` format cells when write data, now module reapply the format (https://github.com/3A2DEV/ans2dev.general/pull/142).
