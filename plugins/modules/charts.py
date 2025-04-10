@@ -35,33 +35,33 @@ options:
     choices: [line, bar, pie, donut]
   xaxis:
     description:
-      - X-axis data values.
+      - X-axis data values for V(line) and V(bar) charts.
     required: false
     type: list
     elements: str
     default: []
   xaxisname:
     description:
-      - Label for the X-axis.
+      - Label for the X-axis for V(line) and V(bar) charts.
     required: false
     type: str
   yaxis:
     description:
-      - List of Y-axis data series (each series is a list of numeric values).
+      - List of Y-axis data series for V(line) and V(bar) charts.
     required: false
     type: list
     elements: list
     default: []
   yaxisname:
     description:
-      - Labels for the Y-axis data series.
+      - Labels for the Y-axis data series for V(line) and V(bar) charts.
     required: false
     type: list
     elements: str
     default: []
   yaxiscolor:
     description:
-      - Colors for the Y-axis data series.
+      - Colors for the Y-axis data series for V(line) and V(bar) charts.
     required: false
     type: list
     elements: str
@@ -80,7 +80,7 @@ options:
     default: 1080
   shape_line:
     description:
-      - Line shape for line charts.
+      - Line shape for V(line) charts.
     required: false
     type: str
     choices: [spline, linear]
@@ -120,7 +120,7 @@ options:
     type: str
   slicedata:
     description:
-      - Data values for RV(pie) or V(donut) O(type) chart slices.
+      - Data values for V(pie) or V(donut) O(type) chart slices.
     required: false
     type: list
     elements: float
