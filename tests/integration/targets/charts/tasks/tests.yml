@@ -107,6 +107,6 @@
       - bar_chart_file.stat.exists
       - bar_chart_file.stat.size > 0
       - pie_chart_file.stat.exists
-      - pie_chart_file.stat.size = 0
+      - pie_chart_file.stat.size > 0
       - donut_chart_file.stat.exists
       - donut_chart_file.stat.size > 0
