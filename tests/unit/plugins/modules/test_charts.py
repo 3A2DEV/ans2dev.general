@@ -64,8 +64,8 @@ class TestChartsModule(unittest.TestCase):
 
             result_str = str(context.exception)
             # Check that exit_json was called and that the result indicates success.
-            self.assertIn("exit_json calle", result_str)
-            self.assertIn("'changed': False", result_str)
+            self.assertIn("exit_json called", result_str)
+            self.assertIn("'changed': True", result_str)
 
 
 if __name__ == '__main__':
