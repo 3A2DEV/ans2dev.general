@@ -141,7 +141,7 @@ options:
     default: []
   sizehole:
     description:
-      - Size of the hole in a donut chart (0 for a full pie chart).
+      - Size of the hole in a donut O(type) chart (0 for a full pie chart).
     required: false
     type: float
     default: 0.5
