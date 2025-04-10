@@ -120,14 +120,14 @@ options:
     type: str
   slicedata:
     description:
-      - Data values for pie or donut chart slices.
+      - Data values for RV(pie) or V(donut) O(type) chart slices.
     required: false
     type: list
     elements: float
     default: []
   slicelabel:
     description:
-      - Labels for pie or donut chart slices.
+      - Labels for V(pie) or V(donut) O(type) chart slices.
     required: false
     type: list
     elements: str
