@@ -134,14 +134,14 @@ options:
     default: []
   slicecolor:
     description:
-      - Colors for pie or donut chart slices.
+      - Colors for V(pie) or V(donut) O(type) chart slices.
     required: false
     type: list
     elements: str
     default: []
   sizehole:
     description:
-      - Size of the hole in a donut O(type) chart (0 for a full pie chart).
+      - Size of the hole in a V(donut) O(type) chart (0 for a full pie chart).
     required: false
     type: float
     default: 0.5
