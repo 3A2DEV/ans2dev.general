@@ -15,7 +15,7 @@ short_description: Generate high-quality charts using Plotly and save them as im
 description:
   - This module generates various types of charts like C(line), C(bar), C(pie) and C(donut) and saves them as images.
   - It provides customization options for titles, axis labels, colors, sizes, fonts, and legends.
-  - Uses Plotly and Kaleido for image generation.
+  - Uses `Plotly` and `Kaleido` for image generation.
 version_added: "0.1.0"
 requirements:
   - requests
@@ -35,33 +35,33 @@ options:
     choices: [line, bar, pie, donut]
   xaxis:
     description:
-      - X-axis data values.
+      - X-axis data values for V(line) and V(bar) charts.
     required: false
     type: list
     elements: str
     default: []
   xaxisname:
     description:
-      - Label for the X-axis.
+      - Label for the X-axis for V(line) and V(bar) charts.
     required: false
     type: str
   yaxis:
     description:
-      - List of Y-axis data series (each series is a list of numeric values).
+      - List of Y-axis data series for V(line) and V(bar) charts.
     required: false
     type: list
     elements: list
     default: []
   yaxisname:
     description:
-      - Labels for the Y-axis data series.
+      - Labels for the Y-axis data series for V(line) and V(bar) charts.
     required: false
     type: list
     elements: str
     default: []
   yaxiscolor:
     description:
-      - Colors for the Y-axis data series.
+      - Colors for the Y-axis data series for V(line) and V(bar) charts.
     required: false
     type: list
     elements: str
@@ -80,7 +80,7 @@ options:
     default: 1080
   shape_line:
     description:
-      - Line shape for line charts.
+      - Line shape for V(line) charts.
     required: false
     type: str
     choices: [spline, linear]
@@ -120,28 +120,28 @@ options:
     type: str
   slicedata:
     description:
-      - Data values for pie or donut chart slices.
+      - Data values for V(pie) or V(donut) chart slices.
     required: false
     type: list
     elements: float
     default: []
   slicelabel:
     description:
-      - Labels for pie or donut chart slices.
+      - Labels for V(pie) or V(donut) chart slices.
     required: false
     type: list
     elements: str
     default: []
   slicecolor:
     description:
-      - Colors for pie or donut chart slices.
+      - Colors for V(pie) or V(donut) chart slices.
     required: false
     type: list
     elements: str
     default: []
   sizehole:
     description:
-      - Size of the hole in a donut chart (0 for a full pie chart).
+      - Size of the hole in a V(donut) chart (0 for a full pie chart).
     required: false
     type: float
     default: 0.5
