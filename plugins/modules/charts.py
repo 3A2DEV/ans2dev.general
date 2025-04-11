@@ -120,28 +120,28 @@ options:
     type: str
   slicedata:
     description:
-      - Data values for V(pie) or V(donut) O(type) chart slices.
+      - Data values for V(pie) or V(donut) chart slices.
     required: false
     type: list
     elements: float
     default: []
   slicelabel:
     description:
-      - Labels for V(pie) or V(donut) O(type) chart slices.
+      - Labels for V(pie) or V(donut) chart slices.
     required: false
     type: list
     elements: str
     default: []
   slicecolor:
     description:
-      - Colors for V(pie) or V(donut) O(type) chart slices.
+      - Colors for V(pie) or V(donut) chart slices.
     required: false
     type: list
     elements: str
     default: []
   sizehole:
     description:
-      - Size of the hole in a V(donut) O(type) chart (0 for a full pie chart).
+      - Size of the hole in a V(donut) chart (0 for a full pie chart).
     required: false
     type: float
     default: 0.5
