@@ -158,7 +158,7 @@ see <a class="reference internal" href="#ansible-collections-ans2dev-general-cha
 <ul class="simple">
 <li><p>This module generates various types of charts like <code class="docutils literal notranslate"><span class="pre">line</span></code>, <code class="docutils literal notranslate"><span class="pre">bar</span></code>, <code class="docutils literal notranslate"><span class="pre">pie</span></code> and <code class="docutils literal notranslate"><span class="pre">donut</span></code> and saves them as images.</p></li>
 <li><p>It provides customization options for titles, axis labels, colors, sizes, fonts, and legends.</p></li>
-<li><p>Uses Plotly and Kaleido for image generation.</p></li>
+<li><p>Uses `Plotly` and `Kaleido` for image generation.</p></li>
 </ul>
 </section>
 <section id="requirements">
@@ -245,7 +245,7 @@ see <a class="reference internal" href="#ansible-collections-ans2dev-general-cha
 <div class="ansibleOptionAnchor" id="parameter-shape_line"></div><p class="ansible-option-title" id="ansible-collections-ans2dev-general-charts-module-parameter-shape-line"><strong>shape_line</strong></p>
 <a class="ansibleOptionLink" href="#parameter-shape_line" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
-<td><div class="ansible-option-cell"><p>Line shape for line charts.</p>
+<td><div class="ansible-option-cell"><p>Line shape for <code class="ansible-value docutils literal notranslate"><span class="pre">line</span></code> charts.</p>
 <p class="ansible-option-line"><strong class="ansible-option-choices">Choices:</strong></p>
 <ul class="simple">
 <li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">&quot;spline&quot;</span></code></p></li>
@@ -257,7 +257,7 @@ see <a class="reference internal" href="#ansible-collections-ans2dev-general-cha
 <div class="ansibleOptionAnchor" id="parameter-sizehole"></div><p class="ansible-option-title" id="ansible-collections-ans2dev-general-charts-module-parameter-sizehole"><strong>sizehole</strong></p>
 <a class="ansibleOptionLink" href="#parameter-sizehole" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">float</span></p>
 </div></td>
-<td><div class="ansible-option-cell"><p>Size of the hole in a donut chart (0 for a full pie chart).</p>
+<td><div class="ansible-option-cell"><p>Size of the hole in a <code class="ansible-value docutils literal notranslate"><span class="pre">donut</span></code> chart (0 for a full pie chart).</p>
 <p class="ansible-option-line"><strong class="ansible-option-default-bold">Default:</strong> <code class="ansible-option-default docutils literal notranslate"><span class="pre">0.5</span></code></p>
 </div></td>
 </tr>
@@ -265,7 +265,7 @@ see <a class="reference internal" href="#ansible-collections-ans2dev-general-cha
 <div class="ansibleOptionAnchor" id="parameter-slicecolor"></div><p class="ansible-option-title" id="ansible-collections-ans2dev-general-charts-module-parameter-slicecolor"><strong>slicecolor</strong></p>
 <a class="ansibleOptionLink" href="#parameter-slicecolor" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">list</span> / <span class="ansible-option-elements">elements=string</span></p>
 </div></td>
-<td><div class="ansible-option-cell"><p>Colors for pie or donut chart slices.</p>
+<td><div class="ansible-option-cell"><p>Colors for <code class="ansible-value docutils literal notranslate"><span class="pre">pie</span></code> or <code class="ansible-value docutils literal notranslate"><span class="pre">donut</span></code> chart slices.</p>
 <p class="ansible-option-line"><strong class="ansible-option-default-bold">Default:</strong> <code class="ansible-option-default docutils literal notranslate"><span class="pre">[]</span></code></p>
 </div></td>
 </tr>
@@ -273,7 +273,7 @@ see <a class="reference internal" href="#ansible-collections-ans2dev-general-cha
 <div class="ansibleOptionAnchor" id="parameter-slicedata"></div><p class="ansible-option-title" id="ansible-collections-ans2dev-general-charts-module-parameter-slicedata"><strong>slicedata</strong></p>
 <a class="ansibleOptionLink" href="#parameter-slicedata" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">list</span> / <span class="ansible-option-elements">elements=float</span></p>
 </div></td>
-<td><div class="ansible-option-cell"><p>Data values for pie or donut chart slices.</p>
+<td><div class="ansible-option-cell"><p>Data values for <code class="ansible-value docutils literal notranslate"><span class="pre">pie</span></code> or <code class="ansible-value docutils literal notranslate"><span class="pre">donut</span></code> chart slices.</p>
 <p class="ansible-option-line"><strong class="ansible-option-default-bold">Default:</strong> <code class="ansible-option-default docutils literal notranslate"><span class="pre">[]</span></code></p>
 </div></td>
 </tr>
@@ -281,7 +281,7 @@ see <a class="reference internal" href="#ansible-collections-ans2dev-general-cha
 <div class="ansibleOptionAnchor" id="parameter-slicelabel"></div><p class="ansible-option-title" id="ansible-collections-ans2dev-general-charts-module-parameter-slicelabel"><strong>slicelabel</strong></p>
 <a class="ansibleOptionLink" href="#parameter-slicelabel" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">list</span> / <span class="ansible-option-elements">elements=string</span></p>
 </div></td>
-<td><div class="ansible-option-cell"><p>Labels for pie or donut chart slices.</p>
+<td><div class="ansible-option-cell"><p>Labels for <code class="ansible-value docutils literal notranslate"><span class="pre">pie</span></code> or <code class="ansible-value docutils literal notranslate"><span class="pre">donut</span></code> chart slices.</p>
 <p class="ansible-option-line"><strong class="ansible-option-default-bold">Default:</strong> <code class="ansible-option-default docutils literal notranslate"><span class="pre">[]</span></code></p>
 </div></td>
 </tr>
@@ -317,7 +317,7 @@ see <a class="reference internal" href="#ansible-collections-ans2dev-general-cha
 <div class="ansibleOptionAnchor" id="parameter-xaxis"></div><p class="ansible-option-title" id="ansible-collections-ans2dev-general-charts-module-parameter-xaxis"><strong>xaxis</strong></p>
 <a class="ansibleOptionLink" href="#parameter-xaxis" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">list</span> / <span class="ansible-option-elements">elements=string</span></p>
 </div></td>
-<td><div class="ansible-option-cell"><p>X-axis data values.</p>
+<td><div class="ansible-option-cell"><p>X-axis data values for <code class="ansible-value docutils literal notranslate"><span class="pre">line</span></code> and <code class="ansible-value docutils literal notranslate"><span class="pre">bar</span></code> charts.</p>
 <p class="ansible-option-line"><strong class="ansible-option-default-bold">Default:</strong> <code class="ansible-option-default docutils literal notranslate"><span class="pre">[]</span></code></p>
 </div></td>
 </tr>
@@ -325,14 +325,14 @@ see <a class="reference internal" href="#ansible-collections-ans2dev-general-cha
 <div class="ansibleOptionAnchor" id="parameter-xaxisname"></div><p class="ansible-option-title" id="ansible-collections-ans2dev-general-charts-module-parameter-xaxisname"><strong>xaxisname</strong></p>
 <a class="ansibleOptionLink" href="#parameter-xaxisname" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
-<td><div class="ansible-option-cell"><p>Label for the X-axis.</p>
+<td><div class="ansible-option-cell"><p>Label for the X-axis for <code class="ansible-value docutils literal notranslate"><span class="pre">line</span></code> and <code class="ansible-value docutils literal notranslate"><span class="pre">bar</span></code> charts.</p>
 </div></td>
 </tr>
 <tr class="row-odd"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-yaxis"></div><p class="ansible-option-title" id="ansible-collections-ans2dev-general-charts-module-parameter-yaxis"><strong>yaxis</strong></p>
 <a class="ansibleOptionLink" href="#parameter-yaxis" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">list</span> / <span class="ansible-option-elements">elements=list</span></p>
 </div></td>
-<td><div class="ansible-option-cell"><p>List of Y-axis data series (each series is a list of numeric values).</p>
+<td><div class="ansible-option-cell"><p>List of Y-axis data series for <code class="ansible-value docutils literal notranslate"><span class="pre">line</span></code> and <code class="ansible-value docutils literal notranslate"><span class="pre">bar</span></code> charts.</p>
 <p class="ansible-option-line"><strong class="ansible-option-default-bold">Default:</strong> <code class="ansible-option-default docutils literal notranslate"><span class="pre">[]</span></code></p>
 </div></td>
 </tr>
@@ -340,7 +340,7 @@ see <a class="reference internal" href="#ansible-collections-ans2dev-general-cha
 <div class="ansibleOptionAnchor" id="parameter-yaxiscolor"></div><p class="ansible-option-title" id="ansible-collections-ans2dev-general-charts-module-parameter-yaxiscolor"><strong>yaxiscolor</strong></p>
 <a class="ansibleOptionLink" href="#parameter-yaxiscolor" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">list</span> / <span class="ansible-option-elements">elements=string</span></p>
 </div></td>
-<td><div class="ansible-option-cell"><p>Colors for the Y-axis data series.</p>
+<td><div class="ansible-option-cell"><p>Colors for the Y-axis data series for <code class="ansible-value docutils literal notranslate"><span class="pre">line</span></code> and <code class="ansible-value docutils literal notranslate"><span class="pre">bar</span></code> charts.</p>
 <p class="ansible-option-line"><strong class="ansible-option-default-bold">Default:</strong> <code class="ansible-option-default docutils literal notranslate"><span class="pre">[]</span></code></p>
 </div></td>
 </tr>
@@ -348,7 +348,7 @@ see <a class="reference internal" href="#ansible-collections-ans2dev-general-cha
 <div class="ansibleOptionAnchor" id="parameter-yaxisname"></div><p class="ansible-option-title" id="ansible-collections-ans2dev-general-charts-module-parameter-yaxisname"><strong>yaxisname</strong></p>
 <a class="ansibleOptionLink" href="#parameter-yaxisname" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">list</span> / <span class="ansible-option-elements">elements=string</span></p>
 </div></td>
-<td><div class="ansible-option-cell"><p>Labels for the Y-axis data series.</p>
+<td><div class="ansible-option-cell"><p>Labels for the Y-axis data series for <code class="ansible-value docutils literal notranslate"><span class="pre">line</span></code> and <code class="ansible-value docutils literal notranslate"><span class="pre">bar</span></code> charts.</p>
 <p class="ansible-option-line"><strong class="ansible-option-default-bold">Default:</strong> <code class="ansible-option-default docutils literal notranslate"><span class="pre">[]</span></code></p>
 </div></td>
 </tr>
