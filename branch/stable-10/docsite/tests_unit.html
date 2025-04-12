@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Install Collection &mdash; ans2dev.general Collection  documentation</title>
+  <title>Ansible Units &mdash; ans2dev.general Collection  documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=41de9001" />
       <link rel="stylesheet" type="text/css" href="../_static/css/ansible.css?v=c5b67dd2" />
       <link rel="stylesheet" type="text/css" href="../_static/antsibull-minimal.css" />
@@ -21,8 +21,8 @@
       <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Install Modules Dependencies" href="guide_dependencies.html" />
-    <link rel="prev" title="Ans2Dev.General Release Notes" href="../changelog.html" /><!-- extra head elements for Ansible beyond RTD Sphinx Theme -->
+    <link rel="next" title="Ansible Integration" href="tests_integration.html" />
+    <link rel="prev" title="Ansible Sanity" href="tests_sanity.html" /><!-- extra head elements for Ansible beyond RTD Sphinx Theme -->
 
 
 
@@ -75,8 +75,8 @@
               <ul>
 <li class="toctree-l1"><a class="reference internal" href="../changelog.html">Ans2Dev.General Release Notes</a></li>
 </ul>
-<ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Install Collection</a></li>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="guide_install.html">Install Collection</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="guide_dependencies.html">Install Modules Dependencies</a></li>
@@ -84,8 +84,13 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="guide_roles.html">ans2dev.general Roles Guide</a></li>
 </ul>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="guide_ansible_tests.html">Ansible Tests</a></li>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="guide_ansible_tests.html">Ansible Tests</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="tests_sanity.html">Ansible Sanity</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Ansible Units</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tests_integration.html">Ansible Integration</a></li>
+</ul>
+</li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../charts_module.html">ans2dev.general.charts module – Generate high-quality charts using Plotly and save them as images.</a></li>
@@ -109,7 +114,8 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">Install Collection</li>
+          <li class="breadcrumb-item"><a href="guide_ansible_tests.html">Ansible Tests</a></li>
+      <li class="breadcrumb-item active">Ansible Units</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -120,32 +126,16 @@
   
            <div itemprop="articleBody">
              
-  <section id="install-collection">
-<span id="ansible-collections-ans2dev-general-docsite-guide-install"></span><h1>Install Collection<a class="headerlink" href="#install-collection" title="Link to this heading"></a></h1>
-<p>Before using this collection, you need to install it with the Ansible Galaxy command-line tool:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ansible-galaxy<span class="w"> </span>collection<span class="w"> </span>install<span class="w"> </span>ans2dev.general
+  <section id="ansible-units">
+<span id="ansible-collections-ans2dev-general-docsite-tests-unit"></span><h1>Ansible Units<a class="headerlink" href="#ansible-units" title="Link to this heading"></a></h1>
+<p>Unit tests are small isolated tests that target a specific library or module.</p>
+<p>Unit tests in Ansible are currently the only way of driving tests from python within Ansible continuous integration process.</p>
+<p>This means that in some circumstances the tests may be a bit wider than just units.</p>
+<p>To run units tests in a container:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ansible-test<span class="w"> </span>units<span class="w"> </span>--docker<span class="w"> </span>-v<span class="w"> </span><span class="nv">$MODULE_NAME</span>
 </pre></div>
 </div>
-<p>You can also include it in a <code class="docutils literal notranslate"><span class="pre">requirements.yml</span></code> file and install it with the command below:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ansible-galaxy<span class="w"> </span>collection<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.yml
-</pre></div>
-</div>
-<p>using the format:</p>
-<div class="highlight-yaml+jinja notranslate"><div class="highlight"><pre><span></span><span class="nn">---</span>
-<span class="nt">collections</span><span class="p">:</span>
-<span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ans2dev.general</span>
-</pre></div>
-</div>
-<p>Note that if you install the collection from Ansible Galaxy, it will not be upgraded automatically when you upgrade the <code class="docutils literal notranslate"><span class="pre">ansible</span></code> package.</p>
-<p>To upgrade the collection to the latest available version, run the following command:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ansible-galaxy<span class="w"> </span>collection<span class="w"> </span>install<span class="w"> </span>ans2dev.general<span class="w"> </span>--upgrade
-</pre></div>
-</div>
-<p>You can also install a specific version of the collection.
-Use the following syntax to install version <code class="docutils literal notranslate"><span class="pre">0.1.0</span></code>:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ansible-galaxy<span class="w"> </span>collection<span class="w"> </span>install<span class="w"> </span>ans2dev.general:<span class="o">==</span><span class="m">0</span>.1.0
-</pre></div>
-</div>
+<p>GitHub Action workflow run ansible unit tests on <code class="docutils literal notranslate"><span class="pre">ansible</span> <span class="pre">core</span> <span class="pre">2.17</span></code> and <code class="docutils literal notranslate"><span class="pre">ansible</span> <span class="pre">core</span> <span class="pre">2.18</span></code></p>
 </section>
 
 
@@ -154,8 +144,8 @@ Use the following syntax to install version <code class="docutils literal notran
           
 
 <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="../changelog.html" class="btn btn-neutral float-left" title="Ans2Dev.General Release Notes" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="guide_dependencies.html" class="btn btn-neutral float-right" title="Install Modules Dependencies" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="tests_sanity.html" class="btn btn-neutral float-left" title="Ansible Sanity" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="tests_integration.html" class="btn btn-neutral float-right" title="Ansible Integration" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
