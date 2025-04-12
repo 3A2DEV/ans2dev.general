@@ -21,7 +21,7 @@
       <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="ans2dev.general.charts module – Generate high-quality charts using Plotly and save them as images." href="../charts_module.html" />
+    <link rel="next" title="Ansible Sanity" href="tests_sanity.html" />
     <link rel="prev" title="ans2dev.general sar_filter role" href="role_guide_sar_filter.html" /><!-- extra head elements for Ansible beyond RTD Sphinx Theme -->
 
 
@@ -85,10 +85,12 @@
 <li class="toctree-l1"><a class="reference internal" href="guide_roles.html">ans2dev.general Roles Guide</a></li>
 </ul>
 <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Ansible Tests</a></li>
-<li class="toctree-l1"><a class="reference internal" href="#ansible-sanity">Ansible Sanity</a></li>
-<li class="toctree-l1"><a class="reference internal" href="#ansible-units">Ansible Units</a></li>
-<li class="toctree-l1"><a class="reference internal" href="#ansible-integration">Ansible Integration</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Ansible Tests</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tests_sanity.html">Ansible Sanity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tests_unit.html">Ansible Units</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tests_integration.html">Ansible Integration</a></li>
+</ul>
+</li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../charts_module.html">ans2dev.general.charts module – Generate high-quality charts using Plotly and save them as images.</a></li>
@@ -131,114 +133,13 @@
 <p>Ansible-core versions before <code class="docutils literal notranslate"><span class="pre">2.16.0</span></code> are not supported. This includes all ansible-base <code class="docutils literal notranslate"><span class="pre">2.10</span></code> and Ansible <code class="docutils literal notranslate"><span class="pre">2.9</span></code> releases.</p>
 </div>
 <p>Each Ansible test is executed through a <code class="docutils literal notranslate"><span class="pre">GitHub</span> <span class="pre">Actions</span></code> workflow following a specific strategy and matrix for Ansible version and Python version.</p>
-</section>
-<section id="ansible-sanity">
-<h1>Ansible Sanity<a class="headerlink" href="#ansible-sanity" title="Link to this heading"></a></h1>
-<p>Sanity tests are made up of scripts and tools used to perform static code analysis.</p>
-<p>The primary purpose of these tests is to enforce Ansible coding standards and requirements.</p>
-<p>To run sanity tests in a container:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ansible-test<span class="w"> </span>sanity<span class="w"> </span>--docker<span class="w"> </span>-v<span class="w"> </span>plugins/modules/<span class="nv">$MODULE_NAME</span>.py
-</pre></div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="tests_sanity.html">Ansible Sanity</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tests_unit.html">Ansible Units</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tests_integration.html">Ansible Integration</a></li>
+</ul>
 </div>
-<p>GitHub Action workflow run ansible sanity tests on <code class="docutils literal notranslate"><span class="pre">ansible</span> <span class="pre">core</span> <span class="pre">2.17</span></code> and <code class="docutils literal notranslate"><span class="pre">ansible</span> <span class="pre">core</span> <span class="pre">2.18</span></code></p>
-</section>
-<section id="ansible-units">
-<h1>Ansible Units<a class="headerlink" href="#ansible-units" title="Link to this heading"></a></h1>
-<p>Unit tests are small isolated tests that target a specific library or module.</p>
-<p>Unit tests in Ansible are currently the only way of driving tests from python within Ansible continuous integration process.</p>
-<p>This means that in some circumstances the tests may be a bit wider than just units.</p>
-<p>To run units tests in a container:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ansible-test<span class="w"> </span>units<span class="w"> </span>--docker<span class="w"> </span>-v<span class="w"> </span><span class="nv">$MODULE_NAME</span>
-</pre></div>
-</div>
-<p>GitHub Action workflow run ansible unit tests on <code class="docutils literal notranslate"><span class="pre">ansible</span> <span class="pre">core</span> <span class="pre">2.17</span></code> and <code class="docutils literal notranslate"><span class="pre">ansible</span> <span class="pre">core</span> <span class="pre">2.18</span></code></p>
-</section>
-<section id="ansible-integration">
-<h1>Ansible Integration<a class="headerlink" href="#ansible-integration" title="Link to this heading"></a></h1>
-<p>Integration tests are functional tests of modules and plugins.</p>
-<p>With integration tests, we check if a module or plugin satisfies its functional requirements.</p>
-<p>Simply put, we check that features work as expected and users get the outcome described in the module or plugin documentation.</p>
-<p>To run integration tests in a container:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ansible-test<span class="w"> </span>integration<span class="w"> </span>--docker<span class="w"> </span>-v<span class="w"> </span><span class="nv">$MODULE_NAME</span>
-</pre></div>
-</div>
-<p>To run integration tests in a specific docker image :</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ansible-test<span class="w"> </span>integration<span class="w"> </span>--docker<span class="w"> </span><span class="nv">$DOCKER_IMAGE</span><span class="w"> </span>-v<span class="w"> </span><span class="nv">$MODULE_NAME</span>
-</pre></div>
-</div>
-<p>GitHub Action workflow run ansible integration tests on the following matrix:</p>
-<table class="docutils align-default">
-<thead>
-<tr class="row-odd"><th class="head"><p>Ansible core version</p></th>
-<th class="head"><p>Python version</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p>Stable 2.17</p></td>
-<td><p>3.7</p></td>
-</tr>
-<tr class="row-odd"><td><p>Stable 2.17</p></td>
-<td><p>3.8</p></td>
-</tr>
-<tr class="row-even"><td><p>Stable 2.17</p></td>
-<td><p>3.9</p></td>
-</tr>
-<tr class="row-odd"><td><p>Stable 2.17</p></td>
-<td><p>3.10</p></td>
-</tr>
-<tr class="row-even"><td><p>Stable 2.17</p></td>
-<td><p>3.11</p></td>
-</tr>
-<tr class="row-odd"><td><p>Stable 2.17</p></td>
-<td><p>3.12</p></td>
-</tr>
-<tr class="row-even"><td><p>Stable 2.18</p></td>
-<td><p>3.8</p></td>
-</tr>
-<tr class="row-odd"><td><p>Stable 2.18</p></td>
-<td><p>3.9</p></td>
-</tr>
-<tr class="row-even"><td><p>Stable 2.18</p></td>
-<td><p>3.10</p></td>
-</tr>
-<tr class="row-odd"><td><p>Stable 2.18</p></td>
-<td><p>3.11</p></td>
-</tr>
-<tr class="row-even"><td><p>Stable 2.18</p></td>
-<td><p>3.12</p></td>
-</tr>
-<tr class="row-odd"><td><p>Stable 2.18</p></td>
-<td><p>3.13</p></td>
-</tr>
-</tbody>
-</table>
-<p>Ansible Integration tests olso run on the following Official Docker Image:</p>
-<table class="docutils align-default">
-<thead>
-<tr class="row-odd"><th class="head"><p>Ansible core version</p></th>
-<th class="head"><p>Docker Image</p></th>
-<th class="head"><p>Python version</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p>Stable 2.18</p></td>
-<td><p>alpine320</p></td>
-<td><p>3.12</p></td>
-</tr>
-<tr class="row-odd"><td><p>Stable 2.18</p></td>
-<td><p>fedora40</p></td>
-<td><p>3.12</p></td>
-</tr>
-<tr class="row-even"><td><p>Stable 2.18</p></td>
-<td><p>ubuntu2204</p></td>
-<td><p>3.10</p></td>
-</tr>
-<tr class="row-odd"><td><p>Stable 2.18</p></td>
-<td><p>ubuntu2404</p></td>
-<td><p>3.12</p></td>
-</tr>
-</tbody>
-</table>
 </section>
 
 
@@ -248,7 +149,7 @@
 
 <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="role_guide_sar_filter.html" class="btn btn-neutral float-left" title="ans2dev.general sar_filter role" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="../charts_module.html" class="btn btn-neutral float-right" title="ans2dev.general.charts module – Generate high-quality charts using Plotly and save them as images." accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="tests_sanity.html" class="btn btn-neutral float-right" title="Ansible Sanity" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
