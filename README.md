@@ -53,6 +53,13 @@ Every voice is important. If you have something on your mind, create an issue or
 
 Tested with the current `ansible-core 2.17` and `ansible-core 2.18` releases and the current development version of ansible-core. Ansible-core versions before `2.16.0` are not supported. This includes all ansible-base `2.10` and Ansible `2.9` releases.
 
+Ansible Integration tests olso run on Official Docker Image and `ansible-core 2.18`:
+
+- `alpine320` + Python `3.12`
+- `fedora40` + Python `3.12`
+- `ubuntu2204` + Python `3.10`
+- `ubuntu2404` + Python `3.12`
+
 ## External requirements
 
 Some modules and plugins require external libraries. Please check the requirements for each plugin or module you use in the documentation to find out which requirements are needed.
