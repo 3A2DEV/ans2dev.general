@@ -56,7 +56,7 @@ GitHub Action workflow run ansible integration tests on the following matrix:
 | Stable 2.18          | 3.13           |
 +----------------------+----------------+
 
-.. code-block:: yaml+jinja
+.. code-block:: yaml
 
     integration:
       runs-on: ubuntu-latest
@@ -132,7 +132,7 @@ Ansible Integration tests olso run on the following Official Docker Image:
 | Stable 2.18          | ubuntu2404   | 3.12           |
 +----------------------+--------------+----------------+
 
-.. code-block:: yaml+jinja
+.. code-block:: yaml
 
     docker-integration:
       runs-on: ubuntu-latest

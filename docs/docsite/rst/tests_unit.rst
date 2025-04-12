@@ -22,7 +22,7 @@ To run units tests in a container:
 
 GitHub Action workflow run ansible unit tests on ``ansible core 2.17``, ``ansible core 2.18`` and ``devel``
 
-.. code-block:: yaml+jinja
+.. code-block:: yaml
 
     units:
       runs-on: ubuntu-latest

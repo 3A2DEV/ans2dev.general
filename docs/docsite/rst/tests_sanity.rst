@@ -20,7 +20,7 @@ To run sanity tests in a container:
 
 GitHub Action workflow run ansible sanity tests on ``ansible core 2.17``, ``ansible core 2.18`` and ``devel``
 
-.. code-block:: yaml+jinja
+.. code-block:: yaml
 
     sanity:
       name: Sanity (Ⓐ${{ matrix.ansible }})
