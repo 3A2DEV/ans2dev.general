@@ -35,7 +35,7 @@ Ansible Units
 
 Unit tests are small isolated tests that target a specific library or module.
 
-Unit tests in Ansible are currently the only way of driving tests from python within Ansible’s continuous integration process. 
+Unit tests in Ansible are currently the only way of driving tests from python within Ansible continuous integration process. 
 
 This means that in some circumstances the tests may be a bit wider than just units.
 
