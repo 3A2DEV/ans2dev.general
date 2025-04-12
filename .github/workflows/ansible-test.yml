@@ -155,13 +155,18 @@ jobs:
   docker-integration:
     runs-on: ubuntu-latest
 
-    name: Docker Integration (Ⓐ${{ matrix.ansible }}+image-${{ matrix.image }})
+    name: Docker Integration (Ⓐ${{ matrix.ansible }}+image-${{ matrix.image }}+py${{ matrix.python }})
     strategy:
       fail-fast: false
       matrix:
         ansible:
           - stable-2.18
         # - milestone
+        python:
+          - '3.12'
+          - '3.12'
+          - '3.10'
+          - '3.12'
         image:
           - alpine320
           - fedora40
