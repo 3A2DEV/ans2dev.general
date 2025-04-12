@@ -135,7 +135,36 @@
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ansible-test<span class="w"> </span>units<span class="w"> </span>--docker<span class="w"> </span>-v<span class="w"> </span><span class="nv">$MODULE_NAME</span>
 </pre></div>
 </div>
-<p>GitHub Action workflow run ansible unit tests on <code class="docutils literal notranslate"><span class="pre">ansible</span> <span class="pre">core</span> <span class="pre">2.17</span></code> and <code class="docutils literal notranslate"><span class="pre">ansible</span> <span class="pre">core</span> <span class="pre">2.18</span></code></p>
+<p>GitHub Action workflow run ansible unit tests on <code class="docutils literal notranslate"><span class="pre">ansible</span> <span class="pre">core</span> <span class="pre">2.17</span></code>, <code class="docutils literal notranslate"><span class="pre">ansible</span> <span class="pre">core</span> <span class="pre">2.18</span></code> and <code class="docutils literal notranslate"><span class="pre">devel</span></code></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">units</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span>
+
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Units (Ⓐ${{ matrix.ansible }})</span>
+<span class="w">  </span><span class="nt">strategy</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">fail-fast</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">    </span><span class="nt">matrix</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">ansible</span><span class="p">:</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">stable-2.17</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">stable-2.18</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">devel</span>
+
+<span class="w">  </span><span class="nt">steps</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">&gt;-</span>
+<span class="w">        </span><span class="no">Perform unit testing against</span>
+<span class="w">        </span><span class="no">Ansible version ${{ matrix.ansible }}</span>
+<span class="w">      </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">units_tests</span>
+<span class="w">      </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ansible-community/ansible-test-gh-action@release/v1</span>
+<span class="w">      </span><span class="nt">with</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">ansible-core-version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ matrix.ansible }}</span>
+<span class="w">        </span><span class="nt">codecov-token</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ secrets.CODECOV_TOKEN }}</span>
+<span class="w">        </span><span class="nt">coverage</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ github.event_name == &#39;schedule&#39; &amp;&amp; &#39;always&#39; || &#39;never&#39; }}</span>
+<span class="w">        </span><span class="nt">testing-type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">units</span>
+<span class="w">        </span><span class="nt">test-deps</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">&gt;-</span>
+<span class="w">          </span><span class="no">ansible.netcommon</span>
+<span class="w">          </span><span class="no">ansible.utils</span>
+<span class="w">        </span><span class="nt">pull-request-change-detection</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</pre></div>
+</div>
 </section>
 
 
