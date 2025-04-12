@@ -1,0 +1,2 @@
+minor_changes:
+  - sar_facts - Updated to follow the Ansible standard; it now uses ``module.run_command()`` and ``module.get_bin_path()`` (https://github.com/3A2DEV/ans2dev.general/pull/154).
