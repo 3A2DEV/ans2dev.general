@@ -15,6 +15,7 @@ description:
   - Retrieves SAR data using the C(sar) command from system logs.
   - Supports filtering by date range, time range, and partition details.
   - Returns performance metrics such as CPU utilization, memory usage, disk activity, and network statistics.
+  - ans2dev.general.sar_facts only supports sar data with a V(12H) time format and automatically converts format to V(24H).
 version_added: "0.1.0"
 options:
   date_start:
@@ -139,12 +140,10 @@ ansible_facts:
 '''
 
 from ansible.module_utils.basic import AnsibleModule
-import os
-import subprocess
 from datetime import datetime, timedelta
+import os
 
 SAR_LOG_PATHS = ["/var/log/sa/", "/var/log/sysstat/"]
-SAR_BIN_PATHS = ["/usr/bin/sar", "/usr/sbin/sar", "/bin/sar"]
 
 SAR_FACT_MAPPING = {
     "cpu": "sar_cpu",
@@ -156,33 +155,20 @@ SAR_FACT_MAPPING = {
 }
 
 
-def locate_sar():
-    """Finds the SAR binary in the system."""
-    for path in SAR_BIN_PATHS:
-        if os.path.exists(path):
-            return path
-    return None
-
-
 def find_sar_file(date_str):
-    """Finds the SAR log file for a given date."""
     try:
         date_obj = datetime.strptime(date_str, "%Y-%m-%d")
         day = date_obj.strftime("%d")
-
         for path in SAR_LOG_PATHS:
             file_path = os.path.join(path, f"sa{day}")
             if os.path.exists(file_path):
                 return file_path
-
     except ValueError:
         return None
-
     return None
 
 
 def run_sar_command(module, sar_bin, sar_file, sar_type, time_start, time_end, partition, average, date_str):
-    """Executes the SAR command and returns parsed results."""
     command = [sar_bin, "-f", sar_file]
 
     sar_flags = {
@@ -202,11 +188,10 @@ def run_sar_command(module, sar_bin, sar_file, sar_type, time_start, time_end, p
     if time_end:
         command.extend(["-e", time_end])
 
-    try:
-        result = subprocess.run(command, capture_output=True, text=True, check=True)
-        return parse_sar_output(result.stdout, sar_type, average, date_str)
-    except subprocess.CalledProcessError as e:
-        module.fail_json(msg=f"Failed to execute SAR command: {str(e)}")
+    rc, stdout, stderr = module.run_command(command)
+    if rc != 0:
+        module.fail_json(msg=f"Failed to execute SAR command: {stderr}")
+    return parse_sar_output(stdout, sar_type, average, date_str)
 
 
 def convert_to_24h(time_str, am_pm):
@@ -214,9 +199,6 @@ def convert_to_24h(time_str, am_pm):
 
 
 def parse_sar_output(output, sar_type, average, date_str):
-    """Parses SAR output by finding the header line and converting the first two columns (TIME, AM/PM)
-    into 24H format. Il campo AM/PM viene preservato nel dizionario finale.
-    Vengono anche filtrate le righe che contengono 'Linux' o 'restart'."""
     import re
     parsed_data = []
     header = None
@@ -225,7 +207,6 @@ def parse_sar_output(output, sar_type, average, date_str):
         return re.match(r'^\d{1,2}:\d{2}:\d{2}$', token)
 
     for line in output.splitlines():
-        # Filtra le righe che contengono "Linux" o "restart"
         if re.search(r'\b(Linux|restart)\b', line, flags=re.IGNORECASE):
             continue
 
@@ -233,23 +214,19 @@ def parse_sar_output(output, sar_type, average, date_str):
         if not parts:
             continue
 
-        # Gestione del flag "Average:"
         if parts[0] == "Average:":
             parts = parts[1:]
             if not average:
                 continue
 
-        # Se l'header non è definito, prendi la riga completa se inizia con orario valido
         if header is None:
             if len(parts) >= 2 and is_valid_time(parts[0]) and parts[1] in ["AM", "PM"]:
-                header = parts  # conserva l'intero header
+                header = parts
             continue
 
-        # Processa le righe dati: controlla se i primi due token sono orario e AM/PM
         if len(parts) >= 2 and is_valid_time(parts[0]) and parts[1] in ["AM", "PM"]:
             converted = convert_to_24h(parts[0], parts[1])
             data_entry = {"date": date_str, "time": converted}
-            # Mappa i dati a partire dall'indice 1 del header (per preservare la colonna AM/PM)
             for idx in range(1, min(len(header), len(parts))):
                 data_entry[header[idx]] = parts[idx]
             parsed_data.append(data_entry)
@@ -296,15 +273,28 @@ def main():
         date_list = [date_start] if date_start else []
 
     collected_data = []
+
+    sar_bin = module.get_bin_path("sar", required=True)
+
     for date in date_list:
         sar_file = find_sar_file(date)
         if sar_file:
-            collected_data.extend(run_sar_command(module, locate_sar(), sar_file, sar_type, time_start, time_end, partition, average, date))
+            collected_data.extend(
+                run_sar_command(
+                    module,
+                    sar_bin,
+                    sar_file,
+                    sar_type,
+                    time_start,
+                    time_end,
+                    partition,
+                    average,
+                    date
+                )
+            )
 
     fact_name = SAR_FACT_MAPPING.get(sar_type, f"sar_{sar_type}")
-
     result = {'ansible_facts': {fact_name: collected_data}}
-
     module.exit_json(**result)
 
 
