@@ -70,11 +70,11 @@ files:
     maintainers: NomakCooper
 #########################
   README.md:
-    maintainers: $team_admin
-    supershipit: $team_admin
+    maintainers: NomakCooper
+    supershipit: NomakCooper
   galaxy.yml:
-    maintainers: $team_admin
-    supershipit: $team_admin
+    maintainers: NomakCooper
+    supershipit: NomakCooper
 #########################
   $modules/charts.py:
     maintainers: NomakCooper
@@ -87,7 +87,7 @@ files:
 #########################
   tests/:
     labels: tests
-    supershipit: $team_admin
+    supershipit: NomakCooper
   tests/integration:
     labels: integration
     support: 3a2dev
