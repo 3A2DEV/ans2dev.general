@@ -154,6 +154,7 @@ To check whether it is installed, run <code class="code docutils literal notrans
 <li><p>Retrieves SAR data using the <code class="docutils literal notranslate"><span class="pre">sar</span></code> command from system logs.</p></li>
 <li><p>Supports filtering by date range, time range, and partition details.</p></li>
 <li><p>Returns performance metrics such as CPU utilization, memory usage, disk activity, and network statistics.</p></li>
+<li><p>ans2dev.general.sar_facts only supports sar data with a <code class="ansible-value docutils literal notranslate"><span class="pre">12H</span></code> time format and automatically converts format to <code class="ansible-value docutils literal notranslate"><span class="pre">24H</span></code>.</p></li>
 </ul>
 </section>
 <section id="parameters">
