@@ -147,6 +147,44 @@ jobs:
           test-deps: ansible.netcommon
           pull-request-change-detection: true
 
+###
+# Docker Integration tests (OPTIONAL)
+#
+# https://docs.ansible.com/ansible/latest/dev_guide/testing_integration.html
+
+  docker-integration:
+    runs-on: ubuntu-latest
+
+    name: Docker Integration (Ⓐ${{ matrix.ansible }}+image-${{ matrix.image }})
+    strategy:
+      fail-fast: false
+      matrix:
+        ansible:
+          - stable-2.18
+        # - milestone
+        image:
+          - alpine320
+          - fedora40
+          - ubuntu2204
+          - ubuntu2404
+
+
+    steps:
+      - name: >-
+          Perform integration testing against
+          Ansible version ${{ matrix.ansible }}
+          on Docker image ${{ matrix.image }}
+        id: docker_integration_tests
+        uses: ansible-community/ansible-test-gh-action@release/v1
+        with:
+          ansible-core-version: ${{ matrix.ansible }}
+          docker-image: ${{ matrix.image }}
+          codecov-token: ${{ secrets.CODECOV_TOKEN }}
+          coverage: ${{ github.event_name == 'schedule' && 'always' || 'never' }}
+          testing-type: integration
+          test-deps: ansible.netcommon
+          pull-request-change-detection: true
+
   check:  # This job does nothing and is only used for the branch protection
           # or multi-stage CI jobs, like making sure that all tests pass before
           # a publishing job is started.
@@ -156,6 +194,7 @@ jobs:
       - sanity
       - units
       - integration
+      - docker-integration
 
     runs-on: ubuntu-latest
 

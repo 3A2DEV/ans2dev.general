@@ -8,3 +8,7 @@
 
   - name: Run tests
     import_tasks: tests.yml
+
+  when: >
+    ansible_distribution == 'Fedora' or 
+    (ansible_distribution == 'Ubuntu' and ansible_distribution_version is version('15.04', '>='))
