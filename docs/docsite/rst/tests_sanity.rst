@@ -18,4 +18,28 @@ To run sanity tests in a container:
 
     ansible-test sanity --docker -v plugins/modules/$MODULE_NAME.py
 
-GitHub Action workflow run ansible sanity tests on ``ansible core 2.17`` and ``ansible core 2.18``
+GitHub Action workflow run ansible sanity tests on ``ansible core 2.17``, ``ansible core 2.18`` and ``devel``
+
+.. code-block:: yaml+jinja
+
+    sanity:
+      name: Sanity (Ⓐ${{ matrix.ansible }})
+      strategy:
+        matrix:
+          ansible:
+            - stable-2.17
+            - stable-2.18
+            - devel
+
+      runs-on: ubuntu-latest
+
+      steps:
+        - name: Perform sanity testing
+          id: sanity_tests
+          uses: ansible-community/ansible-test-gh-action@release/v1
+          with:
+            ansible-core-version: ${{ matrix.ansible }}
+            testing-type: sanity
+            codecov-token: ${{ secrets.CODECOV_TOKEN }}
+            coverage: ${{ github.event_name == 'schedule' && 'always' || 'never' }}
+            pull-request-change-detection: true

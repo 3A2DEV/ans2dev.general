@@ -56,6 +56,68 @@ GitHub Action workflow run ansible integration tests on the following matrix:
 | Stable 2.18          | 3.13           |
 +----------------------+----------------+
 
+.. code-block:: yaml+jinja
+
+    integration:
+      runs-on: ubuntu-latest
+
+      name: Integration (Ⓐ${{ matrix.ansible }}+py${{ matrix.python }})
+      strategy:
+        fail-fast: false
+        matrix:
+          ansible:
+            - devel
+          python:
+            - '3.8'
+            - '3.9'
+            - '3.10'
+            - '3.11'
+            - '3.12'
+            - '3.13'
+          include:
+            - ansible: stable-2.17
+              python: '3.7'
+            - ansible: stable-2.17
+              python: '3.8'
+            - ansible: stable-2.17
+              python: '3.9'
+            - ansible: stable-2.17
+              python: '3.10'
+            - ansible: stable-2.17
+              python: '3.11'
+            - ansible: stable-2.17
+              python: '3.12'
+            # ansible-core 2.18
+            - ansible: stable-2.18
+              python: '3.8'
+            - ansible: stable-2.18
+              python: '3.9'
+            - ansible: stable-2.18
+              python: '3.10'
+            - ansible: stable-2.18
+              python: '3.11'
+            - ansible: stable-2.18
+              python: '3.12'
+            - ansible: stable-2.18
+              python: '3.13'
+
+
+      steps:
+        - name: >-
+            Perform integration testing against
+            Ansible version ${{ matrix.ansible }}
+            under Python ${{ matrix.python }}
+          id: integration_tests
+          uses: ansible-community/ansible-test-gh-action@release/v1
+          with:
+            ansible-core-version: ${{ matrix.ansible }}
+            codecov-token: ${{ secrets.CODECOV_TOKEN }}
+            coverage: ${{ github.event_name == 'schedule' && 'always' || 'never' }}
+            target-python-version: ${{ matrix.python }}
+            testing-type: integration
+            test-deps: ansible.netcommon
+            pull-request-change-detection: true
+
 Ansible Integration tests olso run on the following Official Docker Image:
 
 +----------------------+--------------+----------------+
@@ -69,3 +131,38 @@ Ansible Integration tests olso run on the following Official Docker Image:
 +----------------------+--------------+----------------+
 | Stable 2.18          | ubuntu2404   | 3.12           |
 +----------------------+--------------+----------------+
+
+.. code-block:: yaml+jinja
+
+    docker-integration:
+      runs-on: ubuntu-latest
+
+      name: Docker Integration (Ⓐ${{ matrix.ansible }}+image-${{ matrix.image }})
+      strategy:
+        fail-fast: false
+        matrix:
+          ansible:
+            - stable-2.18
+          # - milestone
+          image:
+            - alpine320
+            - fedora40
+            - ubuntu2204
+            - ubuntu2404
+
+
+      steps:
+        - name: >-
+            Perform integration testing against
+            Ansible version ${{ matrix.ansible }}
+            on Docker image ${{ matrix.image }}
+          id: docker_integration_tests
+          uses: ansible-community/ansible-test-gh-action@release/v1
+          with:
+            ansible-core-version: ${{ matrix.ansible }}
+            docker-image: ${{ matrix.image }}
+            codecov-token: ${{ secrets.CODECOV_TOKEN }}
+            coverage: ${{ github.event_name == 'schedule' && 'always' || 'never' }}
+            testing-type: integration
+            test-deps: ansible.netcommon
+            pull-request-change-detection: true
