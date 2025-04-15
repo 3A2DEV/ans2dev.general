@@ -11,7 +11,7 @@ __metaclass__ = type
 DOCUMENTATION = r'''
 ---
 module: udevadm_info
-short_description: Collect udevadm device info.
+short_description: Collect udevadm device information.
 description:
   - Retrieves C(udevadm) information using C(udevadm info) commands.
   - Collects all properties avaible in udevadm for the selected device.
