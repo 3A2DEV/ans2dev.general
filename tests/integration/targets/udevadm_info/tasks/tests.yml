@@ -1,0 +1,59 @@
+# Copyright (c) 2025, Marco Noce <nce.marco@gmail.com>
+# GNU General Public License v3.0+ (see LICENSES/GPL-3.0-or-later.txt or https://www.gnu.org/licenses/gpl-3.0.txt)
+# SPDX-License-Identifier: GPL-3.0-or-later
+
+- name: Check if udevadm binary exists on the system
+  ansible.builtin.command: "which udevadm"
+  register: udevadm_bin
+  ignore_errors: true
+  failed_when: false
+
+- name: Skip udevadm facts test if udevadm binary is not available
+  meta: end_play
+  when: udevadm_bin.rc != 0
+
+- name: "Test: Collect full udevadm info for /dev/sda"
+  ans2dev.general.udevadm_info:
+    device: "/dev/sda"
+  register: full_info
+
+- name: "Display full udevadm info"
+  debug:
+    var: full_info.udevinfo
+
+- name: "Assert that DEVPATH exists and is valid"
+  assert:
+    that:
+      - "'DEVPATH' in full_info.udevinfo"
+      - full_info.udevinfo.DEVPATH is match('^/devices/')
+
+- name: "Test: Collect only DEVTYPE property for /dev/sda"
+  ans2dev.general.udevadm_info:
+    device: "/dev/sda"
+    property: "DEVTYPE"
+  register: devtype_info
+
+- name: "Display DEVTYPE property"
+  debug:
+    var: devtype_info.udevinfo
+
+- name: "Assert that DEVTYPE equals 'disk'"
+  assert:
+    that:
+      - devtype_info.udevinfo.DEVTYPE == "disk"
+
+- name: "Test: Collect only DEVLINKS property for /dev/sda"
+  ans2dev.general.udevadm_info:
+    device: "/dev/sda"
+    property: "DEVLINKS"
+  register: devlinks_info
+
+- name: "Display DEVLINKS property"
+  debug:
+    var: devlinks_info.udevinfo
+
+- name: "Assert that DEVLINKS is a list with at least one element"
+  assert:
+    that:
+      - devlinks_info.udevinfo.DEVLINKS is iterable
+      - devlinks_info.udevinfo.DEVLINKS | length > 0

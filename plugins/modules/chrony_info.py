@@ -11,7 +11,7 @@ __metaclass__ = type
 DOCUMENTATION = r'''
 ---
 module: chrony_info
-short_description: Collect C(chrony) configuration and server info.
+short_description: Collect chrony configuration and server info.
 description:
   - Retrieves C(chrony) information using C(chronyd) and C(chronyc) commands.
   - Collects C(configuration), C(sources), C(sourcestat) and C(ntpdata) info based on O(mode) option.
