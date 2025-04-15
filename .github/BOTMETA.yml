@@ -86,6 +86,8 @@ files:
     maintainers: NomakCooper
   $modules/sar_facts.py:
     maintainers: NomakCooper
+  $modules/udevadm_info.py:
+    maintainers: NomakCooper
 #########################
   tests/:
     labels: tests
