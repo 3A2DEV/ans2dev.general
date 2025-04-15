@@ -5,7 +5,7 @@
 - name: Check if SAR binary exists on the system
   ansible.builtin.command: "which sar"
   register: sar_bin
-  ignore_errors: yes
+  ignore_errors: true
   failed_when: false
 
 - name: Skip SAR facts test if SAR binary is not available
