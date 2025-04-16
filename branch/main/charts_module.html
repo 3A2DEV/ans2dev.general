@@ -7,7 +7,7 @@
 <meta content="2.16.3" name="antsibull-docs" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ans2dev.general.charts module – Generate high-quality charts using Plotly and save them as images. &mdash; ans2dev.general Collection  documentation</title>
+  <title>ans2dev.general.charts module – Generate charts images. &mdash; ans2dev.general Collection  documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=41de9001" />
       <link rel="stylesheet" type="text/css" href="_static/css/ansible.css?v=c5b67dd2" />
       <link rel="stylesheet" type="text/css" href="_static/antsibull-minimal.css" />
@@ -22,7 +22,7 @@
       <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="ans2dev.general.chrony_info module – Collect chrony configuration and server info." href="chrony_info_module.html" />
+    <link rel="next" title="ans2dev.general.chrony_info module – Collect chrony information." href="chrony_info_module.html" />
     <link rel="prev" title="Ansible Integration" href="docsite/tests_integration.html" /><!-- extra head elements for Ansible beyond RTD Sphinx Theme -->
 
 
@@ -89,7 +89,7 @@
 <li class="toctree-l1"><a class="reference internal" href="docsite/guide_ansible_tests.html">Ansible Tests</a></li>
 </ul>
 <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">ans2dev.general.charts module – Generate high-quality charts using Plotly and save them as images.</a><ul>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">ans2dev.general.charts module – Generate charts images.</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#synopsis">Synopsis</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#requirements">Requirements</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#parameters">Parameters</a></li>
@@ -101,10 +101,10 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="chrony_info_module.html">ans2dev.general.chrony_info module – Collect chrony configuration and server info.</a></li>
-<li class="toctree-l1"><a class="reference internal" href="exa_facts_module.html">ans2dev.general.exa_facts module – Gathers facts about Oracle Exadata Machine and rack.</a></li>
-<li class="toctree-l1"><a class="reference internal" href="open_xl_module.html">ans2dev.general.open_xl module – Read, Create and update Excel files using openpyxl</a></li>
-<li class="toctree-l1"><a class="reference internal" href="sar_facts_module.html">ans2dev.general.sar_facts module – Collect system activity report (SAR) data for system performance monitoring.</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chrony_info_module.html">ans2dev.general.chrony_info module – Collect chrony information.</a></li>
+<li class="toctree-l1"><a class="reference internal" href="exa_facts_module.html">ans2dev.general.exa_facts module – Gathers facts from Oracle Exadata.</a></li>
+<li class="toctree-l1"><a class="reference internal" href="open_xl_module.html">ans2dev.general.open_xl module – Read, Create and update Excel files.</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sar_facts_module.html">ans2dev.general.sar_facts module – Collect info from sar.</a></li>
 <li class="toctree-l1"><a class="reference internal" href="udevadm_info_module.html">ans2dev.general.udevadm_info module – Collect udevadm device information.</a></li>
 </ul>
 <!-- extra nav elements for Ansible beyond RTD Sphinx Theme -->
@@ -123,7 +123,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">ans2dev.general.charts module – Generate high-quality charts using Plotly and save them as images.</li>
+      <li class="breadcrumb-item active">ans2dev.general.charts module – Generate charts images.</li>
       <li class="wy-breadcrumbs-aside">
               <!-- User defined GitHub URL -->
               <a href="https://github.com/3A2DEV/ans2dev.general/edit/main/plugins/modules/charts.py?description=%23%23%23%23%23%20SUMMARY%0A%3C!—%20Your%20description%20here%20–%3E%0A%0A%0A%23%23%23%23%23%20ISSUE%20TYPE%0A-%20Docs%20Pull%20Request%0A%0A%2Blabel:%20docsite_pr" class="fa fa-github"> Edit on GitHub</a>
@@ -136,8 +136,8 @@
   
            <div itemprop="articleBody">
              
-  <span class="target" id="ansible-collections-ans2dev-general-charts-module"></span><section id="ans2dev-general-charts-module-generate-high-quality-charts-using-plotly-and-save-them-as-images">
-<h1>ans2dev.general.charts module – Generate high-quality charts using Plotly and save them as images.<a class="headerlink" href="#ans2dev-general-charts-module-generate-high-quality-charts-using-plotly-and-save-them-as-images" title="Link to this heading"></a></h1>
+  <span class="target" id="ansible-collections-ans2dev-general-charts-module"></span><section id="ans2dev-general-charts-module-generate-charts-images">
+<h1>ans2dev.general.charts module – Generate charts images.<a class="headerlink" href="#ans2dev-general-charts-module-generate-charts-images" title="Link to this heading"></a></h1>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>This module is part of the <a class="reference external" href="https://galaxy.ansible.com/ui/repo/published/ans2dev/general/">ans2dev.general collection</a> (version 0.2.0).</p>
@@ -443,7 +443,7 @@ see <a class="reference internal" href="#ansible-collections-ans2dev-general-cha
 
 <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="docsite/tests_integration.html" class="btn btn-neutral float-left" title="Ansible Integration" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="chrony_info_module.html" class="btn btn-neutral float-right" title="ans2dev.general.chrony_info module – Collect chrony configuration and server info." accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="chrony_info_module.html" class="btn btn-neutral float-right" title="ans2dev.general.chrony_info module – Collect chrony information." accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
