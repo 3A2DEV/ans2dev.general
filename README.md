@@ -6,7 +6,9 @@
 ![module](https://img.shields.io/badge/ansible-module-blue?logo=ansible&logoColor=white)
 ![roles](https://img.shields.io/badge/ansible-roles-blue?logo=ansible&logoColor=white)
 
-[![collection-release](https://img.shields.io/github/v/release/3A2DEV/ans2dev.general?display_name=release&logo=ansible&logoColor=white)](https://galaxy.ansible.com/ui/repo/published/3A2DEV/ans2dev.general/) [![CI](https://github.com/3A2DEV/ans2dev.general/actions/workflows/ansible-test.yml/badge.svg?event=push)](https://github.com/3A2DEV/ans2dev.general/actions) [![extra-docs](https://github.com/3A2DEV/ans2dev.general/actions/workflows/extra-docs-linting.yml/badge.svg?event=push)](https://github.com/3A2DEV/ans2dev.general/actions)
+[![collection-release](https://img.shields.io/github/v/release/3A2DEV/ans2dev.general?display_name=release&logo=github&logoColor=white)](https://galaxy.ansible.com/ui/repo/published/3A2DEV/ans2dev.general/) ![Ansible Collection Version](https://img.shields.io/ansible/collection/v/ans2dev/general?logo=ansible&logoColor=white&label=Ansible%20Galaxy%20Version) ![Ansible Collection Downloads](https://img.shields.io/ansible/collection/d/ans2dev/general?logo=ansible&logoColor=white&label=Collection%20Download)
+
+[![CI](https://github.com/3A2DEV/ans2dev.general/actions/workflows/ansible-test.yml/badge.svg?event=push)](https://github.com/3A2DEV/ans2dev.general/actions) [![extra-docs](https://github.com/3A2DEV/ans2dev.general/actions/workflows/extra-docs-linting.yml/badge.svg?event=push)](https://github.com/3A2DEV/ans2dev.general/actions)
  [![Codecov](https://img.shields.io/codecov/c/github/3A2DEV/ans2dev.general?logo=codecov)](https://codecov.io/gh/3A2DEV/ans2dev.general)
 
 ![Website](https://img.shields.io/website?url=https%3A%2F%2F3a2dev.github.io%2Fans2dev.general%2Fbranch%2Fmain&up_message=online&up_color=%231dc249&down_message=down&down_color=red&logo=ansible&label=Ansible%20Documentation&link=https%3A%2F%2F3a2dev.github.io%2Fans2dev.general%2Fbranch%2Fmain)
