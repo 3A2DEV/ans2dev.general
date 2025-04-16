@@ -1,0 +1,56 @@
+# Copyright (c) 2025, Marco Noce <nce.marco@gmail.com>
+# GNU General Public License v3.0+ (see LICENSES/GPL-3.0-or-later.txt or https://www.gnu.org/licenses/gpl-3.0.txt)
+# SPDX-License-Identifier: GPL-3.0-or-later
+
+- name: Check if udevadm binary exists on the system
+  ansible.builtin.command: "which udevadm"
+  register: udevadm_bin
+  ignore_errors: true
+  failed_when: false
+
+- name: Skip udevadm facts test if udevadm binary is not available
+  meta: end_play
+  when: udevadm_bin.rc != 0
+
+- name: Test with --no-style (should pass, rc=0, Success=1)
+  ans2dev.general.udevadm_verify:
+    src: /etc/udev/rules.d/70-snap.snapd.rules
+    no_style: true
+    resolve_names: early
+  register: result_no_style
+
+- name: Assert no-style run returned Success=1, Fail=0
+  ansible.builtin.assert:
+    that:
+      - result_no_style.verify.Success == '1'
+      - result_no_style.verify.Fail    == '0'
+      - result_no_style.verify.stdout | length > 0
+
+- name: Test default style (should warn, rc=1, Success=0, Fail=1)
+  ans2dev.general.udevadm_verify:
+    src: /etc/udev/rules.d/70-snap.snapd.rules
+    no_style: false
+    resolve_names: early
+  register: result_default_style
+  failed_when: false
+
+- name: Assert default-style run returned Success=0, Fail=1
+  ansible.builtin.assert:
+    that:
+      - result_default_style.verify.Success == '0'
+      - result_default_style.verify.Fail    == '1'
+      - (result_default_style.verify.stdout | length) == 2
+
+- name: Test resolve_names=never with --no-style (should pass, rc=0, Success=1)
+  ans2dev.general.udevadm_verify:
+    src: /etc/udev/rules.d/70-snap.snapd.rules
+    no_style: true
+    resolve_names: never
+  register: result_never_no_style
+
+- name: Assert never/no-style run returned Success=1, Fail=0
+  ansible.builtin.assert:
+    that:
+      - result_never_no_style.verify.Success == '1'
+      - result_never_no_style.verify.Fail    == '0'
+      - result_never_no_style.verify.stdout | length > 0
