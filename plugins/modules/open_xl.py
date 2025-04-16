@@ -11,7 +11,7 @@ __metaclass__ = type
 DOCUMENTATION = r'''
 ---
 module: open_xl
-short_description: Read, Create and update Excel files using openpyxl
+short_description: Read, Create and update Excel files.
 author:
   - "Marco Noce (@NomakCooper)"
 requirements:
