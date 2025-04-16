@@ -15,14 +15,13 @@ author:
     - Marco Noce (@NomakCooper)
 description:
     - Gathers facts about Oracle Exadata Machine.
-    - This module currently supports Oracle Exadata Machine.
 version_added: "0.1.0"
 requirements:
   - /usr/local/bin/imageinfo
   - /usr/sbin/exadata.img.hw
   - /usr/sbin/dmidecode
   - /opt/oracle.SupportTools/onecommand/databasemachine.xml
-short_description: Gathers facts about Oracle Exadata Machine and rack.
+short_description: Gathers facts from Oracle Exadata.
 notes:
   - |
     This module shows imageinfo attribute, exadata img hw, dmidecode system info and content of databasemachine.xml.

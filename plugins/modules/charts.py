@@ -11,7 +11,7 @@ __metaclass__ = type
 DOCUMENTATION = r'''
 ---
 module: charts
-short_description: Generate high-quality charts using Plotly and save them as images.
+short_description: Generate charts images.
 description:
   - This module generates various types of charts like C(line), C(bar), C(pie) and C(donut) and saves them as images.
   - It provides customization options for titles, axis labels, colors, sizes, fonts, and legends.

@@ -10,7 +10,7 @@ __metaclass__ = type
 DOCUMENTATION = r'''
 ---
 module: sar_facts
-short_description: Collect system activity report (SAR) data for system performance monitoring.
+short_description: Collect info from sar.
 description:
   - Retrieves SAR data using the C(sar) command from system logs.
   - Supports filtering by date range, time range, and partition details.
