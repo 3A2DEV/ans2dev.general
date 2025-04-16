@@ -18,11 +18,11 @@
   register: full_info
 
 - name: "Display full udevadm info"
-  debug:
+  ansible.builtin.debug:
     var: full_info.udevinfo
 
 - name: "Assert that DEVPATH exists and is valid"
-  assert:
+  ansible.builtin.assert:
     that:
       - "'DEVPATH' in full_info.udevinfo"
       - full_info.udevinfo.DEVPATH is match('^/devices/')
@@ -34,11 +34,11 @@
   register: devtype_info
 
 - name: "Display DEVTYPE property"
-  debug:
+  ansible.builtin.debug:
     var: devtype_info.udevinfo
 
 - name: "Assert that DEVTYPE equals 'disk'"
-  assert:
+  ansible.builtin.assert:
     that:
       - devtype_info.udevinfo.DEVTYPE == "disk"
 
@@ -49,11 +49,11 @@
   register: devlinks_info
 
 - name: "Display DEVLINKS property"
-  debug:
+  ansible.builtin.debug:
     var: devlinks_info.udevinfo
 
 - name: "Assert that DEVLINKS is a list with at least one element"
-  assert:
+  ansible.builtin.assert:
     that:
       - devlinks_info.udevinfo.DEVLINKS is iterable
       - devlinks_info.udevinfo.DEVLINKS | length > 0
