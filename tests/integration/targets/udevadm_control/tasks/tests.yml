@@ -1,0 +1,49 @@
+# Copyright (c) 2025, Marco Noce <nce.marco@gmail.com>
+# GNU General Public License v3.0+ (see LICENSES/GPL-3.0-or-later.txt or https://www.gnu.org/licenses/gpl-3.0.txt)
+# SPDX-License-Identifier: GPL-3.0-or-later
+
+- name: Check if udevadm binary exists on the system
+  ansible.builtin.command: "which udevadm"
+  register: udevadm_bin
+  ignore_errors: true
+  failed_when: false
+
+- name: Skip udevadm facts test if udevadm binary is not available
+  meta: end_play
+  when: udevadm_bin.rc != 0
+
+- name: Default reload (no log_level)
+  ans2dev.general.udevadm_control:
+  register: default_reload
+
+- name: Assert default reload succeeded
+  ansible.builtin.assert:
+    that:
+      - default_reload.changed
+      - default_reload.udevcontrol.stdout is defined
+      - default_reload.udevcontrol.stderr == ""
+
+- name: Reload with debug log_level
+  ans2dev.general.udevadm_control:
+    log_level: debug
+  register: debug_reload
+
+- name: Assert debug reload succeeded
+  ansible.builtin.assert:
+    that:
+      - debug_reload.changed
+      - debug_reload.udevcontrol.stdout is defined
+      - debug_reload.udevcontrol.stderr == ""
+
+- name: Check does not actually reload
+  ans2dev.general.udevadm_control:
+    log_level: info
+  check_mode: yes
+  register: checkmode_reload
+
+- name: Assert check behavior
+  ansible.builtin.assert:
+    that:
+      - checkmode_reload.changed
+      - checkmode_reload.udevcontrol.stdout == ""
+      - checkmode_reload.udevcontrol.stderr == ""
