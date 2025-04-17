@@ -1,2 +1,0 @@
-minor_changes:
-  - open_xl - add new ``n`` value for ``op`` option to create new excel file without ``src`` (https://github.com/3A2DEV/ans2dev.general/pull/116).
