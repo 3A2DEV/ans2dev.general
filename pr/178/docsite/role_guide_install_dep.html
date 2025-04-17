@@ -1,0 +1,212 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ans2dev.general install_dep role &mdash; ans2dev.general Collection  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=41de9001" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/ansible.css?v=c5b67dd2" />
+      <link rel="stylesheet" type="text/css" href="../_static/antsibull-minimal.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/rtd-ethical-ads.css?v=289b023e" />
+
+  
+    <link rel="shortcut icon" href="../_static/images/Ansible-Mark-RGB_Black.png"/>
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=7f41d439"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="ans2dev.general sar_filter role" href="role_guide_sar_filter.html" />
+    <link rel="prev" title="ans2dev.general Roles Guide" href="guide_roles.html" /><!-- extra head elements for Ansible beyond RTD Sphinx Theme -->
+
+
+
+
+</head>
+
+<body class="wy-body-for-nav"><!-- extra body elements for Ansible beyond RTD Sphinx Theme -->
+
+<div class="DocSite-globalNav ansibleNav">
+  <ul>
+    <li><a href="https://www.ansible.com/blog" target="_blank">Blog</a></li>
+    <li><a href="https://forum.ansible.com/" target="_blank">Ansible community forum</a></li>
+    <li><a href="https://docs.ansible.com/" target="_blank">Documentation</a></li>
+  </ul>
+</div>
+
+<a class="DocSite-nav" href="https://3A2DEV.github.io/ans2dev.general/branch/main/" style="padding-bottom: 30px;">
+
+  <img class="DocSiteNav-logo"
+    src="../_static/images/Ansible-Mark-RGB_White.png"
+    alt="Ansible Logo">
+  <div class="DocSiteNav-title">ans2dev.general Collection Docs</div>
+</a>
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            ans2dev.general Collection
+          </a><!--- Based on https://github.com/rtfd/sphinx_rtd_theme/pull/438/files -->
+
+<div class="version">
+  
+    
+  
+</div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <label class="sr-only" for="q">Search docs:</label>
+    <input type="text" class="st-default-search-input" id="q" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+  
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../changelog.html">Ans2Dev.General Release Notes</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="guide_install.html">Install Collection</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="guide_dependencies.html">Install Modules Dependencies</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="guide_roles.html">ans2dev.general Roles Guide</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">ans2dev.general install_dep role</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#role-requirements">Role requirements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#usage">Usage</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="role_guide_sar_filter.html">ans2dev.general sar_filter role</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="guide_ansible_tests.html">Ansible Tests</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../charts_module.html">ans2dev.general.charts module – Generate charts images.</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chrony_info_module.html">ans2dev.general.chrony_info module – Collect chrony information.</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../exa_facts_module.html">ans2dev.general.exa_facts module – Gathers facts from Oracle Exadata.</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../open_xl_module.html">ans2dev.general.open_xl module – Read, Create and update Excel files.</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sar_facts_module.html">ans2dev.general.sar_facts module – Collect info from sar.</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../udevadm_control_module.html">ans2dev.general.udevadm_control module – Reload udev rules.</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../udevadm_info_module.html">ans2dev.general.udevadm_info module – Collect udevadm device information.</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../udevadm_verify_module.html">ans2dev.general.udevadm_verify module – Verify udev rules file.</a></li>
+</ul>
+<!-- extra nav elements for Ansible beyond RTD Sphinx Theme -->
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">ans2dev.general Collection</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="guide_roles.html">ans2dev.general Roles Guide</a></li>
+      <li class="breadcrumb-item active">ans2dev.general install_dep role</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+
+  
+           <div itemprop="articleBody">
+             
+  <section id="ans2dev-general-install-dep-role">
+<span id="ansible-collections-ans2dev-general-docsite-role-guide-install-dep"></span><h1>ans2dev.general install_dep role<a class="headerlink" href="#ans2dev-general-install-dep-role" title="Link to this heading"></a></h1>
+<p>The <code class="docutils literal notranslate"><span class="pre">install_dep</span></code> role was created to install the <code class="docutils literal notranslate"><span class="pre">Python</span></code> dependencies of all modules in the collection on the control node <code class="docutils literal notranslate"><span class="pre">localhost</span></code>.</p>
+<p>Its use is optional, and the dependencies can be installed however you prefer.</p>
+<p>The role install all dependencies in <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code> file:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">requests</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">kaleido</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">plotly</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">openpyxl</span></code></p></li>
+</ul>
+<section id="role-requirements">
+<h2>Role requirements<a class="headerlink" href="#role-requirements" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://docs.ansible.com/ansible/latest/collections/ansible/builtin/slurp_module.html">ansible.builtin.slurp</a></p></li>
+<li><p><a class="reference external" href="https://docs.ansible.com/ansible/latest/collections/ansible/builtin/set_fact_module.html">ansible.builtin.set_fact</a></p></li>
+<li><p><a class="reference external" href="https://docs.ansible.com/ansible/latest/collections/ansible/builtin/pip_module.html">ansible.builtin.pip</a></p></li>
+</ul>
+</section>
+<section id="usage">
+<h2>Usage<a class="headerlink" href="#usage" title="Link to this heading"></a></h2>
+<div class="highlight-yaml+jinja notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Install Dependencies on CN</span>
+<span class="w">  </span><span class="nt">hosts</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">all</span>
+<span class="w">  </span><span class="nt">gather_facts</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">no</span>
+<span class="w">  </span><span class="nt">roles</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">role</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ans2dev.general.install_dep</span>
+</pre></div>
+</div>
+<p>You can olso install in <code class="docutils literal notranslate"><span class="pre">pre_tasks</span></code> with <code class="docutils literal notranslate"><span class="pre">become:</span> <span class="pre">false</span></code></p>
+<div class="highlight-yaml+jinja notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Install Dependencies on CN</span>
+<span class="w">  </span><span class="nt">hosts</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">all</span>
+<span class="w">  </span><span class="nt">gather_facts</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">no</span>
+
+<span class="w">  </span><span class="nt">pre_tasks</span><span class="p">:</span>
+
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">install dependencies</span>
+<span class="w">      </span><span class="nt">block</span><span class="p">:</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">include_role</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ans2dev.general.install_dep</span>
+<span class="w">      </span><span class="nt">become</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          
+
+<footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="guide_roles.html" class="btn btn-neutral float-left" title="ans2dev.general Roles Guide" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="role_guide_sar_filter.html" class="btn btn-neutral float-right" title="ans2dev.general sar_filter role" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 3A2DEV Contributors.</p>
+  </div>
+
+  
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script><!-- extra footer elements for Ansible beyond RTD Sphinx Theme -->
+
+</body>
+</html>
