@@ -1,0 +1,52 @@
+# Copyright (c) 2025, Marco Noce <nce.marco@gmail.com>
+# GNU General Public License v3.0+ (see LICENSES/GPL-3.0-or-later.txt or https://www.gnu.org/licenses/gpl-3.0.txt)
+# SPDX-License-Identifier: GPL-3.0-or-later
+
+- name: Check if udevadm binary exists on the system
+  ansible.builtin.command: "which udevadm"
+  register: udevadm_bin
+  ignore_errors: true
+  failed_when: false
+
+- name: Skip udevadm facts test if udevadm binary is not available
+  meta: end_play
+  when: udevadm_bin.rc != 0
+
+- name: Trigger all events quietly
+  ans2dev.general.udevadm_trigger:
+    type: all
+    quiet: true
+  register: result_all_quiet
+
+- name: Assert quiet trigger succeeded with no stderr
+  ansible.builtin.assert:
+    that:
+      - result_all_quiet.udevtrigger.stderr == ""
+    success_msg: "Quiet trigger ran cleanly"
+    fail_msg: "Quiet trigger produced errors"
+
+- name: Trigger only device events without quiet
+  ans2dev.general.udevadm_trigger:
+    type: devices
+    quiet: false
+  register: result_devices
+
+- name: Assert device trigger stdout exist
+  ansible.builtin.assert:
+    that:
+      - result_devices.udevtrigger.stdout is defined
+    success_msg: "Device-trigger stdout looks good"
+    fail_msg: "Device-trigger stdout was empty"
+
+- name: Trigger only subsystem events quietly
+  ans2dev.general.udevadm_trigger:
+    type: subsystems
+    quiet: true
+  register: result_subsystems
+
+- name: Assert subsystem trigger succeeded with no stderr
+  ansible.builtin.assert:
+    that:
+      - result_subsystems.udevtrigger.stderr == ""
+    success_msg: "Subsystem-trigger ran cleanly"
+    fail_msg: "Subsystem-trigger produced errors"

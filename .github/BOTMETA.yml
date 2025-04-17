@@ -90,6 +90,8 @@ files:
     maintainers: NomakCooper
   $modules/udevadm_info.py:
     maintainers: NomakCooper
+  $modules/udevadm_trigger.py:
+    maintainers: NomakCooper
   $modules/udevadm_verify.py:
     maintainers: NomakCooper
 #########################
