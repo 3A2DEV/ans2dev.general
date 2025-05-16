@@ -61,3 +61,15 @@ releases:
       name: udevadm_verify
       namespace: ''
     release_date: '2025-04-17'
+  0.2.1:
+    changes:
+      bugfixes:
+      - charts - restrict ``plotly`` version to < ``6.1.0`` (https://github.com/3A2DEV/ans2dev.general/pull/184).
+      release_summary: 'New release of the ``ans2dev.general`` collection.
+
+        The changelog describes all changes made to the modules and plugins included
+        in this collection.'
+    fragments:
+    - 0.2.1.yml
+    - 184-charts-restrict-plotly.yml
+    release_date: '2025-05-16'
