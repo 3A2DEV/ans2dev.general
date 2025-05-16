@@ -19,7 +19,7 @@ description:
 version_added: "0.1.0"
 requirements:
   - requests
-  - plotly
+  - plotly < 6.1.0
   - kaleido
 options:
   titlechart:

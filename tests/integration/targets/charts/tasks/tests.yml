@@ -7,7 +7,7 @@
     name:
       - requests
       - kaleido
-      - plotly==6.0.1
+      - plotly<6.1.0
 
 - name: Generate a line chart
   ans2dev.general.charts:
