@@ -1,0 +1,2 @@
+bugfixes:
+  - charts - restrict ``plotly`` version to < ``6.1.0`` (https://github.com/3A2DEV/ans2dev.general/pull/184).
