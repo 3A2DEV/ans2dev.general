@@ -2,18 +2,35 @@
 
 **Topics**
 
-- <a href="#v0-2-0">v0\.2\.0</a>
+- <a href="#v0-2-1">v0\.2\.1</a>
     - <a href="#release-summary">Release Summary</a>
+    - <a href="#bugfixes">Bugfixes</a>
+- <a href="#v0-2-0">v0\.2\.0</a>
+    - <a href="#release-summary-1">Release Summary</a>
     - <a href="#minor-changes">Minor Changes</a>
     - <a href="#new-modules">New Modules</a>
 - <a href="#v0-1-0">v0\.1\.0</a>
-    - <a href="#release-summary-1">Release Summary</a>
+    - <a href="#release-summary-2">Release Summary</a>
     - <a href="#new-modules-1">New Modules</a>
+
+<a id="v0-2-1"></a>
+## v0\.2\.1
+
+<a id="release-summary"></a>
+### Release Summary
+
+New release of the <code>ans2dev\.general</code> collection\.
+The changelog describes all changes made to the modules and plugins included in this collection\.
+
+<a id="bugfixes"></a>
+### Bugfixes
+
+* charts \- restrict <code>plotly</code> version to \< <code>6\.1\.0</code> \([https\://github\.com/3A2DEV/ans2dev\.general/pull/184](https\://github\.com/3A2DEV/ans2dev\.general/pull/184)\)\.
 
 <a id="v0-2-0"></a>
 ## v0\.2\.0
 
-<a id="release-summary"></a>
+<a id="release-summary-1"></a>
 ### Release Summary
 
 New release of the <code>ans2dev\.general</code> collection\.
@@ -39,7 +56,7 @@ Official documentation is now avaible at [https\://3a2dev\.github\.io/ans2dev\.g
 <a id="v0-1-0"></a>
 ## v0\.1\.0
 
-<a id="release-summary-1"></a>
+<a id="release-summary-2"></a>
 ### Release Summary
 
 This is the first proper release of the <code>ans2dev\.general</code> collection\.
