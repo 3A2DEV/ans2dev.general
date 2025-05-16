@@ -1,0 +1,872 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta content="2.16.3" name="antsibull-docs" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ans2dev.general.chrony_info module – Collect chrony information. &mdash; ans2dev.general Collection  documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=41de9001" />
+      <link rel="stylesheet" type="text/css" href="_static/css/ansible.css?v=c5b67dd2" />
+      <link rel="stylesheet" type="text/css" href="_static/antsibull-minimal.css" />
+      <link rel="stylesheet" type="text/css" href="_static/css/rtd-ethical-ads.css?v=289b023e" />
+
+  
+    <link rel="shortcut icon" href="_static/images/Ansible-Mark-RGB_Black.png"/>
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=7f41d439"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="ans2dev.general.exa_facts module – Gathers facts from Oracle Exadata." href="exa_facts_module.html" />
+    <link rel="prev" title="ans2dev.general.charts module – Generate charts images." href="charts_module.html" /><!-- extra head elements for Ansible beyond RTD Sphinx Theme -->
+
+
+
+
+</head>
+
+<body class="wy-body-for-nav"><!-- extra body elements for Ansible beyond RTD Sphinx Theme -->
+
+<div class="DocSite-globalNav ansibleNav">
+  <ul>
+    <li><a href="https://www.ansible.com/blog" target="_blank">Blog</a></li>
+    <li><a href="https://forum.ansible.com/" target="_blank">Ansible community forum</a></li>
+    <li><a href="https://docs.ansible.com/" target="_blank">Documentation</a></li>
+  </ul>
+</div>
+
+<a class="DocSite-nav" href="https://3A2DEV.github.io/ans2dev.general/branch/main/" style="padding-bottom: 30px;">
+
+  <img class="DocSiteNav-logo"
+    src="_static/images/Ansible-Mark-RGB_White.png"
+    alt="Ansible Logo">
+  <div class="DocSiteNav-title">ans2dev.general Collection Docs</div>
+</a>
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            ans2dev.general Collection
+          </a><!--- Based on https://github.com/rtfd/sphinx_rtd_theme/pull/438/files -->
+
+<div class="version">
+  
+    
+  
+</div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <label class="sr-only" for="q">Search docs:</label>
+    <input type="text" class="st-default-search-input" id="q" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+  
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">Ans2Dev.General Release Notes</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="docsite/guide_install.html">Install Collection</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="docsite/guide_dependencies.html">Install Modules Dependencies</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="docsite/guide_roles.html">ans2dev.general Roles Guide</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="docsite/guide_ansible_tests.html">Ansible Tests</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="charts_module.html">ans2dev.general.charts module – Generate charts images.</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">ans2dev.general.chrony_info module – Collect chrony information.</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#synopsis">Synopsis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#requirements">Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#parameters">Parameters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#notes">Notes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#examples">Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#return-values">Return Values</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#authors">Authors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#collection-links">Collection links</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="exa_facts_module.html">ans2dev.general.exa_facts module – Gathers facts from Oracle Exadata.</a></li>
+<li class="toctree-l1"><a class="reference internal" href="open_xl_module.html">ans2dev.general.open_xl module – Read, Create and update Excel files.</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sar_facts_module.html">ans2dev.general.sar_facts module – Collect info from sar.</a></li>
+<li class="toctree-l1"><a class="reference internal" href="udevadm_control_module.html">ans2dev.general.udevadm_control module – Reload udev rules.</a></li>
+<li class="toctree-l1"><a class="reference internal" href="udevadm_info_module.html">ans2dev.general.udevadm_info module – Collect udevadm device information.</a></li>
+<li class="toctree-l1"><a class="reference internal" href="udevadm_trigger_module.html">ans2dev.general.udevadm_trigger module – Trigger udev rules.</a></li>
+<li class="toctree-l1"><a class="reference internal" href="udevadm_verify_module.html">ans2dev.general.udevadm_verify module – Verify udev rules file.</a></li>
+</ul>
+<!-- extra nav elements for Ansible beyond RTD Sphinx Theme -->
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">ans2dev.general Collection</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">ans2dev.general.chrony_info module – Collect chrony information.</li>
+      <li class="wy-breadcrumbs-aside">
+              <!-- User defined GitHub URL -->
+              <a href="https://github.com/3A2DEV/ans2dev.general/edit/main/plugins/modules/chrony_info.py?description=%23%23%23%23%23%20SUMMARY%0A%3C!—%20Your%20description%20here%20–%3E%0A%0A%0A%23%23%23%23%23%20ISSUE%20TYPE%0A-%20Docs%20Pull%20Request%0A%0A%2Blabel:%20docsite_pr" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+
+  
+           <div itemprop="articleBody">
+             
+  <span class="target" id="ansible-collections-ans2dev-general-chrony-info-module"></span><section id="ans2dev-general-chrony-info-module-collect-chrony-information">
+<h1>ans2dev.general.chrony_info module – Collect chrony information.<a class="headerlink" href="#ans2dev-general-chrony-info-module-collect-chrony-information" title="Link to this heading"></a></h1>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This module is part of the <a class="reference external" href="https://galaxy.ansible.com/ui/repo/published/ans2dev/general/">ans2dev.general collection</a> (version 0.2.0).</p>
+<p>It is not included in <code class="docutils literal notranslate"><span class="pre">ansible-core</span></code>.
+To check whether it is installed, run <code class="code docutils literal notranslate"><span class="pre">ansible-galaxy</span> <span class="pre">collection</span> <span class="pre">list</span></code>.</p>
+<p>To install it, use: <code class="code docutils literal notranslate"><span class="pre">ansible-galaxy</span> <span class="pre">collection</span> <span class="pre">install</span> <span class="pre">ans2dev.general</span></code>.
+You need further requirements to be able to use this module,
+see <a class="reference internal" href="#ansible-collections-ans2dev-general-chrony-info-module-requirements"><span class="std std-ref">Requirements</span></a> for details.</p>
+<p>To use it in a playbook, specify: <code class="code docutils literal notranslate"><span class="pre">ans2dev.general.chrony_info</span></code>.</p>
+</div>
+<p class="ansible-version-added">New in ans2dev.general 0.2.0</p>
+<nav class="contents local" id="contents">
+<ul class="simple">
+<li><p><a class="reference internal" href="#synopsis" id="id1">Synopsis</a></p></li>
+<li><p><a class="reference internal" href="#requirements" id="id2">Requirements</a></p></li>
+<li><p><a class="reference internal" href="#parameters" id="id3">Parameters</a></p></li>
+<li><p><a class="reference internal" href="#notes" id="id4">Notes</a></p></li>
+<li><p><a class="reference internal" href="#examples" id="id5">Examples</a></p></li>
+<li><p><a class="reference internal" href="#return-values" id="id6">Return Values</a></p></li>
+</ul>
+</nav>
+<section id="synopsis">
+<h2><a class="toc-backref" href="#id1" role="doc-backlink">Synopsis</a><a class="headerlink" href="#synopsis" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Retrieves <code class="docutils literal notranslate"><span class="pre">chrony</span></code> information using <code class="docutils literal notranslate"><span class="pre">chronyd</span></code> and <code class="docutils literal notranslate"><span class="pre">chronyc</span></code> commands.</p></li>
+<li><p>Collects <code class="docutils literal notranslate"><span class="pre">configuration</span></code>, <code class="docutils literal notranslate"><span class="pre">sources</span></code>, <code class="docutils literal notranslate"><span class="pre">sourcestat</span></code> and <code class="docutils literal notranslate"><span class="pre">ntpdata</span></code> info based on <code class="ansible-option docutils literal notranslate"><strong><a class="reference internal" href="#ansible-collections-ans2dev-general-chrony-info-module-parameter-mode"><span class="std std-ref"><span class="pre">mode</span></span></a></strong></code> option.</p></li>
+<li><p>Pay attention to the requirements section before using this module.</p></li>
+</ul>
+</section>
+<section id="requirements">
+<span id="ansible-collections-ans2dev-general-chrony-info-module-requirements"></span><h2><a class="toc-backref" href="#id2" role="doc-backlink">Requirements</a><a class="headerlink" href="#requirements" title="Link to this heading"></a></h2>
+<p>The below requirements are needed on the host that executes this module.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">chronyd</span></code> command with <code class="docutils literal notranslate"><span class="pre">-p</span></code> option.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">chronyc</span></code> command with <code class="docutils literal notranslate"><span class="pre">-n</span></code> <code class="docutils literal notranslate"><span class="pre">sources</span></code>, <code class="docutils literal notranslate"><span class="pre">sourcestats</span></code> and <code class="docutils literal notranslate"><span class="pre">ntpdata</span></code> options.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">chronyd.service</span></code> must be <code class="docutils literal notranslate"><span class="pre">running</span></code> to use <code class="ansible-value docutils literal notranslate"><span class="pre">sources</span></code>, <code class="ansible-value docutils literal notranslate"><span class="pre">sourcestats</span></code> and <code class="ansible-value docutils literal notranslate"><span class="pre">ntpdata</span></code> in <code class="ansible-option docutils literal notranslate"><strong><a class="reference internal" href="#ansible-collections-ans2dev-general-chrony-info-module-parameter-mode"><span class="std std-ref"><span class="pre">mode</span></span></a></strong></code> option.</p></li>
+</ul>
+</section>
+<section id="parameters">
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">Parameters</a><a class="headerlink" href="#parameters" title="Link to this heading"></a></h2>
+<table class="longtable ansible-option-table docutils align-default" style="width: 100%">
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Comments</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-IP"></div><p class="ansible-option-title" id="ansible-collections-ans2dev-general-chrony-info-module-parameter-ip"><strong>IP</strong></p>
+<a class="ansibleOptionLink" href="#parameter-IP" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
+</div></td>
+<td><div class="ansible-option-cell"><p>This option is only applicable when <code class="ansible-option docutils literal notranslate"><strong><a class="reference internal" href="#ansible-collections-ans2dev-general-chrony-info-module-parameter-mode"><span class="std std-ref"><span class="pre">mode</span></span></a></strong></code> is <code class="ansible-value docutils literal notranslate"><span class="pre">ntpdata</span></code>.</p>
+<p>It allows you to limit the data collection to a single NTP server by specifying its IP address.</p>
+<p>When used with <code class="ansible-value docutils literal notranslate"><span class="pre">ntpdata</span></code> in <code class="ansible-option docutils literal notranslate"><strong><a class="reference internal" href="#ansible-collections-ans2dev-general-chrony-info-module-parameter-mode"><span class="std std-ref"><span class="pre">mode</span></span></a></strong></code> module collects only the data for the provided NTP server IP.</p>
+</div></td>
+</tr>
+<tr class="row-odd"><td><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-mode"></div><p class="ansible-option-title" id="ansible-collections-ans2dev-general-chrony-info-module-parameter-mode"><strong>mode</strong></p>
+<a class="ansibleOptionLink" href="#parameter-mode" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span> / <span class="ansible-option-required">required</span></p>
+</div></td>
+<td><div class="ansible-option-cell"><p>This option specifies which type of chrony data the module should collect.</p>
+<p><code class="ansible-value docutils literal notranslate"><span class="pre">conf</span></code> Returns the <code class="docutils literal notranslate"><span class="pre">chronyd</span></code> configuration, as obtained from the <code class="docutils literal notranslate"><span class="pre">chronyd</span> <span class="pre">-p</span></code> command.</p>
+<p><code class="ansible-value docutils literal notranslate"><span class="pre">sources</span></code> Returns a flat list of dict representing the NTP sources table, as collected from the <code class="docutils literal notranslate"><span class="pre">chronyc</span> <span class="pre">-n</span> <span class="pre">sources</span></code> command.</p>
+<p><code class="ansible-value docutils literal notranslate"><span class="pre">sourcestats</span></code> Returns a flat list of dict representing the NTP source statistics, as gathered via the <code class="docutils literal notranslate"><span class="pre">chronyc</span> <span class="pre">-n</span> <span class="pre">sourcestats</span></code> command.</p>
+<p><code class="ansible-value docutils literal notranslate"><span class="pre">ntpdata</span></code> Returns detailed NTP testing data from <code class="docutils literal notranslate"><span class="pre">chronyc</span> <span class="pre">ntpdata</span></code> command for the configured servers.</p>
+<p class="ansible-option-line"><strong class="ansible-option-choices">Choices:</strong></p>
+<ul class="simple">
+<li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">&quot;conf&quot;</span></code></p></li>
+<li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">&quot;sources&quot;</span></code></p></li>
+<li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">&quot;sourcestats&quot;</span></code></p></li>
+<li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">&quot;ntpdata&quot;</span></code></p></li>
+</ul>
+</div></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="notes">
+<h2><a class="toc-backref" href="#id4" role="doc-backlink">Notes</a><a class="headerlink" href="#notes" title="Link to this heading"></a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<ul class="simple">
+<li><p>Module requires <code class="docutils literal notranslate"><span class="pre">register</span></code> function in order to access to the collected info.</p></li>
+<li><p>Module commands require <code class="docutils literal notranslate"><span class="pre">chronyd.service</span></code> in <code class="docutils literal notranslate"><span class="pre">running</span></code> state.</p></li>
+</ul>
+</div>
+</section>
+<section id="examples">
+<h2><a class="toc-backref" href="#id5" role="doc-backlink">Examples</a><a class="headerlink" href="#examples" title="Link to this heading"></a></h2>
+<div class="highlight-yaml+jinja notranslate"><div class="highlight"><pre><span></span><span class="nn">---</span>
+<span class="c1"># Collect chronyd configuration</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Get chrony configuration info</span>
+<span class="w">  </span><span class="nt">ans2dev.general.chrony_info</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">mode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">conf</span>
+<span class="w">  </span><span class="nt">register</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">result</span>
+
+<span class="c1"># Collect sources data</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Get chrony sources table</span>
+<span class="w">  </span><span class="nt">ans2dev.general.chrony_info</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">mode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sources</span>
+<span class="w">  </span><span class="nt">register</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">result</span>
+
+<span class="c1"># Collect sourcestats data</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Get chrony sourcestats table</span>
+<span class="w">  </span><span class="nt">ans2dev.general.chrony_info</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">mode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sourcestats</span>
+<span class="w">  </span><span class="nt">register</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">result</span>
+
+<span class="c1"># Collect all ntpdata information from all configured servers</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Get chrony ntpdata info for all servers</span>
+<span class="w">  </span><span class="nt">ans2dev.general.chrony_info</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">mode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ntpdata</span>
+<span class="w">  </span><span class="nt">register</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">result</span>
+
+<span class="c1"># Collect ntpdata only for a specific server</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Get chrony ntpdata info for a specific server</span>
+<span class="w">  </span><span class="nt">ans2dev.general.chrony_info</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">mode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ntpdata</span>
+<span class="w">    </span><span class="nt">IP</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;100.110.92.1&quot;</span>
+<span class="w">  </span><span class="nt">register</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">result</span>
+</pre></div>
+</div>
+</section>
+<section id="return-values">
+<h2><a class="toc-backref" href="#id6" role="doc-backlink">Return Values</a><a class="headerlink" href="#return-values" title="Link to this heading"></a></h2>
+<p>Common return values are documented <a class="reference external" href="https://docs.ansible.com/ansible/devel/reference_appendices/common_return_values.html#common-return-values" title="(in Ansible vdevel)"><span class="xref std std-ref">here</span></a>, the following are the fields unique to this module:</p>
+<table class="longtable ansible-option-table docutils align-default" style="width: 100%">
+<thead>
+<tr class="row-odd"><th class="head"><p>Key</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="return-conf"></div><p class="ansible-option-title" id="ansible-collections-ans2dev-general-chrony-info-module-return-conf"><strong>conf</strong></p>
+<a class="ansibleOptionLink" href="#return-conf" title="Permalink to this return value"></a><p class="ansible-option-type-line"><span class="ansible-option-type">dictionary</span></p>
+</div></td>
+<td><div class="ansible-option-cell"><p>Dictionary of <code class="docutils literal notranslate"><span class="pre">chronyd</span></code> configuration from <code class="docutils literal notranslate"><span class="pre">chronyd</span> <span class="pre">-p</span></code> command.</p>
+<p>Additional fields will be returned depending on configuration file.</p>
+<p class="ansible-option-line"><strong class="ansible-option-returned-bold">Returned:</strong> when <code class="ansible-option docutils literal notranslate"><strong><a class="reference internal" href="#ansible-collections-ans2dev-general-chrony-info-module-parameter-mode"><span class="std std-ref"><span class="pre">mode</span></span></a></strong></code> is <code class="ansible-value docutils literal notranslate"><span class="pre">conf</span></code>.</p>
+</div></td>
+</tr>
+<tr class="row-odd"><td><div class="ansible-option-indent"></div><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="return-conf/driftfile"></div><p class="ansible-option-title" id="ansible-collections-ans2dev-general-chrony-info-module-return-conf-driftfile"><strong>driftfile</strong></p>
+<a class="ansibleOptionLink" href="#return-conf/driftfile" title="Permalink to this return value"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
+</div></td>
+<td><div class="ansible-option-indent-desc"></div><div class="ansible-option-cell"><p>This file stores the measured clock drift of the system.</p>
+<p><code class="docutils literal notranslate"><span class="pre">chrony</span></code> uses the drift value to make continuous adjustments to the local clock.</p>
+<p class="ansible-option-line"><strong class="ansible-option-returned-bold">Returned:</strong> if <code class="ansible-return-value docutils literal notranslate"><a class="reference internal" href="#ansible-collections-ans2dev-general-chrony-info-module-return-conf-driftfile"><span class="std std-ref"><span class="pre">conf.driftfile</span></span></a></code> is in the configuration.</p>
+<p class="ansible-option-line ansible-option-sample"><strong class="ansible-option-sample-bold">Sample:</strong> <code class="ansible-option-sample docutils literal notranslate"><span class="pre">&quot;/var/lib/chrony/drif&quot;</span></code></p>
+</div></td>
+</tr>
+<tr class="row-even"><td><div class="ansible-option-indent"></div><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="return-conf/keyfile"></div><p class="ansible-option-title" id="ansible-collections-ans2dev-general-chrony-info-module-return-conf-keyfile"><strong>keyfile</strong></p>
+<a class="ansibleOptionLink" href="#return-conf/keyfile" title="Permalink to this return value"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
+</div></td>
+<td><div class="ansible-option-indent-desc"></div><div class="ansible-option-cell"><p>This file contains authentication keys.</p>
+<p>It helps secure NTP exchanges.</p>
+<p class="ansible-option-line"><strong class="ansible-option-returned-bold">Returned:</strong> if <code class="ansible-return-value docutils literal notranslate"><a class="reference internal" href="#ansible-collections-ans2dev-general-chrony-info-module-return-conf-keyfile"><span class="std std-ref"><span class="pre">conf.keyfile</span></span></a></code> is in the configuration.</p>
+<p class="ansible-option-line ansible-option-sample"><strong class="ansible-option-sample-bold">Sample:</strong> <code class="ansible-option-sample docutils literal notranslate"><span class="pre">&quot;/etc/chrony.keys&quot;</span></code></p>
+</div></td>
+</tr>
+<tr class="row-odd"><td><div class="ansible-option-indent"></div><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="return-conf/leapsectz"></div><p class="ansible-option-title" id="ansible-collections-ans2dev-general-chrony-info-module-return-conf-leapsectz"><strong>leapsectz</strong></p>
+<a class="ansibleOptionLink" href="#return-conf/leapsectz" title="Permalink to this return value"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
+</div></td>
+<td><div class="ansible-option-indent-desc"></div><div class="ansible-option-cell"><p>This setting specifies the time zone context used when applying leap second corrections.</p>
+<p class="ansible-option-line"><strong class="ansible-option-returned-bold">Returned:</strong> if <code class="ansible-return-value docutils literal notranslate"><a class="reference internal" href="#ansible-collections-ans2dev-general-chrony-info-module-return-conf-leapsectz"><span class="std std-ref"><span class="pre">conf.leapsectz</span></span></a></code> is in the configuration.</p>
+<p class="ansible-option-line ansible-option-sample"><strong class="ansible-option-sample-bold">Sample:</strong> <code class="ansible-option-sample docutils literal notranslate"><span class="pre">&quot;right/UTC&quot;</span></code></p>
+</div></td>
+</tr>
+<tr class="row-even"><td><div class="ansible-option-indent"></div><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="return-conf/logdir"></div><p class="ansible-option-title" id="ansible-collections-ans2dev-general-chrony-info-module-return-conf-logdir"><strong>logdir</strong></p>
+<a class="ansibleOptionLink" href="#return-conf/logdir" title="Permalink to this return value"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
+</div></td>
+<td><div class="ansible-option-indent-desc"></div><div class="ansible-option-cell"><p>This directory is where <code class="docutils literal notranslate"><span class="pre">chrony</span></code> writes its log files.</p>
+<p class="ansible-option-line"><strong class="ansible-option-returned-bold">Returned:</strong> if <code class="ansible-return-value docutils literal notranslate"><a class="reference internal" href="#ansible-collections-ans2dev-general-chrony-info-module-return-conf-logdir"><span class="std std-ref"><span class="pre">conf.logdir</span></span></a></code> is in the configuration.</p>
+<p class="ansible-option-line ansible-option-sample"><strong class="ansible-option-sample-bold">Sample:</strong> <code class="ansible-option-sample docutils literal notranslate"><span class="pre">&quot;/var/log/chrony&quot;</span></code></p>
+</div></td>
+</tr>
+<tr class="row-odd"><td><div class="ansible-option-indent"></div><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="return-conf/makestep"></div><p class="ansible-option-title" id="ansible-collections-ans2dev-general-chrony-info-module-return-conf-makestep"><strong>makestep</strong></p>
+<a class="ansibleOptionLink" href="#return-conf/makestep" title="Permalink to this return value"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
+</div></td>
+<td><div class="ansible-option-indent-desc"></div><div class="ansible-option-cell"><p>The makestep directive controls when <code class="docutils literal notranslate"><span class="pre">chrony</span></code> will step the system clock rather than slowly slewing it.</p>
+<p class="ansible-option-line"><strong class="ansible-option-returned-bold">Returned:</strong> if <code class="ansible-return-value docutils literal notranslate"><a class="reference internal" href="#ansible-collections-ans2dev-general-chrony-info-module-return-conf-makestep"><span class="std std-ref"><span class="pre">conf.makestep</span></span></a></code> is in the configuration.</p>
+<p class="ansible-option-line ansible-option-sample"><strong class="ansible-option-sample-bold">Sample:</strong> <code class="ansible-option-sample docutils literal notranslate"><span class="pre">&quot;1.0</span> <span class="pre">3&quot;</span></code></p>
+</div></td>
+</tr>
+<tr class="row-even"><td><div class="ansible-option-indent"></div><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="return-conf/ntsdumpdir"></div><p class="ansible-option-title" id="ansible-collections-ans2dev-general-chrony-info-module-return-conf-ntsdumpdir"><strong>ntsdumpdir</strong></p>
+<a class="ansibleOptionLink" href="#return-conf/ntsdumpdir" title="Permalink to this return value"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
+</div></td>
+<td><div class="ansible-option-indent-desc"></div><div class="ansible-option-cell"><p>This directory is used by <code class="docutils literal notranslate"><span class="pre">chrony</span></code> to store a dump of NTP data.</p>
+<p class="ansible-option-line"><strong class="ansible-option-returned-bold">Returned:</strong> if <code class="ansible-return-value docutils literal notranslate"><a class="reference internal" href="#ansible-collections-ans2dev-general-chrony-info-module-return-conf-ntsdumpdir"><span class="std std-ref"><span class="pre">conf.ntsdumpdir</span></span></a></code> is in the configuration.</p>
+<p class="ansible-option-line ansible-option-sample"><strong class="ansible-option-sample-bold">Sample:</strong> <code class="ansible-option-sample docutils literal notranslate"><span class="pre">&quot;/var/lib/chrony&quot;</span></code></p>
+</div></td>
+</tr>
+<tr class="row-odd"><td><div class="ansible-option-indent"></div><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="return-conf/rtcsync"></div><p class="ansible-option-title" id="ansible-collections-ans2dev-general-chrony-info-module-return-conf-rtcsync"><strong>rtcsync</strong></p>
+<a class="ansibleOptionLink" href="#return-conf/rtcsync" title="Permalink to this return value"></a><p class="ansible-option-type-line"><span class="ansible-option-type">boolean</span></p>
+</div></td>
+<td><div class="ansible-option-indent-desc"></div><div class="ansible-option-cell"><p>When set to true, this option instructs <code class="docutils literal notranslate"><span class="pre">chrony</span></code> to synchronize the Real Time Clock <code class="docutils literal notranslate"><span class="pre">RTC</span></code> with the system clock.</p>
+<p class="ansible-option-line"><strong class="ansible-option-returned-bold">Returned:</strong> if <code class="ansible-return-value docutils literal notranslate"><a class="reference internal" href="#ansible-collections-ans2dev-general-chrony-info-module-return-conf-rtcsync"><span class="std std-ref"><span class="pre">conf.rtcsync</span></span></a></code> is in the configuration.</p>
+<p class="ansible-option-line ansible-option-sample"><strong class="ansible-option-sample-bold">Sample:</strong> <code class="ansible-option-sample docutils literal notranslate"><span class="pre">true</span></code></p>
+</div></td>
+</tr>
+<tr class="row-even"><td><div class="ansible-option-indent"></div><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="return-conf/server"></div><p class="ansible-option-title" id="ansible-collections-ans2dev-general-chrony-info-module-return-conf-server"><strong>server</strong></p>
+<a class="ansibleOptionLink" href="#return-conf/server" title="Permalink to this return value"></a><p class="ansible-option-type-line"><span class="ansible-option-type">list</span> / <span class="ansible-option-elements">elements=string</span></p>
+</div></td>
+<td><div class="ansible-option-indent-desc"></div><div class="ansible-option-cell"><p>This is a list of NTP servers chrony uses to obtain the correct time.</p>
+<p>The IP addresses are provided along with an additional option <code class="docutils literal notranslate"><span class="pre">iburst</span></code>.</p>
+<p>Depending on configuration it return <code class="docutils literal notranslate"><span class="pre">hostname</span></code> and not <code class="docutils literal notranslate"><span class="pre">ip</span></code> server.</p>
+<p class="ansible-option-line"><strong class="ansible-option-returned-bold">Returned:</strong> if <code class="ansible-return-value docutils literal notranslate"><a class="reference internal" href="#ansible-collections-ans2dev-general-chrony-info-module-return-conf-server"><span class="std std-ref"><span class="pre">conf.server</span></span></a></code> is in the configuration.</p>
+<p class="ansible-option-line ansible-option-sample"><strong class="ansible-option-sample-bold">Sample:</strong> <code class="ansible-option-sample docutils literal notranslate"><span class="pre">[&quot;100.110.92.1</span> <span class="pre">iburst&quot;,</span> <span class="pre">&quot;91.149.253.184</span> <span class="pre">iburst&quot;]</span></code></p>
+</div></td>
+</tr>
+<tr class="row-odd"><td><div class="ansible-option-indent"></div><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="return-conf/sourcedir"></div><p class="ansible-option-title" id="ansible-collections-ans2dev-general-chrony-info-module-return-conf-sourcedir"><strong>sourcedir</strong></p>
+<a class="ansibleOptionLink" href="#return-conf/sourcedir" title="Permalink to this return value"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
+</div></td>
+<td><div class="ansible-option-indent-desc"></div><div class="ansible-option-cell"><p>This directory contains additional configuration files or sources provided dynamically.</p>
+<p class="ansible-option-line"><strong class="ansible-option-returned-bold">Returned:</strong> if <code class="ansible-return-value docutils literal notranslate"><a class="reference internal" href="#ansible-collections-ans2dev-general-chrony-info-module-return-conf-sourcedir"><span class="std std-ref"><span class="pre">conf.sourcedir</span></span></a></code> is in the configuration.</p>
+<p class="ansible-option-line ansible-option-sample"><strong class="ansible-option-sample-bold">Sample:</strong> <code class="ansible-option-sample docutils literal notranslate"><span class="pre">&quot;/run/chrony-dhcp&quot;</span></code></p>
+</div></td>
+</tr>
+<tr class="row-even"><td><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="return-ntpdata"></div><p class="ansible-option-title" id="ansible-collections-ans2dev-general-chrony-info-module-return-ntpdata"><strong>ntpdata</strong></p>
+<a class="ansibleOptionLink" href="#return-ntpdata" title="Permalink to this return value"></a><p class="ansible-option-type-line"><span class="ansible-option-type">dictionary</span></p>
+</div></td>
+<td><div class="ansible-option-cell"><p>Dictionary of <code class="docutils literal notranslate"><span class="pre">chronyd</span></code> from <code class="docutils literal notranslate"><span class="pre">chronyc</span> <span class="pre">ntpdata</span></code> command for every configured server.</p>
+<p>It is a complex dictionary that contains a dictionary for each configured IP.</p>
+<p>If <code class="ansible-option docutils literal notranslate"><strong><a class="reference internal" href="#ansible-collections-ans2dev-general-chrony-info-module-parameter-ip"><span class="std std-ref"><span class="pre">IP</span></span></a></strong></code> is used it return only <code class="ansible-return-value docutils literal notranslate"><a class="reference internal" href="#ansible-collections-ans2dev-general-chrony-info-module-return-ntpdata"><span class="std std-ref"><span class="pre">ntpdata</span></span></a></code> info for the selected IP Address.</p>
+<p>Additional fields will be returned depending on <code class="docutils literal notranslate"><span class="pre">chrony</span></code> or <code class="docutils literal notranslate"><span class="pre">OS</span> <span class="pre">Distribution</span></code>.</p>
+<p class="ansible-option-line"><strong class="ansible-option-returned-bold">Returned:</strong> when <code class="ansible-option docutils literal notranslate"><strong><a class="reference internal" href="#ansible-collections-ans2dev-general-chrony-info-module-parameter-mode"><span class="std std-ref"><span class="pre">mode</span></span></a></strong></code> is <code class="ansible-value docutils literal notranslate"><span class="pre">ntpdata</span></code>.</p>
+</div></td>
+</tr>
+<tr class="row-odd"><td><div class="ansible-option-indent"></div><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="return-ntpdata/Authenticated"></div><p class="ansible-option-title" id="ansible-collections-ans2dev-general-chrony-info-module-return-ntpdata-authenticated"><strong>Authenticated</strong></p>
+<a class="ansibleOptionLink" href="#return-ntpdata/Authenticated" title="Permalink to this return value"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
+</div></td>
+<td><div class="ansible-option-indent-desc"></div><div class="ansible-option-cell"><p>Indicates whether the NTP data received from the server is authenticated.</p>
+<p class="ansible-option-line"><strong class="ansible-option-returned-bold">Returned:</strong> always</p>
+<p class="ansible-option-line ansible-option-sample"><strong class="ansible-option-sample-bold">Sample:</strong> <code class="ansible-option-sample docutils literal notranslate"><span class="pre">&quot;False&quot;</span></code></p>
+</div></td>
+</tr>
+<tr class="row-even"><td><div class="ansible-option-indent"></div><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="return-ntpdata/Interleaved"></div><p class="ansible-option-title" id="ansible-collections-ans2dev-general-chrony-info-module-return-ntpdata-interleaved"><strong>Interleaved</strong></p>
+<a class="ansibleOptionLink" href="#return-ntpdata/Interleaved" title="Permalink to this return value"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
+</div></td>
+<td><div class="ansible-option-indent-desc"></div><div class="ansible-option-cell"><p>Shows whether the server is using interleaved from for packet exchange.</p>
+<p class="ansible-option-line"><strong class="ansible-option-returned-bold">Returned:</strong> always</p>
+<p class="ansible-option-line ansible-option-sample"><strong class="ansible-option-sample-bold">Sample:</strong> <code class="ansible-option-sample docutils literal notranslate"><span class="pre">&quot;False&quot;</span></code></p>
+</div></td>
+</tr>
+<tr class="row-odd"><td><div class="ansible-option-indent"></div><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="return-ntpdata/Jitter%20asymmetry"></div><p class="ansible-option-title" id="ansible-collections-ans2dev-general-chrony-info-module-return-ntpdata-jitter-asymmetry"><strong>Jitter asymmetry</strong></p>
+<a class="ansibleOptionLink" href="#return-ntpdata/Jitter%20asymmetry" title="Permalink to this return value"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
+</div></td>
+<td><div class="ansible-option-indent-desc"></div><div class="ansible-option-cell"><p>Represents the asymmetry in network jitter between transmit and receive paths.</p>
+<p class="ansible-option-line"><strong class="ansible-option-returned-bold">Returned:</strong> always</p>
+<p class="ansible-option-line ansible-option-sample"><strong class="ansible-option-sample-bold">Sample:</strong> <code class="ansible-option-sample docutils literal notranslate"><span class="pre">&quot;0.0&quot;</span></code></p>
+</div></td>
+</tr>
+<tr class="row-even"><td><div class="ansible-option-indent"></div><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="return-ntpdata/Leap%20status"></div><p class="ansible-option-title" id="ansible-collections-ans2dev-general-chrony-info-module-return-ntpdata-leap-status"><strong>Leap status</strong></p>
+<a class="ansibleOptionLink" href="#return-ntpdata/Leap%20status" title="Permalink to this return value"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
+</div></td>
+<td><div class="ansible-option-indent-desc"></div><div class="ansible-option-cell"><p>Reports the leap second status.</p>
+<p class="ansible-option-line"><strong class="ansible-option-returned-bold">Returned:</strong> always</p>
+<p class="ansible-option-line ansible-option-sample"><strong class="ansible-option-sample-bold">Sample:</strong> <code class="ansible-option-sample docutils literal notranslate"><span class="pre">&quot;Normal&quot;</span></code></p>
+</div></td>
+</tr>
+<tr class="row-odd"><td><div class="ansible-option-indent"></div><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="return-ntpdata/Local%20address"></div><p class="ansible-option-title" id="ansible-collections-ans2dev-general-chrony-info-module-return-ntpdata-local-address"><strong>Local address</strong></p>
+<a class="ansibleOptionLink" href="#return-ntpdata/Local%20address" title="Permalink to this return value"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
+</div></td>
+<td><div class="ansible-option-indent-desc"></div><div class="ansible-option-cell"><p>Provides the local network address and additional numeric code that the system is using for communicating with the remote NTP server.</p>
+<p class="ansible-option-line"><strong class="ansible-option-returned-bold">Returned:</strong> always</p>
+<p class="ansible-option-line ansible-option-sample"><strong class="ansible-option-sample-bold">Sample:</strong> <code class="ansible-option-sample docutils literal notranslate"><span class="pre">&quot;[UNSPEC]</span> <span class="pre">(00000000)&quot;</span></code></p>
+</div></td>
+</tr>
+<tr class="row-even"><td><div class="ansible-option-indent"></div><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="return-ntpdata/Mode"></div><p class="ansible-option-title" id="ansible-collections-ans2dev-general-chrony-info-module-return-ntpdata-mode"><strong>Mode</strong></p>
+<a class="ansibleOptionLink" href="#return-ntpdata/Mode" title="Permalink to this return value"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
+</div></td>
+<td><div class="ansible-option-indent-desc"></div><div class="ansible-option-cell"><p>Indicates the NTP mode in which the server is operating.</p>
+<p class="ansible-option-line"><strong class="ansible-option-returned-bold">Returned:</strong> always</p>
+<p class="ansible-option-line ansible-option-sample"><strong class="ansible-option-sample-bold">Sample:</strong> <code class="ansible-option-sample docutils literal notranslate"><span class="pre">&quot;Invalid&quot;</span></code></p>
+</div></td>
+</tr>
+<tr class="row-odd"><td><div class="ansible-option-indent"></div><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="return-ntpdata/NTP%20tests"></div><p class="ansible-option-title" id="ansible-collections-ans2dev-general-chrony-info-module-return-ntpdata-ntp-tests"><strong>NTP tests</strong></p>
+<a class="ansibleOptionLink" href="#return-ntpdata/NTP%20tests" title="Permalink to this return value"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
+</div></td>
+<td><div class="ansible-option-indent-desc"></div><div class="ansible-option-cell"><p>Displays the results of various NTP internal tests.</p>
+<p>The string consists of multiple sets of digits, with each group representing a particular outcome test.</p>
+<p class="ansible-option-line"><strong class="ansible-option-returned-bold">Returned:</strong> always</p>
+<p class="ansible-option-line ansible-option-sample"><strong class="ansible-option-sample-bold">Sample:</strong> <code class="ansible-option-sample docutils literal notranslate"><span class="pre">&quot;000</span> <span class="pre">000</span> <span class="pre">0000&quot;</span></code></p>
+</div></td>
+</tr>
+<tr class="row-even"><td><div class="ansible-option-indent"></div><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="return-ntpdata/Offset"></div><p class="ansible-option-title" id="ansible-collections-ans2dev-general-chrony-info-module-return-ntpdata-offset"><strong>Offset</strong></p>
+<a class="ansibleOptionLink" href="#return-ntpdata/Offset" title="Permalink to this return value"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
+</div></td>
+<td><div class="ansible-option-indent-desc"></div><div class="ansible-option-cell"><p>Reflects the measured time difference between the local system clock and the remote NTP server clock.</p>
+<p class="ansible-option-line"><strong class="ansible-option-returned-bold">Returned:</strong> always</p>
+<p class="ansible-option-line ansible-option-sample"><strong class="ansible-option-sample-bold">Sample:</strong> <code class="ansible-option-sample docutils literal notranslate"><span class="pre">&quot;+0.000000000</span> <span class="pre">seconds&quot;</span></code></p>
+</div></td>
+</tr>
+<tr class="row-odd"><td><div class="ansible-option-indent"></div><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="return-ntpdata/Peer%20delay"></div><p class="ansible-option-title" id="ansible-collections-ans2dev-general-chrony-info-module-return-ntpdata-peer-delay"><strong>Peer delay</strong></p>
+<a class="ansibleOptionLink" href="#return-ntpdata/Peer%20delay" title="Permalink to this return value"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
+</div></td>
+<td><div class="ansible-option-indent-desc"></div><div class="ansible-option-cell"><p>Measures the delay between the local system and the peer.</p>
+<p class="ansible-option-line"><strong class="ansible-option-returned-bold">Returned:</strong> always</p>
+<p class="ansible-option-line ansible-option-sample"><strong class="ansible-option-sample-bold">Sample:</strong> <code class="ansible-option-sample docutils literal notranslate"><span class="pre">&quot;0.000000000</span> <span class="pre">seconds&quot;</span></code></p>
+</div></td>
+</tr>
+<tr class="row-even"><td><div class="ansible-option-indent"></div><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="return-ntpdata/Peer%20dispersion"></div><p class="ansible-option-title" id="ansible-collections-ans2dev-general-chrony-info-module-return-ntpdata-peer-dispersion"><strong>Peer dispersion</strong></p>
+<a class="ansibleOptionLink" href="#return-ntpdata/Peer%20dispersion" title="Permalink to this return value"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
+</div></td>
+<td><div class="ansible-option-indent-desc"></div><div class="ansible-option-cell"><p>Represents the dispersion in delay measurements to the remote server.</p>
+<p class="ansible-option-line"><strong class="ansible-option-returned-bold">Returned:</strong> always</p>
+<p class="ansible-option-line ansible-option-sample"><strong class="ansible-option-sample-bold">Sample:</strong> <code class="ansible-option-sample docutils literal notranslate"><span class="pre">&quot;0.000000000</span> <span class="pre">seconds&quot;</span></code></p>
+</div></td>
+</tr>
+<tr class="row-odd"><td><div class="ansible-option-indent"></div><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="return-ntpdata/Poll%20interval"></div><p class="ansible-option-title" id="ansible-collections-ans2dev-general-chrony-info-module-return-ntpdata-poll-interval"><strong>Poll interval</strong></p>
+<a class="ansibleOptionLink" href="#return-ntpdata/Poll%20interval" title="Permalink to this return value"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
+</div></td>
+<td><div class="ansible-option-indent-desc"></div><div class="ansible-option-cell"><p>Shows the polling interval used by <code class="docutils literal notranslate"><span class="pre">chrony</span></code>.</p>
+<p class="ansible-option-line"><strong class="ansible-option-returned-bold">Returned:</strong> always</p>
+<p class="ansible-option-line ansible-option-sample"><strong class="ansible-option-sample-bold">Sample:</strong> <code class="ansible-option-sample docutils literal notranslate"><span class="pre">&quot;0</span> <span class="pre">(1</span> <span class="pre">seconds)&quot;</span></code></p>
+</div></td>
+</tr>
+<tr class="row-even"><td><div class="ansible-option-indent"></div><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="return-ntpdata/Precision"></div><p class="ansible-option-title" id="ansible-collections-ans2dev-general-chrony-info-module-return-ntpdata-precision"><strong>Precision</strong></p>
+<a class="ansibleOptionLink" href="#return-ntpdata/Precision" title="Permalink to this return value"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
+</div></td>
+<td><div class="ansible-option-indent-desc"></div><div class="ansible-option-cell"><p>Indicates the precision of the system clock as measured by <code class="docutils literal notranslate"><span class="pre">chrony</span></code>.</p>
+<p class="ansible-option-line"><strong class="ansible-option-returned-bold">Returned:</strong> always</p>
+<p class="ansible-option-line ansible-option-sample"><strong class="ansible-option-sample-bold">Sample:</strong> <code class="ansible-option-sample docutils literal notranslate"><span class="pre">&quot;0</span> <span class="pre">(1.000000000</span> <span class="pre">seconds)&quot;</span></code></p>
+</div></td>
+</tr>
+<tr class="row-odd"><td><div class="ansible-option-indent"></div><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="return-ntpdata/Reference%20ID"></div><p class="ansible-option-title" id="ansible-collections-ans2dev-general-chrony-info-module-return-ntpdata-reference-id"><strong>Reference ID</strong></p>
+<a class="ansibleOptionLink" href="#return-ntpdata/Reference%20ID" title="Permalink to this return value"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
+</div></td>
+<td><div class="ansible-option-indent-desc"></div><div class="ansible-option-cell"><p>Identifies the reference clock or time source that the server uses as its basis.</p>
+<p class="ansible-option-line"><strong class="ansible-option-returned-bold">Returned:</strong> always</p>
+<p class="ansible-option-line ansible-option-sample"><strong class="ansible-option-sample-bold">Sample:</strong> <code class="ansible-option-sample docutils literal notranslate"><span class="pre">&quot;00000000</span> <span class="pre">()&quot;</span></code></p>
+</div></td>
+</tr>
+<tr class="row-even"><td><div class="ansible-option-indent"></div><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="return-ntpdata/Reference%20time"></div><p class="ansible-option-title" id="ansible-collections-ans2dev-general-chrony-info-module-return-ntpdata-reference-time"><strong>Reference time</strong></p>
+<a class="ansibleOptionLink" href="#return-ntpdata/Reference%20time" title="Permalink to this return value"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
+</div></td>
+<td><div class="ansible-option-indent-desc"></div><div class="ansible-option-cell"><p>Shows the time at which the server last synchronized with its reference clock.</p>
+<p class="ansible-option-line"><strong class="ansible-option-returned-bold">Returned:</strong> always</p>
+<p class="ansible-option-line ansible-option-sample"><strong class="ansible-option-sample-bold">Sample:</strong> <code class="ansible-option-sample docutils literal notranslate"><span class="pre">&quot;Thu</span> <span class="pre">Jan</span> <span class="pre">01</span> <span class="pre">00:00:00</span> <span class="pre">1970&quot;</span></code></p>
+</div></td>
+</tr>
+<tr class="row-odd"><td><div class="ansible-option-indent"></div><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="return-ntpdata/Remote%20address"></div><p class="ansible-option-title" id="ansible-collections-ans2dev-general-chrony-info-module-return-ntpdata-remote-address"><strong>Remote address</strong></p>
+<a class="ansibleOptionLink" href="#return-ntpdata/Remote%20address" title="Permalink to this return value"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
+</div></td>
+<td><div class="ansible-option-indent-desc"></div><div class="ansible-option-cell"><p>Displays the remote NTP server IP address along with an accompanying numeric code.</p>
+<p class="ansible-option-line"><strong class="ansible-option-returned-bold">Returned:</strong> always</p>
+<p class="ansible-option-line ansible-option-sample"><strong class="ansible-option-sample-bold">Sample:</strong> <code class="ansible-option-sample docutils literal notranslate"><span class="pre">&quot;100.110.92.1</span> <span class="pre">(646E5C01)&quot;</span></code></p>
+</div></td>
+</tr>
+<tr class="row-even"><td><div class="ansible-option-indent"></div><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="return-ntpdata/Remote%20port"></div><p class="ansible-option-title" id="ansible-collections-ans2dev-general-chrony-info-module-return-ntpdata-remote-port"><strong>Remote port</strong></p>
+<a class="ansibleOptionLink" href="#return-ntpdata/Remote%20port" title="Permalink to this return value"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
+</div></td>
+<td><div class="ansible-option-indent-desc"></div><div class="ansible-option-cell"><p>Indicates the network port number used by the remote NTP server for communication.</p>
+<p class="ansible-option-line"><strong class="ansible-option-returned-bold">Returned:</strong> always</p>
+<p class="ansible-option-line ansible-option-sample"><strong class="ansible-option-sample-bold">Sample:</strong> <code class="ansible-option-sample docutils literal notranslate"><span class="pre">&quot;123&quot;</span></code></p>
+</div></td>
+</tr>
+<tr class="row-odd"><td><div class="ansible-option-indent"></div><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="return-ntpdata/Response%20time"></div><p class="ansible-option-title" id="ansible-collections-ans2dev-general-chrony-info-module-return-ntpdata-response-time"><strong>Response time</strong></p>
+<a class="ansibleOptionLink" href="#return-ntpdata/Response%20time" title="Permalink to this return value"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
+</div></td>
+<td><div class="ansible-option-indent-desc"></div><div class="ansible-option-cell"><p>Captures the round-trip time from when a request was sent to the remote server and when the response was received.</p>
+<p class="ansible-option-line"><strong class="ansible-option-returned-bold">Returned:</strong> always</p>
+<p class="ansible-option-line ansible-option-sample"><strong class="ansible-option-sample-bold">Sample:</strong> <code class="ansible-option-sample docutils literal notranslate"><span class="pre">&quot;0.000000000</span> <span class="pre">seconds&quot;</span></code></p>
+</div></td>
+</tr>
+<tr class="row-even"><td><div class="ansible-option-indent"></div><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="return-ntpdata/Root%20delay"></div><p class="ansible-option-title" id="ansible-collections-ans2dev-general-chrony-info-module-return-ntpdata-root-delay"><strong>Root delay</strong></p>
+<a class="ansibleOptionLink" href="#return-ntpdata/Root%20delay" title="Permalink to this return value"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
+</div></td>
+<td><div class="ansible-option-indent-desc"></div><div class="ansible-option-cell"><p>Represents the total round-trip delay to the primary reference clock.</p>
+<p class="ansible-option-line"><strong class="ansible-option-returned-bold">Returned:</strong> always</p>
+<p class="ansible-option-line ansible-option-sample"><strong class="ansible-option-sample-bold">Sample:</strong> <code class="ansible-option-sample docutils literal notranslate"><span class="pre">&quot;0.000000</span> <span class="pre">seconds&quot;</span></code></p>
+</div></td>
+</tr>
+<tr class="row-odd"><td><div class="ansible-option-indent"></div><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="return-ntpdata/Root%20dispersion"></div><p class="ansible-option-title" id="ansible-collections-ans2dev-general-chrony-info-module-return-ntpdata-root-dispersion"><strong>Root dispersion</strong></p>
+<a class="ansibleOptionLink" href="#return-ntpdata/Root%20dispersion" title="Permalink to this return value"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
+</div></td>
+<td><div class="ansible-option-indent-desc"></div><div class="ansible-option-cell"><p>The dispersion associated with the root delay.</p>
+<p class="ansible-option-line"><strong class="ansible-option-returned-bold">Returned:</strong> always</p>
+<p class="ansible-option-line ansible-option-sample"><strong class="ansible-option-sample-bold">Sample:</strong> <code class="ansible-option-sample docutils literal notranslate"><span class="pre">&quot;0.000000</span> <span class="pre">seconds&quot;</span></code></p>
+</div></td>
+</tr>
+<tr class="row-even"><td><div class="ansible-option-indent"></div><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="return-ntpdata/RX%20timestamping"></div><p class="ansible-option-title" id="ansible-collections-ans2dev-general-chrony-info-module-return-ntpdata-rx-timestamping"><strong>RX timestamping</strong></p>
+<a class="ansibleOptionLink" href="#return-ntpdata/RX%20timestamping" title="Permalink to this return value"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
+</div></td>
+<td><div class="ansible-option-indent-desc"></div><div class="ansible-option-cell"><p>Specifies the method used for timestamping incoming received packets.</p>
+<p class="ansible-option-line"><strong class="ansible-option-returned-bold">Returned:</strong> always</p>
+<p class="ansible-option-line ansible-option-sample"><strong class="ansible-option-sample-bold">Sample:</strong> <code class="ansible-option-sample docutils literal notranslate"><span class="pre">&quot;Invalid&quot;</span></code></p>
+</div></td>
+</tr>
+<tr class="row-odd"><td><div class="ansible-option-indent"></div><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="return-ntpdata/Stratum"></div><p class="ansible-option-title" id="ansible-collections-ans2dev-general-chrony-info-module-return-ntpdata-stratum"><strong>Stratum</strong></p>
+<a class="ansibleOptionLink" href="#return-ntpdata/Stratum" title="Permalink to this return value"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
+</div></td>
+<td><div class="ansible-option-indent-desc"></div><div class="ansible-option-cell"><p>Denotes the stratum level of the server.</p>
+<p>Stratum 0 is reserved for high-precision timekeeping devices.</p>
+<p class="ansible-option-line"><strong class="ansible-option-returned-bold">Returned:</strong> always</p>
+<p class="ansible-option-line ansible-option-sample"><strong class="ansible-option-sample-bold">Sample:</strong> <code class="ansible-option-sample docutils literal notranslate"><span class="pre">&quot;0&quot;</span></code></p>
+</div></td>
+</tr>
+<tr class="row-even"><td><div class="ansible-option-indent"></div><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="return-ntpdata/Total%20good%20RX"></div><p class="ansible-option-title" id="ansible-collections-ans2dev-general-chrony-info-module-return-ntpdata-total-good-rx"><strong>Total good RX</strong></p>
+<a class="ansibleOptionLink" href="#return-ntpdata/Total%20good%20RX" title="Permalink to this return value"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
+</div></td>
+<td><div class="ansible-option-indent-desc"></div><div class="ansible-option-cell"><p>The number of received packets that passed internal validation checks.</p>
+<p class="ansible-option-line"><strong class="ansible-option-returned-bold">Returned:</strong> always</p>
+<p class="ansible-option-line ansible-option-sample"><strong class="ansible-option-sample-bold">Sample:</strong> <code class="ansible-option-sample docutils literal notranslate"><span class="pre">&quot;0&quot;</span></code></p>
+</div></td>
+</tr>
+<tr class="row-odd"><td><div class="ansible-option-indent"></div><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="return-ntpdata/Total%20HW%20RX"></div><p class="ansible-option-title" id="ansible-collections-ans2dev-general-chrony-info-module-return-ntpdata-total-hw-rx"><strong>Total HW RX</strong></p>
+<a class="ansibleOptionLink" href="#return-ntpdata/Total%20HW%20RX" title="Permalink to this return value"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
+</div></td>
+<td><div class="ansible-option-indent-desc"></div><div class="ansible-option-cell"><p>Reflects the total count of received packets that were processed using hardware timestamping.</p>
+<p class="ansible-option-line"><strong class="ansible-option-returned-bold">Returned:</strong> always</p>
+<p class="ansible-option-line ansible-option-sample"><strong class="ansible-option-sample-bold">Sample:</strong> <code class="ansible-option-sample docutils literal notranslate"><span class="pre">&quot;0&quot;</span></code></p>
+</div></td>
+</tr>
+<tr class="row-even"><td><div class="ansible-option-indent"></div><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="return-ntpdata/Total%20HW%20TX"></div><p class="ansible-option-title" id="ansible-collections-ans2dev-general-chrony-info-module-return-ntpdata-total-hw-tx"><strong>Total HW TX</strong></p>
+<a class="ansibleOptionLink" href="#return-ntpdata/Total%20HW%20TX" title="Permalink to this return value"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
+</div></td>
+<td><div class="ansible-option-indent-desc"></div><div class="ansible-option-cell"><p>Indicates the total count of transmitted packets that were processed using hardware timestamping.</p>
+<p class="ansible-option-line"><strong class="ansible-option-returned-bold">Returned:</strong> always</p>
+<p class="ansible-option-line ansible-option-sample"><strong class="ansible-option-sample-bold">Sample:</strong> <code class="ansible-option-sample docutils literal notranslate"><span class="pre">&quot;0&quot;</span></code></p>
+</div></td>
+</tr>
+<tr class="row-odd"><td><div class="ansible-option-indent"></div><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="return-ntpdata/Total%20kernel%20RX"></div><p class="ansible-option-title" id="ansible-collections-ans2dev-general-chrony-info-module-return-ntpdata-total-kernel-rx"><strong>Total kernel RX</strong></p>
+<a class="ansibleOptionLink" href="#return-ntpdata/Total%20kernel%20RX" title="Permalink to this return value"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
+</div></td>
+<td><div class="ansible-option-indent-desc"></div><div class="ansible-option-cell"><p>Represents the number of packets received at the kernel level.</p>
+<p class="ansible-option-line"><strong class="ansible-option-returned-bold">Returned:</strong> always</p>
+<p class="ansible-option-line ansible-option-sample"><strong class="ansible-option-sample-bold">Sample:</strong> <code class="ansible-option-sample docutils literal notranslate"><span class="pre">&quot;0&quot;</span></code></p>
+</div></td>
+</tr>
+<tr class="row-even"><td><div class="ansible-option-indent"></div><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="return-ntpdata/Total%20kernel%20TX"></div><p class="ansible-option-title" id="ansible-collections-ans2dev-general-chrony-info-module-return-ntpdata-total-kernel-tx"><strong>Total kernel TX</strong></p>
+<a class="ansibleOptionLink" href="#return-ntpdata/Total%20kernel%20TX" title="Permalink to this return value"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
+</div></td>
+<td><div class="ansible-option-indent-desc"></div><div class="ansible-option-cell"><p>Represents the number of packets transmitted at the kernel level.</p>
+<p class="ansible-option-line"><strong class="ansible-option-returned-bold">Returned:</strong> always</p>
+<p class="ansible-option-line ansible-option-sample"><strong class="ansible-option-sample-bold">Sample:</strong> <code class="ansible-option-sample docutils literal notranslate"><span class="pre">&quot;9&quot;</span></code></p>
+</div></td>
+</tr>
+<tr class="row-odd"><td><div class="ansible-option-indent"></div><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="return-ntpdata/Total%20RX"></div><p class="ansible-option-title" id="ansible-collections-ans2dev-general-chrony-info-module-return-ntpdata-total-rx"><strong>Total RX</strong></p>
+<a class="ansibleOptionLink" href="#return-ntpdata/Total%20RX" title="Permalink to this return value"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
+</div></td>
+<td><div class="ansible-option-indent-desc"></div><div class="ansible-option-cell"><p>The total number of packets received.</p>
+<p class="ansible-option-line"><strong class="ansible-option-returned-bold">Returned:</strong> always</p>
+<p class="ansible-option-line ansible-option-sample"><strong class="ansible-option-sample-bold">Sample:</strong> <code class="ansible-option-sample docutils literal notranslate"><span class="pre">&quot;0&quot;</span></code></p>
+</div></td>
+</tr>
+<tr class="row-even"><td><div class="ansible-option-indent"></div><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="return-ntpdata/Total%20TX"></div><p class="ansible-option-title" id="ansible-collections-ans2dev-general-chrony-info-module-return-ntpdata-total-tx"><strong>Total TX</strong></p>
+<a class="ansibleOptionLink" href="#return-ntpdata/Total%20TX" title="Permalink to this return value"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
+</div></td>
+<td><div class="ansible-option-indent-desc"></div><div class="ansible-option-cell"><p>The total number of packets transmitted to the server.</p>
+<p class="ansible-option-line"><strong class="ansible-option-returned-bold">Returned:</strong> always</p>
+<p class="ansible-option-line ansible-option-sample"><strong class="ansible-option-sample-bold">Sample:</strong> <code class="ansible-option-sample docutils literal notranslate"><span class="pre">&quot;9&quot;</span></code></p>
+</div></td>
+</tr>
+<tr class="row-odd"><td><div class="ansible-option-indent"></div><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="return-ntpdata/Total%20valid%20RX"></div><p class="ansible-option-title" id="ansible-collections-ans2dev-general-chrony-info-module-return-ntpdata-total-valid-rx"><strong>Total valid RX</strong></p>
+<a class="ansibleOptionLink" href="#return-ntpdata/Total%20valid%20RX" title="Permalink to this return value"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
+</div></td>
+<td><div class="ansible-option-indent-desc"></div><div class="ansible-option-cell"><p>The number of received packets that have been validated and considered correct by the NTP protocol criteria.</p>
+<p class="ansible-option-line"><strong class="ansible-option-returned-bold">Returned:</strong> always</p>
+<p class="ansible-option-line ansible-option-sample"><strong class="ansible-option-sample-bold">Sample:</strong> <code class="ansible-option-sample docutils literal notranslate"><span class="pre">&quot;0&quot;</span></code></p>
+</div></td>
+</tr>
+<tr class="row-even"><td><div class="ansible-option-indent"></div><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="return-ntpdata/TX%20timestamping"></div><p class="ansible-option-title" id="ansible-collections-ans2dev-general-chrony-info-module-return-ntpdata-tx-timestamping"><strong>TX timestamping</strong></p>
+<a class="ansibleOptionLink" href="#return-ntpdata/TX%20timestamping" title="Permalink to this return value"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
+</div></td>
+<td><div class="ansible-option-indent-desc"></div><div class="ansible-option-cell"><p>Indicates the method used for timestamping outgoing transmitted packets.</p>
+<p class="ansible-option-line"><strong class="ansible-option-returned-bold">Returned:</strong> always</p>
+<p class="ansible-option-line ansible-option-sample"><strong class="ansible-option-sample-bold">Sample:</strong> <code class="ansible-option-sample docutils literal notranslate"><span class="pre">&quot;Invalid&quot;</span></code></p>
+</div></td>
+</tr>
+<tr class="row-odd"><td><div class="ansible-option-indent"></div><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="return-ntpdata/Version"></div><p class="ansible-option-title" id="ansible-collections-ans2dev-general-chrony-info-module-return-ntpdata-version"><strong>Version</strong></p>
+<a class="ansibleOptionLink" href="#return-ntpdata/Version" title="Permalink to this return value"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
+</div></td>
+<td><div class="ansible-option-indent-desc"></div><div class="ansible-option-cell"><p>Denotes the NTP protocol version used in the communication.</p>
+<p class="ansible-option-line"><strong class="ansible-option-returned-bold">Returned:</strong> always</p>
+<p class="ansible-option-line ansible-option-sample"><strong class="ansible-option-sample-bold">Sample:</strong> <code class="ansible-option-sample docutils literal notranslate"><span class="pre">&quot;0&quot;</span></code></p>
+</div></td>
+</tr>
+<tr class="row-even"><td><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="return-sources"></div><p class="ansible-option-title" id="ansible-collections-ans2dev-general-chrony-info-module-return-sources"><strong>sources</strong></p>
+<a class="ansibleOptionLink" href="#return-sources" title="Permalink to this return value"></a><p class="ansible-option-type-line"><span class="ansible-option-type">list</span> / <span class="ansible-option-elements">elements=dictionary</span></p>
+</div></td>
+<td><div class="ansible-option-cell"><p>Dictionary of <code class="docutils literal notranslate"><span class="pre">chronyd</span></code> from <code class="docutils literal notranslate"><span class="pre">chronyc</span> <span class="pre">-n</span> <span class="pre">sources</span></code> command.</p>
+<p>Additional fields will be returned depending on <code class="docutils literal notranslate"><span class="pre">chrony</span></code> or <code class="docutils literal notranslate"><span class="pre">OS</span> <span class="pre">Distribution</span></code>.</p>
+<p class="ansible-option-line"><strong class="ansible-option-returned-bold">Returned:</strong> when <code class="ansible-option docutils literal notranslate"><strong><a class="reference internal" href="#ansible-collections-ans2dev-general-chrony-info-module-parameter-mode"><span class="std std-ref"><span class="pre">mode</span></span></a></strong></code> is <code class="ansible-value docutils literal notranslate"><span class="pre">sources</span></code>.</p>
+</div></td>
+</tr>
+<tr class="row-odd"><td><div class="ansible-option-indent"></div><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="return-sources/Last%20sample"></div><p class="ansible-option-title" id="ansible-collections-ans2dev-general-chrony-info-module-return-sources-last-sample"><strong>Last sample</strong></p>
+<a class="ansibleOptionLink" href="#return-sources/Last%20sample" title="Permalink to this return value"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
+</div></td>
+<td><div class="ansible-option-indent-desc"></div><div class="ansible-option-cell"><p>This column reports the most recent time measurement information received from the source.</p>
+<p class="ansible-option-line"><strong class="ansible-option-returned-bold">Returned:</strong> always</p>
+<p class="ansible-option-line ansible-option-sample"><strong class="ansible-option-sample-bold">Sample:</strong> <code class="ansible-option-sample docutils literal notranslate"><span class="pre">&quot;+0ns[</span> <span class="pre">+0ns]</span> <span class="pre">+/-</span> <span class="pre">0ns&quot;</span></code></p>
+</div></td>
+</tr>
+<tr class="row-even"><td><div class="ansible-option-indent"></div><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="return-sources/LastRx"></div><p class="ansible-option-title" id="ansible-collections-ans2dev-general-chrony-info-module-return-sources-lastrx"><strong>LastRx</strong></p>
+<a class="ansibleOptionLink" href="#return-sources/LastRx" title="Permalink to this return value"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
+</div></td>
+<td><div class="ansible-option-indent-desc"></div><div class="ansible-option-cell"><p>This field indicates how long ago the last valid packet was received from the source.</p>
+<p class="ansible-option-line"><strong class="ansible-option-returned-bold">Returned:</strong> always</p>
+<p class="ansible-option-line ansible-option-sample"><strong class="ansible-option-sample-bold">Sample:</strong> <code class="ansible-option-sample docutils literal notranslate"><span class="pre">&quot;-&quot;</span></code></p>
+</div></td>
+</tr>
+<tr class="row-odd"><td><div class="ansible-option-indent"></div><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="return-sources/MS"></div><p class="ansible-option-title" id="ansible-collections-ans2dev-general-chrony-info-module-return-sources-ms"><strong>MS</strong></p>
+<a class="ansibleOptionLink" href="#return-sources/MS" title="Permalink to this return value"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
+</div></td>
+<td><div class="ansible-option-indent-desc"></div><div class="ansible-option-cell"><p>This field contains a status indicator for the source.</p>
+<p class="ansible-option-line"><strong class="ansible-option-returned-bold">Returned:</strong> always</p>
+<p class="ansible-option-line ansible-option-sample"><strong class="ansible-option-sample-bold">Sample:</strong> <code class="ansible-option-sample docutils literal notranslate"><span class="pre">&quot;^?&quot;</span></code></p>
+</div></td>
+</tr>
+<tr class="row-even"><td><div class="ansible-option-indent"></div><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="return-sources/Name/IP%20address"></div><p class="ansible-option-title" id="ansible-collections-ans2dev-general-chrony-info-module-return-sources-name-ip-address"><strong>Name/IP address</strong></p>
+<a class="ansibleOptionLink" href="#return-sources/Name/IP%20address" title="Permalink to this return value"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
+</div></td>
+<td><div class="ansible-option-indent-desc"></div><div class="ansible-option-cell"><p>This field contains the hostname or IP address of the NTP source.</p>
+<p class="ansible-option-line"><strong class="ansible-option-returned-bold">Returned:</strong> always</p>
+<p class="ansible-option-line ansible-option-sample"><strong class="ansible-option-sample-bold">Sample:</strong> <code class="ansible-option-sample docutils literal notranslate"><span class="pre">&quot;100.110.92.1&quot;</span></code></p>
+</div></td>
+</tr>
+<tr class="row-odd"><td><div class="ansible-option-indent"></div><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="return-sources/Poll"></div><p class="ansible-option-title" id="ansible-collections-ans2dev-general-chrony-info-module-return-sources-poll"><strong>Poll</strong></p>
+<a class="ansibleOptionLink" href="#return-sources/Poll" title="Permalink to this return value"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
+</div></td>
+<td><div class="ansible-option-indent-desc"></div><div class="ansible-option-cell"><p>This is the polling interval, expressed typically as a power-of-two exponent in seconds.</p>
+<p class="ansible-option-line"><strong class="ansible-option-returned-bold">Returned:</strong> always</p>
+<p class="ansible-option-line ansible-option-sample"><strong class="ansible-option-sample-bold">Sample:</strong> <code class="ansible-option-sample docutils literal notranslate"><span class="pre">&quot;8&quot;</span></code></p>
+</div></td>
+</tr>
+<tr class="row-even"><td><div class="ansible-option-indent"></div><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="return-sources/Reach"></div><p class="ansible-option-title" id="ansible-collections-ans2dev-general-chrony-info-module-return-sources-reach"><strong>Reach</strong></p>
+<a class="ansibleOptionLink" href="#return-sources/Reach" title="Permalink to this return value"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
+</div></td>
+<td><div class="ansible-option-indent-desc"></div><div class="ansible-option-cell"><p>This represents the reachability register for the source.</p>
+<p>It is an 8-bit shift register that records the success or failure of recent attempts to contact the time server.</p>
+<p class="ansible-option-line"><strong class="ansible-option-returned-bold">Returned:</strong> always</p>
+<p class="ansible-option-line ansible-option-sample"><strong class="ansible-option-sample-bold">Sample:</strong> <code class="ansible-option-sample docutils literal notranslate"><span class="pre">&quot;0&quot;</span></code></p>
+</div></td>
+</tr>
+<tr class="row-odd"><td><div class="ansible-option-indent"></div><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="return-sources/Stratum"></div><p class="ansible-option-title" id="ansible-collections-ans2dev-general-chrony-info-module-return-sources-stratum"><strong>Stratum</strong></p>
+<a class="ansibleOptionLink" href="#return-sources/Stratum" title="Permalink to this return value"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
+</div></td>
+<td><div class="ansible-option-indent-desc"></div><div class="ansible-option-cell"><p>This field represents the stratum level of the NTP server.</p>
+<p class="ansible-option-line"><strong class="ansible-option-returned-bold">Returned:</strong> always</p>
+<p class="ansible-option-line ansible-option-sample"><strong class="ansible-option-sample-bold">Sample:</strong> <code class="ansible-option-sample docutils literal notranslate"><span class="pre">&quot;0&quot;</span></code></p>
+</div></td>
+</tr>
+<tr class="row-even"><td><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="return-sourcestat"></div><p class="ansible-option-title" id="ansible-collections-ans2dev-general-chrony-info-module-return-sourcestat"><strong>sourcestat</strong></p>
+<a class="ansibleOptionLink" href="#return-sourcestat" title="Permalink to this return value"></a><p class="ansible-option-type-line"><span class="ansible-option-type">list</span> / <span class="ansible-option-elements">elements=dictionary</span></p>
+</div></td>
+<td><div class="ansible-option-cell"><p>Dictionary of <code class="docutils literal notranslate"><span class="pre">chronyd</span></code> from <code class="docutils literal notranslate"><span class="pre">chronyc</span> <span class="pre">-n</span> <span class="pre">sourcestats</span></code> command.</p>
+<p>Additional fields will be returned depending on <code class="docutils literal notranslate"><span class="pre">chrony</span></code> or <code class="docutils literal notranslate"><span class="pre">OS</span> <span class="pre">Distribution</span></code>.</p>
+<p class="ansible-option-line"><strong class="ansible-option-returned-bold">Returned:</strong> when <code class="ansible-option docutils literal notranslate"><strong><a class="reference internal" href="#ansible-collections-ans2dev-general-chrony-info-module-parameter-mode"><span class="std std-ref"><span class="pre">mode</span></span></a></strong></code> is <code class="ansible-value docutils literal notranslate"><span class="pre">sourcestats</span></code>.</p>
+</div></td>
+</tr>
+<tr class="row-odd"><td><div class="ansible-option-indent"></div><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="return-sourcestat/Freq%20Skew"></div><p class="ansible-option-title" id="ansible-collections-ans2dev-general-chrony-info-module-return-sourcestat-freq-skew"><strong>Freq Skew</strong></p>
+<a class="ansibleOptionLink" href="#return-sourcestat/Freq%20Skew" title="Permalink to this return value"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
+</div></td>
+<td><div class="ansible-option-indent-desc"></div><div class="ansible-option-cell"><p>This value represents the variability or statistical dispersion of the measured frequency offsets.</p>
+<p class="ansible-option-line"><strong class="ansible-option-returned-bold">Returned:</strong> always</p>
+<p class="ansible-option-line ansible-option-sample"><strong class="ansible-option-sample-bold">Sample:</strong> <code class="ansible-option-sample docutils literal notranslate"><span class="pre">&quot;2000.0&quot;</span></code></p>
+</div></td>
+</tr>
+<tr class="row-even"><td><div class="ansible-option-indent"></div><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="return-sourcestat/Frequency"></div><p class="ansible-option-title" id="ansible-collections-ans2dev-general-chrony-info-module-return-sourcestat-frequency"><strong>Frequency</strong></p>
+<a class="ansibleOptionLink" href="#return-sourcestat/Frequency" title="Permalink to this return value"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
+</div></td>
+<td><div class="ansible-option-indent-desc"></div><div class="ansible-option-cell"><p>Reflects the average frequency offset or error of the local clock relative to the reference provided by the source.</p>
+<p>It is expressed in a way that indicates how far off and in which direction the clock might be running.</p>
+<p class="ansible-option-line"><strong class="ansible-option-returned-bold">Returned:</strong> always</p>
+<p class="ansible-option-line ansible-option-sample"><strong class="ansible-option-sample-bold">Sample:</strong> <code class="ansible-option-sample docutils literal notranslate"><span class="pre">&quot;0.0&quot;</span></code></p>
+</div></td>
+</tr>
+<tr class="row-odd"><td><div class="ansible-option-indent"></div><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="return-sourcestat/Name/IP%20Address"></div><p class="ansible-option-title" id="ansible-collections-ans2dev-general-chrony-info-module-return-sourcestat-name-ip-address"><strong>Name/IP Address</strong></p>
+<a class="ansibleOptionLink" href="#return-sourcestat/Name/IP%20Address" title="Permalink to this return value"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
+</div></td>
+<td><div class="ansible-option-indent-desc"></div><div class="ansible-option-cell"><p>The hostname or IP address of the NTP source from which measurements are taken.</p>
+<p class="ansible-option-line"><strong class="ansible-option-returned-bold">Returned:</strong> always</p>
+<p class="ansible-option-line ansible-option-sample"><strong class="ansible-option-sample-bold">Sample:</strong> <code class="ansible-option-sample docutils literal notranslate"><span class="pre">&quot;100.110.92.1&quot;</span></code></p>
+</div></td>
+</tr>
+<tr class="row-even"><td><div class="ansible-option-indent"></div><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="return-sourcestat/NP"></div><p class="ansible-option-title" id="ansible-collections-ans2dev-general-chrony-info-module-return-sourcestat-np"><strong>NP</strong></p>
+<a class="ansibleOptionLink" href="#return-sourcestat/NP" title="Permalink to this return value"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
+</div></td>
+<td><div class="ansible-option-indent-desc"></div><div class="ansible-option-cell"><p>Often represents the number of measurement samples or packets that have been successfully collected and used for statistical analysis.</p>
+<p class="ansible-option-line"><strong class="ansible-option-returned-bold">Returned:</strong> always</p>
+<p class="ansible-option-line ansible-option-sample"><strong class="ansible-option-sample-bold">Sample:</strong> <code class="ansible-option-sample docutils literal notranslate"><span class="pre">&quot;0&quot;</span></code></p>
+</div></td>
+</tr>
+<tr class="row-odd"><td><div class="ansible-option-indent"></div><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="return-sourcestat/NR"></div><p class="ansible-option-title" id="ansible-collections-ans2dev-general-chrony-info-module-return-sourcestat-nr"><strong>NR</strong></p>
+<a class="ansibleOptionLink" href="#return-sourcestat/NR" title="Permalink to this return value"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
+</div></td>
+<td><div class="ansible-option-indent-desc"></div><div class="ansible-option-cell"><p>Indicates the number of rejected measurements.</p>
+<p class="ansible-option-line"><strong class="ansible-option-returned-bold">Returned:</strong> always</p>
+<p class="ansible-option-line ansible-option-sample"><strong class="ansible-option-sample-bold">Sample:</strong> <code class="ansible-option-sample docutils literal notranslate"><span class="pre">&quot;0&quot;</span></code></p>
+</div></td>
+</tr>
+<tr class="row-even"><td><div class="ansible-option-indent"></div><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="return-sourcestat/Offset"></div><p class="ansible-option-title" id="ansible-collections-ans2dev-general-chrony-info-module-return-sourcestat-offset"><strong>Offset</strong></p>
+<a class="ansibleOptionLink" href="#return-sourcestat/Offset" title="Permalink to this return value"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
+</div></td>
+<td><div class="ansible-option-indent-desc"></div><div class="ansible-option-cell"><p>The average offset is the measured difference in time between the local system clock and the remote NTP source.</p>
+<p class="ansible-option-line"><strong class="ansible-option-returned-bold">Returned:</strong> always</p>
+<p class="ansible-option-line ansible-option-sample"><strong class="ansible-option-sample-bold">Sample:</strong> <code class="ansible-option-sample docutils literal notranslate"><span class="pre">&quot;+0ns&quot;</span></code></p>
+</div></td>
+</tr>
+<tr class="row-odd"><td><div class="ansible-option-indent"></div><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="return-sourcestat/Span"></div><p class="ansible-option-title" id="ansible-collections-ans2dev-general-chrony-info-module-return-sourcestat-span"><strong>Span</strong></p>
+<a class="ansibleOptionLink" href="#return-sourcestat/Span" title="Permalink to this return value"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
+</div></td>
+<td><div class="ansible-option-indent-desc"></div><div class="ansible-option-cell"><p>Represents the time span in seconds between the oldest and newest measurement sample used to compute the statistics.</p>
+<p class="ansible-option-line"><strong class="ansible-option-returned-bold">Returned:</strong> always</p>
+<p class="ansible-option-line ansible-option-sample"><strong class="ansible-option-sample-bold">Sample:</strong> <code class="ansible-option-sample docutils literal notranslate"><span class="pre">&quot;0&quot;</span></code></p>
+</div></td>
+</tr>
+<tr class="row-even"><td><div class="ansible-option-indent"></div><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="return-sourcestat/Std%20Dev"></div><p class="ansible-option-title" id="ansible-collections-ans2dev-general-chrony-info-module-return-sourcestat-std-dev"><strong>Std Dev</strong></p>
+<a class="ansibleOptionLink" href="#return-sourcestat/Std%20Dev" title="Permalink to this return value"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
+</div></td>
+<td><div class="ansible-option-indent-desc"></div><div class="ansible-option-cell"><p>This is the standard deviation of the offset measurements.</p>
+<p>The standard deviation gives a sense of the spread or dispersion of the offset values.</p>
+<p class="ansible-option-line"><strong class="ansible-option-returned-bold">Returned:</strong> always</p>
+<p class="ansible-option-line ansible-option-sample"><strong class="ansible-option-sample-bold">Sample:</strong> <code class="ansible-option-sample docutils literal notranslate"><span class="pre">&quot;4000ms&quot;</span></code></p>
+</div></td>
+</tr>
+</tbody>
+</table>
+<section id="authors">
+<h3>Authors<a class="headerlink" href="#authors" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>Marco Noce (&#64;NomakCooper)</p></li>
+</ul>
+</section>
+<section id="collection-links">
+<h3>Collection links<a class="headerlink" href="#collection-links" title="Link to this heading"></a></h3>
+<ul class="ansible-links">
+<li><span><a aria-role="button" class="ansible-link reference external" href="https://github.com/3A2DEV/ans2dev.general/issues" rel="noopener external" target="_blank">Issue Tracker</a></span></li>
+<li><span><a aria-role="button" class="ansible-link reference external" href="https://github.com/3A2DEV/ans2dev.general" rel="noopener external" target="_blank">Repository (Sources)</a></span></li>
+<li><span><a aria-role="button" class="ansible-link reference external" href="https://github.com/3A2DEV/ans2dev.general/issues/new?template=bug_report.yml" rel="noopener external" target="_blank">Submit a bug report</a></span></li>
+<li><span><a aria-role="button" class="ansible-link reference external" href="https://github.com/3A2DEV/ans2dev.general/issues/new?template=feature_request.yml" rel="noopener external" target="_blank">Request a feature</a></span></li>
+<li><span><a aria-role="button" class="ansible-link reference external" href="https://github.com/3A2DEV/ans2dev.general/issues/new?template=documentation_report.yml" rel="noopener external" target="_blank">Submit a documentation report</a></span></li>
+</ul>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          
+
+<footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="charts_module.html" class="btn btn-neutral float-left" title="ans2dev.general.charts module – Generate charts images." accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="exa_facts_module.html" class="btn btn-neutral float-right" title="ans2dev.general.exa_facts module – Gathers facts from Oracle Exadata." accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 3A2DEV Contributors.</p>
+  </div>
+
+  
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script><!-- extra footer elements for Ansible beyond RTD Sphinx Theme -->
+
+</body>
+</html>
