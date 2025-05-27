@@ -8,4 +8,4 @@ openpyxl
 # requirement for the charts module
 requests
 kaleido
-plotly < 6.1.0
+plotly
