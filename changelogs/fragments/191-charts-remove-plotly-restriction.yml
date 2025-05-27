@@ -1,0 +1,2 @@
+bugfixes:
+  - charts - remove ``plotly`` version restriction. charts module now works fine with plotly ``6.1.1`` (https://github.com/3A2DEV/ans2dev.general/pull/191).
