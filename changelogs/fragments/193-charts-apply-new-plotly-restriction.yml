@@ -1,0 +1,2 @@
+bugfixes:
+  - charts - apply new ``plotly`` and ``kaleido`` version restriction. Fix ``plotly_get_chrome`` (https://github.com/3A2DEV/ans2dev.general/pull/193).
