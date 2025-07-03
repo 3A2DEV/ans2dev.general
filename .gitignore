@@ -48,6 +48,7 @@ pip-delete-this-directory.txt
 htmlcov/
 .tox/
 .nox/
+.andebox-tox-test.ini
 .coverage
 .coverage.*
 .cache
@@ -116,6 +117,9 @@ venv/
 ENV/
 env.bak/
 venv.bak/
+
+# Ide
+.vscode/
 
 # Spyder project settings
 .spyderproject
