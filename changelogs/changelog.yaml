@@ -73,3 +73,19 @@ releases:
     - 0.2.1.yml
     - 184-charts-restrict-plotly.yml
     release_date: '2025-05-16'
+  0.2.2:
+    changes:
+      bugfixes:
+      - charts - apply new ``plotly`` and ``kaleido`` version restriction. Fix ``plotly_get_chrome``
+        (https://github.com/3A2DEV/ans2dev.general/pull/193).
+      - charts - remove ``plotly`` version restriction. charts module now works fine
+        with plotly ``6.1.1`` (https://github.com/3A2DEV/ans2dev.general/pull/191).
+      release_summary: 'New release of the ``ans2dev.general`` collection.
+
+        The changelog describes all changes made to the modules and plugins included
+        in this collection.'
+    fragments:
+    - 0.2.2.yml
+    - 191-charts-remove-plotly-restriction.yml
+    - 193-charts-apply-new-plotly-restriction.yml
+    release_date: '2025-07-03'
