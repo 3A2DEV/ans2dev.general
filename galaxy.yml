@@ -3,7 +3,7 @@
 
 namespace: ans2dev
 name: general
-version: 0.2.1
+version: 0.2.2
 readme: README.md
 authors:
   - NomakCooper (github.com/NomakCooper)
@@ -15,7 +15,7 @@ tags:
   - ans2dev
   - general
 repository: https://github.com/3A2DEV/ans2dev.general
-#documentation: https://github.com/ansible-collection-migration/community.REPO_NAME/tree/main/docs
+documentation: https://3a2dev.github.io/ans2dev.general/branch/main/
 homepage: https://github.com/3A2DEV/ans2dev.general
 issues: https://github.com/3A2DEV/ans2dev.general/issues
 build_ignore:
