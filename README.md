@@ -53,7 +53,7 @@ Every voice is important. If you have something on your mind, create an issue or
 
 ## Tested with Ansible
 
-Tested with the current `ansible-core 2.17` and `ansible-core 2.18` releases and the current development version of ansible-core. Ansible-core versions before `2.16.0` are not supported. This includes all ansible-base `2.10` and Ansible `2.9` releases.
+Tested with `ansible-core 2.18` releases ( sanity-test in `ansible-core 2.19` ). Ansible-core versions before `2.16.0` are not supported. This includes all ansible-base `2.10` and Ansible `2.9` releases.
 
 Ansible Integration tests olso run on Official Docker Image and `ansible-core 2.18`:
 
