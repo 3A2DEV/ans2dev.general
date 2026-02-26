@@ -29,8 +29,8 @@ jobs:
     strategy:
       matrix:
         ansible:
-          - stable-2.17
           - stable-2.18
+          - stable-2.19
           - devel
         # - milestone
 
@@ -60,7 +60,6 @@ jobs:
       fail-fast: true
       matrix:
         ansible:
-          - stable-2.17
           - stable-2.18
           - devel
         # - milestone
@@ -97,30 +96,12 @@ jobs:
           - devel
         # - milestone
         python:
-          - '3.8'
-          - '3.9'
           - '3.10'
           - '3.11'
           - '3.12'
           - '3.13'
         include:
-          - ansible: stable-2.17
-            python: '3.7'
-          - ansible: stable-2.17
-            python: '3.8'
-          - ansible: stable-2.17
-            python: '3.9'
-          - ansible: stable-2.17
-            python: '3.10'
-          - ansible: stable-2.17
-            python: '3.11'
-          - ansible: stable-2.17
-            python: '3.12'
           # ansible-core 2.18
-          - ansible: stable-2.18
-            python: '3.8'
-          - ansible: stable-2.18
-            python: '3.9'
           - ansible: stable-2.18
             python: '3.10'
           - ansible: stable-2.18
