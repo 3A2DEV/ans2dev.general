@@ -234,17 +234,17 @@ see <a class="reference internal" href="#ansible-collections-ans2dev-general-ude
 <span class="c1"># Verify udev rules file</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Verify udev rules file</span>
 <span class="w">  </span><span class="nt">ans2dev.general.udevadm_verify</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">src</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;/etc/udev/rules.d/70-snap.snapd.rules&quot;</span>
+<span class="w">    </span><span class="nt">src</span><span class="p">:</span><span class="w"> </span><span class="s">"/etc/udev/rules.d/70-snap.snapd.rules"</span>
 <span class="w">    </span><span class="nt">no_style</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">True</span>
-<span class="w">    </span><span class="nt">resolve_names</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;early&quot;</span>
+<span class="w">    </span><span class="nt">resolve_names</span><span class="p">:</span><span class="w"> </span><span class="s">"early"</span>
 <span class="w">  </span><span class="nt">register</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">result</span>
 
 <span class="c1"># Verify udev rules file without no-style and resolve_names=never</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Verify udev rules file</span>
 <span class="w">  </span><span class="nt">ans2dev.general.udevadm_verify</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">src</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;/etc/udev/rules.d/70-snap.snapd.rules&quot;</span>
+<span class="w">    </span><span class="nt">src</span><span class="p">:</span><span class="w"> </span><span class="s">"/etc/udev/rules.d/70-snap.snapd.rules"</span>
 <span class="w">    </span><span class="nt">no_style</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">False</span>
-<span class="w">    </span><span class="nt">resolve_names</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;never&quot;</span>
+<span class="w">    </span><span class="nt">resolve_names</span><span class="p">:</span><span class="w"> </span><span class="s">"never"</span>
 <span class="w">  </span><span class="nt">register</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">result</span>
 </pre></div>
 </div>

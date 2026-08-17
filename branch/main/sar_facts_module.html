@@ -251,29 +251,29 @@ To check whether it is installed, run <code class="code docutils literal notrans
 <div class="highlight-yaml+jinja notranslate"><div class="highlight"><pre><span></span><span class="c1"># Gather CPU performance metrics for a specific date and time range.</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Gather CPU SAR facts between 08:00 and 10:00</span>
 <span class="w">  </span><span class="nt">ans2dev.general.sar_facts</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">date_start</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;2025-05-01&quot;</span>
-<span class="w">    </span><span class="nt">date_end</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;2025-05-01&quot;</span>
-<span class="w">    </span><span class="nt">time_start</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;08:00:00&quot;</span>
-<span class="w">    </span><span class="nt">time_end</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;10:00:00&quot;</span>
+<span class="w">    </span><span class="nt">date_start</span><span class="p">:</span><span class="w"> </span><span class="s">"2025-05-01"</span>
+<span class="w">    </span><span class="nt">date_end</span><span class="p">:</span><span class="w"> </span><span class="s">"2025-05-01"</span>
+<span class="w">    </span><span class="nt">time_start</span><span class="p">:</span><span class="w"> </span><span class="s">"08:00:00"</span>
+<span class="w">    </span><span class="nt">time_end</span><span class="p">:</span><span class="w"> </span><span class="s">"10:00:00"</span>
 <span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cpu</span>
 
 <span class="c1"># Gather memory usage SAR data for a single day.</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Retrieve memory usage data for a day</span>
 <span class="w">  </span><span class="nt">ans2dev.general.sar_facts</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">date_start</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;2025-05-01&quot;</span>
+<span class="w">    </span><span class="nt">date_start</span><span class="p">:</span><span class="w"> </span><span class="s">"2025-05-01"</span>
 <span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">memory</span>
 
 <span class="c1"># Retrieve disk statistics with partition details.</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Gather disk usage statistics with partition information</span>
 <span class="w">  </span><span class="nt">ans2dev.general.sar_facts</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">date_start</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;2025-05-01&quot;</span>
+<span class="w">    </span><span class="nt">date_start</span><span class="p">:</span><span class="w"> </span><span class="s">"2025-05-01"</span>
 <span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">disk</span>
 <span class="w">    </span><span class="nt">partition</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 
 <span class="c1"># Retrieve average load statistics.</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Gather average load statistics</span>
 <span class="w">  </span><span class="nt">ans2dev.general.sar_facts</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">date_start</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;2025-05-01&quot;</span>
+<span class="w">    </span><span class="nt">date_start</span><span class="p">:</span><span class="w"> </span><span class="s">"2025-05-01"</span>
 <span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">load</span>
 <span class="w">    </span><span class="nt">average</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 </pre></div>

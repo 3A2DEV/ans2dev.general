@@ -214,52 +214,52 @@ This role is based on its data collected.</p>
 <span class="w">  </span><span class="nt">include_role</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ans2dev.general.sar_filter</span>
 <span class="w">  </span><span class="nt">vars</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">source</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;sar_cpu&quot;</span>
-<span class="w">    </span><span class="nt">filter_by</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;timestamp&quot;</span>
-<span class="w">    </span><span class="nt">result_fact</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;cpu_usage&quot;</span>
+<span class="w">    </span><span class="nt">source</span><span class="p">:</span><span class="w"> </span><span class="s">"sar_cpu"</span>
+<span class="w">    </span><span class="nt">filter_by</span><span class="p">:</span><span class="w"> </span><span class="s">"timestamp"</span>
+<span class="w">    </span><span class="nt">result_fact</span><span class="p">:</span><span class="w"> </span><span class="s">"cpu_usage"</span>
 
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Extract CPU % User</span>
 <span class="w">  </span><span class="nt">include_role</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ans2dev.general.sar_filter</span>
 <span class="w">  </span><span class="nt">vars</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">source</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;sar_cpu&quot;</span>
-<span class="w">    </span><span class="nt">filter_by</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;datavalue&quot;</span>
-<span class="w">    </span><span class="nt">datavalue_key</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;%user&quot;</span>
-<span class="w">    </span><span class="nt">result_fact</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;cpu_usr&quot;</span>
+<span class="w">    </span><span class="nt">source</span><span class="p">:</span><span class="w"> </span><span class="s">"sar_cpu"</span>
+<span class="w">    </span><span class="nt">filter_by</span><span class="p">:</span><span class="w"> </span><span class="s">"datavalue"</span>
+<span class="w">    </span><span class="nt">datavalue_key</span><span class="p">:</span><span class="w"> </span><span class="s">"%user"</span>
+<span class="w">    </span><span class="nt">result_fact</span><span class="p">:</span><span class="w"> </span><span class="s">"cpu_usr"</span>
 
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Extract CPU % System</span>
 <span class="w">  </span><span class="nt">include_role</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ans2dev.general.sar_filter</span>
 <span class="w">  </span><span class="nt">vars</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">source</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;sar_cpu&quot;</span>
-<span class="w">    </span><span class="nt">filter_by</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;datavalue&quot;</span>
-<span class="w">    </span><span class="nt">datavalue_key</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;%system&quot;</span>
-<span class="w">    </span><span class="nt">result_fact</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;cpu_sys&quot;</span>
+<span class="w">    </span><span class="nt">source</span><span class="p">:</span><span class="w"> </span><span class="s">"sar_cpu"</span>
+<span class="w">    </span><span class="nt">filter_by</span><span class="p">:</span><span class="w"> </span><span class="s">"datavalue"</span>
+<span class="w">    </span><span class="nt">datavalue_key</span><span class="p">:</span><span class="w"> </span><span class="s">"%system"</span>
+<span class="w">    </span><span class="nt">result_fact</span><span class="p">:</span><span class="w"> </span><span class="s">"cpu_sys"</span>
 
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Extract CPU % IO Wait</span>
 <span class="w">  </span><span class="nt">include_role</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ans2dev.general.sar_filter</span>
 <span class="w">  </span><span class="nt">vars</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">source</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;sar_cpu&quot;</span>
-<span class="w">    </span><span class="nt">filter_by</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;datavalue&quot;</span>
-<span class="w">    </span><span class="nt">datavalue_key</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;%iowait&quot;</span>
-<span class="w">    </span><span class="nt">result_fact</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;cpu_iowait&quot;</span>
+<span class="w">    </span><span class="nt">source</span><span class="p">:</span><span class="w"> </span><span class="s">"sar_cpu"</span>
+<span class="w">    </span><span class="nt">filter_by</span><span class="p">:</span><span class="w"> </span><span class="s">"datavalue"</span>
+<span class="w">    </span><span class="nt">datavalue_key</span><span class="p">:</span><span class="w"> </span><span class="s">"%iowait"</span>
+<span class="w">    </span><span class="nt">result_fact</span><span class="p">:</span><span class="w"> </span><span class="s">"cpu_iowait"</span>
 
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Generate CPU Usage Chart</span>
 <span class="w">  </span><span class="nt">ans2dev.general.charts</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">titlechart</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;CPU</span><span class="nv"> </span><span class="s">Usage</span><span class="nv"> </span><span class="s">Over</span><span class="nv"> </span><span class="s">Time&quot;</span>
-<span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;line&quot;</span>
-<span class="w">    </span><span class="nt">xaxis</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;</span><span class="cp">{{</span> <span class="nv">cpu_usage_timestamp</span> <span class="cp">}}</span><span class="s">&quot;</span>
-<span class="w">    </span><span class="nt">xaxisname</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Timestamp&quot;</span>
+<span class="w">    </span><span class="nt">titlechart</span><span class="p">:</span><span class="w"> </span><span class="s">"CPU</span><span class="nv"> </span><span class="s">Usage</span><span class="nv"> </span><span class="s">Over</span><span class="nv"> </span><span class="s">Time"</span>
+<span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="s">"line"</span>
+<span class="w">    </span><span class="nt">xaxis</span><span class="p">:</span><span class="w"> </span><span class="s">"</span><span class="cp">{{</span> <span class="nv">cpu_usage_timestamp</span> <span class="cp">}}</span><span class="s">"</span>
+<span class="w">    </span><span class="nt">xaxisname</span><span class="p">:</span><span class="w"> </span><span class="s">"Timestamp"</span>
 <span class="w">    </span><span class="nt">yaxis</span><span class="p">:</span>
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;</span><span class="cp">{{</span> <span class="nv">cpu_usr_values</span> <span class="cp">}}</span><span class="s">&quot;</span>
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;</span><span class="cp">{{</span> <span class="nv">cpu_sys_values</span> <span class="cp">}}</span><span class="s">&quot;</span>
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;</span><span class="cp">{{</span> <span class="nv">cpu_iowait_values</span> <span class="cp">}}</span><span class="s">&quot;</span>
-<span class="w">    </span><span class="nt">yaxisname</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&quot;User</span><span class="nv"> </span><span class="s">%&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;System</span><span class="nv"> </span><span class="s">%&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;IO</span><span class="nv"> </span><span class="s">Wait</span><span class="nv"> </span><span class="s">%&quot;</span><span class="p p-Indicator">]</span>
-<span class="w">    </span><span class="nt">yaxiscolor</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&quot;red&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;blue&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;orange&quot;</span><span class="p p-Indicator">]</span>
-<span class="w">    </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;/tmp&quot;</span>
-<span class="w">    </span><span class="nt">filename</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;cpu_usage&quot;</span>
-<span class="w">    </span><span class="nt">format</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;png&quot;</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">"</span><span class="cp">{{</span> <span class="nv">cpu_usr_values</span> <span class="cp">}}</span><span class="s">"</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">"</span><span class="cp">{{</span> <span class="nv">cpu_sys_values</span> <span class="cp">}}</span><span class="s">"</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">"</span><span class="cp">{{</span> <span class="nv">cpu_iowait_values</span> <span class="cp">}}</span><span class="s">"</span>
+<span class="w">    </span><span class="nt">yaxisname</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">"User</span><span class="nv"> </span><span class="s">%"</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">"System</span><span class="nv"> </span><span class="s">%"</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">"IO</span><span class="nv"> </span><span class="s">Wait</span><span class="nv"> </span><span class="s">%"</span><span class="p p-Indicator">]</span>
+<span class="w">    </span><span class="nt">yaxiscolor</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">"red"</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">"blue"</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">"orange"</span><span class="p p-Indicator">]</span>
+<span class="w">    </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="s">"/tmp"</span>
+<span class="w">    </span><span class="nt">filename</span><span class="p">:</span><span class="w"> </span><span class="s">"cpu_usage"</span>
+<span class="w">    </span><span class="nt">format</span><span class="p">:</span><span class="w"> </span><span class="s">"png"</span>
 </pre></div>
 </div>
 <div class="highlight-yaml+jinja notranslate"><div class="highlight"><pre><span></span><span class="c1"># ========================= NETWORK USAGE CHART =========================</span>
@@ -267,45 +267,45 @@ This role is based on its data collected.</p>
 <span class="w">  </span><span class="nt">include_role</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ans2dev.general.sar_filter</span>
 <span class="w">  </span><span class="nt">vars</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">source</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;sar_net&quot;</span>
-<span class="w">    </span><span class="nt">filter_by</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;timestamp&quot;</span>
-<span class="w">    </span><span class="nt">iface_filter</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;eth0&quot;</span>
-<span class="w">    </span><span class="nt">result_fact</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;net_eth0&quot;</span>
+<span class="w">    </span><span class="nt">source</span><span class="p">:</span><span class="w"> </span><span class="s">"sar_net"</span>
+<span class="w">    </span><span class="nt">filter_by</span><span class="p">:</span><span class="w"> </span><span class="s">"timestamp"</span>
+<span class="w">    </span><span class="nt">iface_filter</span><span class="p">:</span><span class="w"> </span><span class="s">"eth0"</span>
+<span class="w">    </span><span class="nt">result_fact</span><span class="p">:</span><span class="w"> </span><span class="s">"net_eth0"</span>
 
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Extract Packets Received (eth0)</span>
 <span class="w">  </span><span class="nt">include_role</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ans2dev.general.sar_filter</span>
 <span class="w">  </span><span class="nt">vars</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">source</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;sar_net&quot;</span>
-<span class="w">    </span><span class="nt">filter_by</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;datavalue&quot;</span>
-<span class="w">    </span><span class="nt">datavalue_key</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;rxpck/s&quot;</span>
-<span class="w">    </span><span class="nt">iface_filter</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;eth0&quot;</span>
-<span class="w">    </span><span class="nt">result_fact</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;net_eth0_rx&quot;</span>
+<span class="w">    </span><span class="nt">source</span><span class="p">:</span><span class="w"> </span><span class="s">"sar_net"</span>
+<span class="w">    </span><span class="nt">filter_by</span><span class="p">:</span><span class="w"> </span><span class="s">"datavalue"</span>
+<span class="w">    </span><span class="nt">datavalue_key</span><span class="p">:</span><span class="w"> </span><span class="s">"rxpck/s"</span>
+<span class="w">    </span><span class="nt">iface_filter</span><span class="p">:</span><span class="w"> </span><span class="s">"eth0"</span>
+<span class="w">    </span><span class="nt">result_fact</span><span class="p">:</span><span class="w"> </span><span class="s">"net_eth0_rx"</span>
 
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Extract Packets Sent (eth0)</span>
 <span class="w">  </span><span class="nt">include_role</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ans2dev.general.sar_filter</span>
 <span class="w">  </span><span class="nt">vars</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">source</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;sar_net&quot;</span>
-<span class="w">    </span><span class="nt">filter_by</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;datavalue&quot;</span>
-<span class="w">    </span><span class="nt">datavalue_key</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;txpck/s&quot;</span>
-<span class="w">    </span><span class="nt">iface_filter</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;eth0&quot;</span>
-<span class="w">    </span><span class="nt">result_fact</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;net_eth0_tx&quot;</span>
+<span class="w">    </span><span class="nt">source</span><span class="p">:</span><span class="w"> </span><span class="s">"sar_net"</span>
+<span class="w">    </span><span class="nt">filter_by</span><span class="p">:</span><span class="w"> </span><span class="s">"datavalue"</span>
+<span class="w">    </span><span class="nt">datavalue_key</span><span class="p">:</span><span class="w"> </span><span class="s">"txpck/s"</span>
+<span class="w">    </span><span class="nt">iface_filter</span><span class="p">:</span><span class="w"> </span><span class="s">"eth0"</span>
+<span class="w">    </span><span class="nt">result_fact</span><span class="p">:</span><span class="w"> </span><span class="s">"net_eth0_tx"</span>
 
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Generate Network Packets Chart (eth0)</span>
 <span class="w">  </span><span class="nt">ans2dev.general.charts</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">titlechart</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Network</span><span class="nv"> </span><span class="s">Packets</span><span class="nv"> </span><span class="s">Received</span><span class="nv"> </span><span class="s">&amp;</span><span class="nv"> </span><span class="s">Sent</span><span class="nv"> </span><span class="s">(eth0)&quot;</span>
-<span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;bar&quot;</span>
-<span class="w">    </span><span class="nt">xaxis</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;</span><span class="cp">{{</span> <span class="nv">net_eth0_timestamp</span> <span class="cp">}}</span><span class="s">&quot;</span>
-<span class="w">    </span><span class="nt">xaxisname</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Timestamp&quot;</span>
+<span class="w">    </span><span class="nt">titlechart</span><span class="p">:</span><span class="w"> </span><span class="s">"Network</span><span class="nv"> </span><span class="s">Packets</span><span class="nv"> </span><span class="s">Received</span><span class="nv"> </span><span class="s">&amp;</span><span class="nv"> </span><span class="s">Sent</span><span class="nv"> </span><span class="s">(eth0)"</span>
+<span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="s">"bar"</span>
+<span class="w">    </span><span class="nt">xaxis</span><span class="p">:</span><span class="w"> </span><span class="s">"</span><span class="cp">{{</span> <span class="nv">net_eth0_timestamp</span> <span class="cp">}}</span><span class="s">"</span>
+<span class="w">    </span><span class="nt">xaxisname</span><span class="p">:</span><span class="w"> </span><span class="s">"Timestamp"</span>
 <span class="w">    </span><span class="nt">yaxis</span><span class="p">:</span>
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;</span><span class="cp">{{</span> <span class="nv">net_eth0_rx_values</span> <span class="cp">}}</span><span class="s">&quot;</span>
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;</span><span class="cp">{{</span> <span class="nv">net_eth0_tx_values</span> <span class="cp">}}</span><span class="s">&quot;</span>
-<span class="w">    </span><span class="nt">yaxisname</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&quot;RX</span><span class="nv"> </span><span class="s">Packets&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;TX</span><span class="nv"> </span><span class="s">Packets&quot;</span><span class="p p-Indicator">]</span>
-<span class="w">    </span><span class="nt">yaxiscolor</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&quot;blue&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;orange&quot;</span><span class="p p-Indicator">]</span>
-<span class="w">    </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;/tmp&quot;</span>
-<span class="w">    </span><span class="nt">filename</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;net_eth0&quot;</span>
-<span class="w">    </span><span class="nt">format</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;png&quot;</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">"</span><span class="cp">{{</span> <span class="nv">net_eth0_rx_values</span> <span class="cp">}}</span><span class="s">"</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">"</span><span class="cp">{{</span> <span class="nv">net_eth0_tx_values</span> <span class="cp">}}</span><span class="s">"</span>
+<span class="w">    </span><span class="nt">yaxisname</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">"RX</span><span class="nv"> </span><span class="s">Packets"</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">"TX</span><span class="nv"> </span><span class="s">Packets"</span><span class="p p-Indicator">]</span>
+<span class="w">    </span><span class="nt">yaxiscolor</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">"blue"</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">"orange"</span><span class="p p-Indicator">]</span>
+<span class="w">    </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="s">"/tmp"</span>
+<span class="w">    </span><span class="nt">filename</span><span class="p">:</span><span class="w"> </span><span class="s">"net_eth0"</span>
+<span class="w">    </span><span class="nt">format</span><span class="p">:</span><span class="w"> </span><span class="s">"png"</span>
 </pre></div>
 </div>
 </section>

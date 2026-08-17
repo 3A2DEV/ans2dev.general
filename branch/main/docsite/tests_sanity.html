@@ -159,7 +159,7 @@
 <span class="w">        </span><span class="nt">ansible-core-version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ matrix.ansible }}</span>
 <span class="w">        </span><span class="nt">testing-type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sanity</span>
 <span class="w">        </span><span class="nt">codecov-token</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ secrets.CODECOV_TOKEN }}</span>
-<span class="w">        </span><span class="nt">coverage</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ github.event_name == &#39;schedule&#39; &amp;&amp; &#39;always&#39; || &#39;never&#39; }}</span>
+<span class="w">        </span><span class="nt">coverage</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ github.event_name == 'schedule' &amp;&amp; 'always' || 'never' }}</span>
 <span class="w">        </span><span class="nt">pull-request-change-detection</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 </pre></div>
 </div>

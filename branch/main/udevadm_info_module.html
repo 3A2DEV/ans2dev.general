@@ -222,7 +222,7 @@ see <a class="reference internal" href="#ansible-collections-ans2dev-general-ude
 <span class="c1"># Get full udevadm info for /dev/sda</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Get full udevadm info for /dev/sda</span>
 <span class="w">  </span><span class="nt">ans2dev.general.udevadm_info</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">device</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;/dev/sda&quot;</span>
+<span class="w">    </span><span class="nt">device</span><span class="p">:</span><span class="w"> </span><span class="s">"/dev/sda"</span>
 <span class="w">  </span><span class="nt">register</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">result</span>
 
 <span class="c1"># Print SCSI_VENDOR from example above</span>
@@ -233,8 +233,8 @@ see <a class="reference internal" href="#ansible-collections-ans2dev-general-ude
 <span class="c1"># Get only DEVPATH property from udevadm info for /dev/sda</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Get only DEVPATH property from udevadm info for /dev/sda</span>
 <span class="w">  </span><span class="nt">ans2dev.general.udevadm_info</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">device</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;/dev/sda&quot;</span>
-<span class="w">    </span><span class="nt">property</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;DEVPATH&quot;</span>
+<span class="w">    </span><span class="nt">device</span><span class="p">:</span><span class="w"> </span><span class="s">"/dev/sda"</span>
+<span class="w">    </span><span class="nt">property</span><span class="p">:</span><span class="w"> </span><span class="s">"DEVPATH"</span>
 <span class="w">  </span><span class="nt">register</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">result</span>
 </pre></div>
 </div>
